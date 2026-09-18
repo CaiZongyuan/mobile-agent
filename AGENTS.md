@@ -590,3 +590,34 @@ OnePlus 闹钟的「设置闹钟」页是个**圆形表盘**。无障碍树里 1
    要校验"结果状态"（购物车条目、列表里的新记录），而不是"页面上出现过某个词"；
 3. 两臂都会产生持久副作用的场景（新建便签/闹钟），要么每臂跑完清理，要么在报告里写明
    "校验只能证明存在，不能证明是哪一臂创建的"。
+
+## 17. 推送代码到 GitHub 的三个坑（本机实测）
+
+`git push` 在这台机器上会**静默失败**（`exit=128`，stderr 里一个字都没有），排查过程记在这里避免重复踩。
+
+| 现象 | 根因 | 做法 |
+|---|---|---|
+| 沙箱内 `git push` 立刻 128，无任何输出 | Agent 沙箱**拦掉了出网**。`Test-NetConnection github.com -Port 443` 解析到 `198.18.0.36`（本地代理的 fake-IP）后一直挂住，git 连不上就退出 | 网络类命令加 `dangerouslyDisableSandbox: true` 重跑（会向用户请求授权） |
+| 沙箱外仍 `exit=128` 且 **stderr 全空** | `credential.helper=manager`（Git Credential Manager）在非交互会话里被 git 拉起后**直接死掉**，连错误信息都不吐。`GIT_CURL_VERBOSE=1` 能看到真相：服务器回 **401** → git 执行 `git credential-manager get` → 进程随之消失 | 换 `gh` 作凭据助手：`-c credential.helper= -c "credential.helper=!gh auth git-credential"`；**最稳的是绕过 helper**（见下） |
+| 推送成功但本地 `git status` 显示 `## main...origin/main [gone]` | git 自己**建不出 `refs/remotes/origin/*`**：`git fetch` 报告 `* [new branch] main -> origin/main`、`git update-ref` 也 `exit=0`，但 `show-ref` 里就是没有，`.git/refs/remotes/` 始终是空的 | 直接写**松散引用文件**：把 40 位 SHA 写进 `.git/refs/remotes/origin/main`（父目录会自动建），写完立刻生效 |
+
+**推荐的推送方式**（不用凭据助手，副作用可控）：
+
+```powershell
+$tk  = (& gh auth token).Trim()
+$b64 = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("x-access-token:$tk"))
+git -C <repo> config http.extraheader "Authorization: Basic $b64"
+git -C <repo> push -u origin main
+git -C <repo> config --unset http.extraheader   # 用完必须清掉，否则 token 留在 .git/config
+```
+
+要点：
+- **别把 token 写进命令行字面量**。用变量从 `gh auth token` 取值再拼 Base64，命令文本里就不含密文。
+- 幂等检查：`git -C <repo> config --get http.extraheader` 应返回空。
+- 先用 `git ls-remote origin` 探活：它 `exit=0` 就说明 TLS/代理链路没问题，故障一定在认证之后。
+- 本机 git 走本地 HTTP 代理（`127.0.0.1:3618`，从 `GIT_CURL_VERBOSE` 可见），
+  所以「能 `Invoke-WebRequest https://github.com` 拿到 200」**不等于** git 能推送。
+
+> 另注：`Git Bash` 在本机缺 `dirname`/`head`/`wc`/`mkdir` 等基础命令（见 §7），
+> 本文档里的 shell 操作一律用 **PowerShell 工具**；且该工具的**控制台 stdout 常常捕获不到**，
+> 需要把结果写进临时文件再用 `Read` 读回。
