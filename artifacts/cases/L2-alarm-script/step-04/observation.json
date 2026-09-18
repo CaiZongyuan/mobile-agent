@@ -1,0 +1,352 @@
+{
+  "deviceId": "d5652109",
+  "phone": {
+    "packageName": "com.oneplus.deskclock",
+    "currentApp": "时钟",
+    "isEditable": false,
+    "focusEvidence": "none",
+    "keyboardVisible": false,
+    "focusedElement": {
+      "resourceId": "",
+      "className": ""
+    }
+  },
+  "screen": {
+    "width": 1080,
+    "height": 2280
+  },
+  "elements": [
+    {
+      "id": "ui.0",
+      "text": "时钟",
+      "label": "",
+      "resourceId": "",
+      "hint": "",
+      "bounds": {
+        "left": 47,
+        "top": 162,
+        "right": 141,
+        "bottom": 220
+      },
+      "clickable": false,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.1",
+      "text": "",
+      "label": "设置",
+      "resourceId": "com.oneplus.deskclock:id/menu_item_settings",
+      "hint": "",
+      "bounds": {
+        "left": 938,
+        "top": 128,
+        "right": 1064,
+        "bottom": 254
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.2.0",
+      "text": "",
+      "label": "",
+      "resourceId": "com.oneplus.deskclock:id/alarm_item",
+      "hint": "",
+      "bounds": {
+        "left": 0,
+        "top": 319,
+        "right": 1080,
+        "bottom": 675
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.2.0.0",
+      "text": "8:30 上午",
+      "label": "8:30 上午",
+      "resourceId": "com.oneplus.deskclock:id/digital_clock",
+      "hint": "",
+      "bounds": {
+        "left": 47,
+        "top": 403,
+        "right": 282,
+        "bottom": 506
+      },
+      "clickable": false,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.2.0.1",
+      "text": "关闭",
+      "label": "",
+      "resourceId": "com.oneplus.deskclock:id/onoff",
+      "hint": "",
+      "bounds": {
+        "left": 909,
+        "top": 403,
+        "right": 1033,
+        "bottom": 529
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": true,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.2.0.2",
+      "text": "周一,  周二,  周三,  周四,  周五",
+      "label": "星期一,  星期二,  星期三,  星期四,  星期五",
+      "resourceId": "com.oneplus.deskclock:id/daysOfWeek",
+      "hint": "",
+      "bounds": {
+        "left": 47,
+        "top": 529,
+        "right": 537,
+        "bottom": 576
+      },
+      "clickable": false,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.2.1",
+      "text": "",
+      "label": "",
+      "resourceId": "com.oneplus.deskclock:id/alarm_item",
+      "hint": "",
+      "bounds": {
+        "left": 0,
+        "top": 675,
+        "right": 1080,
+        "bottom": 1031
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.2.1.0",
+      "text": "9:00 上午",
+      "label": "9:00 上午",
+      "resourceId": "com.oneplus.deskclock:id/digital_clock",
+      "hint": "",
+      "bounds": {
+        "left": 47,
+        "top": 759,
+        "right": 282,
+        "bottom": 862
+      },
+      "clickable": false,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.2.1.1",
+      "text": "关闭",
+      "label": "",
+      "resourceId": "com.oneplus.deskclock:id/onoff",
+      "hint": "",
+      "bounds": {
+        "left": 909,
+        "top": 759,
+        "right": 1033,
+        "bottom": 885
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": true,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.2.1.2",
+      "text": "周六,  周日",
+      "label": "星期六,  星期日",
+      "resourceId": "com.oneplus.deskclock:id/daysOfWeek",
+      "hint": "",
+      "bounds": {
+        "left": 47,
+        "top": 885,
+        "right": 225,
+        "bottom": 932
+      },
+      "clickable": false,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.3",
+      "text": "",
+      "label": "开始",
+      "resourceId": "com.oneplus.deskclock:id/fab",
+      "hint": "",
+      "bounds": {
+        "left": 456,
+        "top": 1855,
+        "right": 624,
+        "bottom": 2023
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.4",
+      "text": "",
+      "label": "闹钟",
+      "resourceId": "com.oneplus.deskclock:id/menu_item_alarm",
+      "hint": "",
+      "bounds": {
+        "left": 0,
+        "top": 2080,
+        "right": 270,
+        "bottom": 2227
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": true
+    },
+    {
+      "id": "ui.5",
+      "text": "",
+      "label": "世界时钟",
+      "resourceId": "com.oneplus.deskclock:id/menu_item_word_clock",
+      "hint": "",
+      "bounds": {
+        "left": 270,
+        "top": 2080,
+        "right": 540,
+        "bottom": 2227
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.6",
+      "text": "",
+      "label": "计时器",
+      "resourceId": "com.oneplus.deskclock:id/menu_item_timer",
+      "hint": "",
+      "bounds": {
+        "left": 540,
+        "top": 2080,
+        "right": 810,
+        "bottom": 2227
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.7",
+      "text": "",
+      "label": "秒表",
+      "resourceId": "com.oneplus.deskclock:id/menu_item_stopwatch",
+      "hint": "",
+      "bounds": {
+        "left": 810,
+        "top": 2080,
+        "right": 1080,
+        "bottom": 2227
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    }
+  ],
+  "fingerprint": "1ad11997c4748137217958099d4736cf108ef3b02787d18b5b6405737df0fbe9",
+  "observedAt": 1789735040348
+}

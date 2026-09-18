@@ -1,0 +1,43 @@
+{
+  "step": 1,
+  "attempt": 1,
+  "status": "action",
+  "operation": "TYPE_TEXT",
+  "target": "1",
+  "choice": "text_0",
+  "confidence": 0.46,
+  "targetConfidence": 0.97,
+  "operationProbabilities": {
+    "TYPE_TEXT": 0.51,
+    "TAP": 0.48,
+    "OPEN_APP": 0.01,
+    "SCROLL_UP": 0,
+    "SCROLL_DOWN": 0,
+    "HOME": 0,
+    "ENTER": 0,
+    "SCROLL_RIGHT": 0,
+    "DONE": 0,
+    "BACK": 0,
+    "WAIT": 0,
+    "SCROLL_LEFT": 0,
+    "BLOCKED": 0
+  },
+  "targetProbabilities": {
+    "1": 0.99,
+    "NONE": 0.01
+  },
+  "usage": {
+    "input_tokens": 7142,
+    "output_tokens": 701,
+    "cost": 0.000299964
+  },
+  "requestedModel": "~typesafe/jev-latest",
+  "responseModel": "typesafe/jev-1.13-20260917",
+  "latencyMs": 577.9,
+  "action": {
+    "type": "type",
+    "text": "洗衣液",
+    "clear": true
+  },
+  "label": "{\"type\":\"type\",\"text\":\"洗衣液\",\"clear\":true}"
+}

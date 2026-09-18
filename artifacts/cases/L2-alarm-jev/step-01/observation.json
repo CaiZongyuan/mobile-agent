@@ -1,0 +1,132 @@
+{
+  "deviceId": "d5652109",
+  "phone": {
+    "packageName": "com.android.permissioncontroller",
+    "currentApp": "权限控制器",
+    "isEditable": false,
+    "focusEvidence": "none",
+    "keyboardVisible": false,
+    "focusedElement": {
+      "resourceId": "",
+      "className": ""
+    }
+  },
+  "screen": {
+    "width": 1080,
+    "height": 2280
+  },
+  "elements": [
+    {
+      "id": "ui.0.0",
+      "text": "要允许时钟获取此设备的关机闹钟权限吗？",
+      "label": "",
+      "resourceId": "com.android.permissioncontroller:id/permission_message",
+      "hint": "",
+      "bounds": {
+        "left": 206,
+        "top": 886,
+        "right": 874,
+        "bottom": 1008
+      },
+      "clickable": false,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.0.1",
+      "text": "包括：关机闹钟",
+      "label": "",
+      "resourceId": "com.android.permissioncontroller:id/group_details",
+      "hint": "",
+      "bounds": {
+        "left": 347,
+        "top": 1079,
+        "right": 732,
+        "bottom": 1126
+      },
+      "clickable": false,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.0.2",
+      "text": "始终允许",
+      "label": "",
+      "resourceId": "com.android.permissioncontroller:id/permission_allow_button",
+      "hint": "",
+      "bounds": {
+        "left": 143,
+        "top": 1150,
+        "right": 937,
+        "bottom": 1294
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.0.3",
+      "text": "禁止",
+      "label": "",
+      "resourceId": "com.android.permissioncontroller:id/permission_deny_button",
+      "hint": "",
+      "bounds": {
+        "left": 143,
+        "top": 1294,
+        "right": 937,
+        "bottom": 1438
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.0.4",
+      "text": "禁止后不再询问",
+      "label": "",
+      "resourceId": "com.android.permissioncontroller:id/permission_deny_and_dont_ask_again_button",
+      "hint": "",
+      "bounds": {
+        "left": 143,
+        "top": 1438,
+        "right": 937,
+        "bottom": 1582
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    }
+  ],
+  "fingerprint": "c7705b65e76d647f96e71ab7816092cd33d5a64cfdbae40af2aa9e7586f1093d",
+  "observedAt": 1789734759992
+}

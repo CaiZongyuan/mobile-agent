@@ -1,0 +1,6 @@
+{
+  "operation": "TAP",
+  "target": null,
+  "label": "点新建闹钟（该按钮只暴露 contentDescription=开始，脚本只能写死坐标）",
+  "confidence": null
+}

@@ -1,0 +1,37 @@
+{
+  "step": 0,
+  "attempt": 0,
+  "status": "action",
+  "operation": "TAP",
+  "target": "1",
+  "choice": "tap_ui.0.2",
+  "confidence": 0.47,
+  "targetConfidence": 0.98,
+  "operationProbabilities": {
+    "OPEN_APP": 0.45,
+    "TAP": 0.55,
+    "BLOCKED": 0,
+    "HOME": 0,
+    "BACK": 0,
+    "WAIT": 0,
+    "DONE": 0
+  },
+  "targetProbabilities": {
+    "1": 0.99,
+    "2": 0.01,
+    "3": 0
+  },
+  "usage": {
+    "input_tokens": 3434,
+    "output_tokens": 417,
+    "cost": 0.000144228
+  },
+  "requestedModel": "~typesafe/jev-latest",
+  "responseModel": "typesafe/jev-1.13-20260917",
+  "latencyMs": 472.1,
+  "action": {
+    "type": "tap-element",
+    "elementId": "ui.0.2"
+  },
+  "label": "Tap 始终允许."
+}

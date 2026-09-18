@@ -1,0 +1,308 @@
+{
+  "deviceId": "d5652109",
+  "phone": {
+    "packageName": "com.xunmeng.pinduoduo",
+    "currentApp": "拼多多",
+    "isEditable": false,
+    "focusEvidence": "none",
+    "keyboardVisible": false,
+    "focusedElement": {
+      "resourceId": "",
+      "className": ""
+    }
+  },
+  "screen": {
+    "width": 1080,
+    "height": 2280
+  },
+  "elements": [
+    {
+      "id": "ui",
+      "text": "",
+      "label": "返回",
+      "resourceId": "",
+      "hint": "",
+      "bounds": {
+        "left": 0,
+        "top": 0,
+        "right": 1080,
+        "bottom": 2280
+      },
+      "clickable": false,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.0",
+      "text": "",
+      "label": "返回",
+      "resourceId": "",
+      "hint": "",
+      "bounds": {
+        "left": 0,
+        "top": 0,
+        "right": 1080,
+        "bottom": 2238
+      },
+      "clickable": false,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.0.0",
+      "text": "",
+      "label": "",
+      "resourceId": "com.xunmeng.pinduoduo:id/pdd",
+      "hint": "",
+      "bounds": {
+        "left": 0,
+        "top": 0,
+        "right": 1080,
+        "bottom": 2238
+      },
+      "clickable": false,
+      "editable": false,
+      "scrollable": true,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.0.1",
+      "text": "",
+      "label": "",
+      "resourceId": "com.xunmeng.pinduoduo:id/pdd",
+      "hint": "",
+      "bounds": {
+        "left": 0,
+        "top": 316,
+        "right": 1080,
+        "bottom": 2238
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.0.2",
+      "text": "",
+      "label": "",
+      "resourceId": "com.xunmeng.pinduoduo:id/pdd",
+      "hint": "",
+      "bounds": {
+        "left": 0,
+        "top": 80,
+        "right": 1080,
+        "bottom": 211
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.0.2.0",
+      "text": "",
+      "label": "返回",
+      "resourceId": "com.xunmeng.pinduoduo:id/pdd",
+      "hint": "",
+      "bounds": {
+        "left": 0,
+        "top": 80,
+        "right": 110,
+        "bottom": 211
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.0.2.1",
+      "text": "",
+      "label": "搜索",
+      "resourceId": "com.xunmeng.pinduoduo:id/pdd",
+      "hint": "",
+      "bounds": {
+        "left": 110,
+        "top": 95,
+        "right": 1043,
+        "bottom": 195
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.0.2.1.0",
+      "text": "",
+      "label": "",
+      "resourceId": "",
+      "hint": "",
+      "bounds": {
+        "left": 286,
+        "top": 113,
+        "right": 478,
+        "bottom": 177
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.0.2.1.0.0",
+      "text": "洗衣液",
+      "label": "",
+      "resourceId": "com.xunmeng.pinduoduo:id/pdd",
+      "hint": "",
+      "bounds": {
+        "left": 307,
+        "top": 113,
+        "right": 418,
+        "bottom": 177
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.0.2.1.0.1",
+      "text": "",
+      "label": "",
+      "resourceId": "com.xunmeng.pinduoduo:id/pdd",
+      "hint": "",
+      "bounds": {
+        "left": 418,
+        "top": 113,
+        "right": 478,
+        "bottom": 177
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.0.2.2",
+      "text": "",
+      "label": "",
+      "resourceId": "com.xunmeng.pinduoduo:id/pdd",
+      "hint": "",
+      "bounds": {
+        "left": 110,
+        "top": 95,
+        "right": 265,
+        "bottom": 195
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.0.2.2.0",
+      "text": "商品",
+      "label": "商品",
+      "resourceId": "com.xunmeng.pinduoduo:id/pdd",
+      "hint": "",
+      "bounds": {
+        "left": 136,
+        "top": 119,
+        "right": 220,
+        "bottom": 171
+      },
+      "clickable": false,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.0.2.3",
+      "text": "",
+      "label": "拍照搜索",
+      "resourceId": "com.xunmeng.pinduoduo:id/pdd",
+      "hint": "",
+      "bounds": {
+        "left": 942,
+        "top": 104,
+        "right": 1022,
+        "bottom": 185
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    }
+  ],
+  "fingerprint": "bf180ec435e49fd8cfa02f41d9cd999025468a85407041933d9bcd05ddc9fb8a",
+  "observedAt": 1789734570459
+}

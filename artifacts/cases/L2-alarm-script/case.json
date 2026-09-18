@@ -1,0 +1,494 @@
+{
+  "id": "L2-alarm-script",
+  "pair": "L2-alarm",
+  "title": "时钟：同一任务，改为写死步骤（不用 Jev）",
+  "tone": "长程 · 系统",
+  "engine": "script",
+  "app": "com.oneplus.deskclock",
+  "goal": "（写死的脚本，无目标句）",
+  "steps": 0,
+  "verify": [
+    "7:30"
+  ],
+  "expect": "闹钟列表里出现 7:30 的闹钟条目",
+  "why": "对照组。脚本在表盘上只能写死坐标——但也正因为脚本不依赖「元素必须可点」这件事，它能定位到无障碍树里 clickable=false 的表盘数字，反而绕开了 Jev 卡住的那个坎。",
+  "script": [
+    {
+      "tapText": "始终允许",
+      "optional": true,
+      "label": "一次性权限弹窗（若出现则点，否则跳过）"
+    },
+    {
+      "tapText": "知道了",
+      "optional": true,
+      "label": "一次性引导卡（若出现则点，否则跳过）"
+    },
+    {
+      "sleep": 1500,
+      "label": "固定等 1.5s"
+    },
+    {
+      "tap": [
+        540,
+        1939
+      ],
+      "label": "点新建闹钟（该按钮只暴露 contentDescription=开始，脚本只能写死坐标）"
+    },
+    {
+      "sleep": 2000,
+      "label": "固定等闹钟编辑页"
+    },
+    {
+      "tapText": "7",
+      "label": "在小时表盘上点 7"
+    },
+    {
+      "sleep": 1200,
+      "label": "固定等表盘切到分钟"
+    },
+    {
+      "tapText": "30",
+      "label": "在分钟表盘上点 30"
+    },
+    {
+      "sleep": 800,
+      "label": "固定等一下"
+    },
+    {
+      "tap": [
+        1010,
+        210
+      ],
+      "label": "点右上角 ✓ 保存"
+    },
+    {
+      "sleep": 1500,
+      "label": "固定等返回列表"
+    },
+    {
+      "expect": "7:30",
+      "label": "断言闹钟列表里出现 7:30"
+    }
+  ],
+  "at": "2026-09-18T12:37:50.722Z",
+  "device": {
+    "id": "d5652109",
+    "name": "OnePlus6 (USB Portal)",
+    "state": "ready"
+  },
+  "result": {
+    "status": "done",
+    "steps": 12,
+    "timings": {
+      "modelMs": 0,
+      "actionMs": 4109,
+      "observationMs": 2833,
+      "waitMs": 7035,
+      "wallMs": 31636
+    },
+    "reason": "脚本按预期跑完",
+    "failed": null
+  },
+  "decisions": [
+    {
+      "n": 1,
+      "status": "skipped",
+      "operation": "SKIP",
+      "target": null,
+      "label": "一次性权限弹窗（若出现则点，否则跳过）（未出现，跳过）",
+      "confidence": null,
+      "latencyMs": 554,
+      "scriptStep": {
+        "tapText": "始终允许",
+        "optional": true,
+        "label": "一次性权限弹窗（若出现则点，否则跳过）"
+      }
+    },
+    {
+      "n": 2,
+      "status": "skipped",
+      "operation": "SKIP",
+      "target": null,
+      "label": "一次性引导卡（若出现则点，否则跳过）（未出现，跳过）",
+      "confidence": null,
+      "latencyMs": 516,
+      "scriptStep": {
+        "tapText": "知道了",
+        "optional": true,
+        "label": "一次性引导卡（若出现则点，否则跳过）"
+      }
+    },
+    {
+      "n": 3,
+      "status": "action",
+      "operation": "WAIT",
+      "target": null,
+      "label": "固定等 1.5s",
+      "confidence": null,
+      "latencyMs": 1503,
+      "scriptStep": {
+        "sleep": 1500,
+        "label": "固定等 1.5s"
+      }
+    },
+    {
+      "n": 4,
+      "status": "action",
+      "operation": "TAP",
+      "target": null,
+      "label": "点新建闹钟（该按钮只暴露 contentDescription=开始，脚本只能写死坐标）",
+      "confidence": null,
+      "latencyMs": 983,
+      "scriptStep": {
+        "tap": [
+          540,
+          1939
+        ],
+        "label": "点新建闹钟（该按钮只暴露 contentDescription=开始，脚本只能写死坐标）"
+      }
+    },
+    {
+      "n": 5,
+      "status": "action",
+      "operation": "WAIT",
+      "target": null,
+      "label": "固定等闹钟编辑页",
+      "confidence": null,
+      "latencyMs": 2002,
+      "scriptStep": {
+        "sleep": 2000,
+        "label": "固定等闹钟编辑页"
+      }
+    },
+    {
+      "n": 6,
+      "status": "action",
+      "operation": "TAP_TEXT",
+      "target": null,
+      "label": "在小时表盘上点 7",
+      "confidence": null,
+      "latencyMs": 1639,
+      "scriptStep": {
+        "tapText": "7",
+        "label": "在小时表盘上点 7"
+      }
+    },
+    {
+      "n": 7,
+      "status": "action",
+      "operation": "WAIT",
+      "target": null,
+      "label": "固定等表盘切到分钟",
+      "confidence": null,
+      "latencyMs": 1205,
+      "scriptStep": {
+        "sleep": 1200,
+        "label": "固定等表盘切到分钟"
+      }
+    },
+    {
+      "n": 8,
+      "status": "action",
+      "operation": "TAP_TEXT",
+      "target": null,
+      "label": "在分钟表盘上点 30",
+      "confidence": null,
+      "latencyMs": 1583,
+      "scriptStep": {
+        "tapText": "30",
+        "label": "在分钟表盘上点 30"
+      }
+    },
+    {
+      "n": 9,
+      "status": "action",
+      "operation": "WAIT",
+      "target": null,
+      "label": "固定等一下",
+      "confidence": null,
+      "latencyMs": 814,
+      "scriptStep": {
+        "sleep": 800,
+        "label": "固定等一下"
+      }
+    },
+    {
+      "n": 10,
+      "status": "action",
+      "operation": "TAP",
+      "target": null,
+      "label": "点右上角 ✓ 保存",
+      "confidence": null,
+      "latencyMs": 1071,
+      "scriptStep": {
+        "tap": [
+          1010,
+          210
+        ],
+        "label": "点右上角 ✓ 保存"
+      }
+    },
+    {
+      "n": 11,
+      "status": "action",
+      "operation": "WAIT",
+      "target": null,
+      "label": "固定等返回列表",
+      "confidence": null,
+      "latencyMs": 1511,
+      "scriptStep": {
+        "sleep": 1500,
+        "label": "固定等返回列表"
+      }
+    },
+    {
+      "n": 12,
+      "status": "action",
+      "operation": "ASSERT",
+      "target": null,
+      "label": "断言闹钟列表里出现 7:30",
+      "confidence": null,
+      "latencyMs": 596,
+      "scriptStep": {
+        "expect": "7:30",
+        "label": "断言闹钟列表里出现 7:30"
+      }
+    }
+  ],
+  "annotated": [
+    {
+      "n": 3,
+      "operation": "WAIT",
+      "target": null,
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-script\\step-03\\step-03-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 15,
+      "parsed_drawn": 15,
+      "candidates": 0,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [],
+      "color_counts": {
+        "TAP": 10,
+        "SCROLL": 0,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "",
+      "size_kb": 44.8,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-script\\step-03\\step-03-annotated.webp"
+    },
+    {
+      "n": 4,
+      "operation": "TAP",
+      "target": null,
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-script\\step-04\\step-04-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 15,
+      "parsed_drawn": 15,
+      "candidates": 0,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [],
+      "color_counts": {
+        "TAP": 10,
+        "SCROLL": 0,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "",
+      "size_kb": 43.6,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-script\\step-04\\step-04-annotated.webp"
+    },
+    {
+      "n": 5,
+      "operation": "WAIT",
+      "target": null,
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-script\\step-05\\step-05-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 15,
+      "parsed_drawn": 15,
+      "candidates": 0,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [],
+      "color_counts": {
+        "TAP": 10,
+        "SCROLL": 0,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "",
+      "size_kb": 55.7,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-script\\step-05\\step-05-annotated.webp"
+    },
+    {
+      "n": 6,
+      "operation": "TAP_TEXT",
+      "target": null,
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-script\\step-06\\step-06-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 37,
+      "parsed_drawn": 37,
+      "candidates": 0,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [],
+      "color_counts": {
+        "TAP": 18,
+        "SCROLL": 1,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "",
+      "size_kb": 67.1,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-script\\step-06\\step-06-annotated.webp"
+    },
+    {
+      "n": 7,
+      "operation": "WAIT",
+      "target": null,
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-script\\step-07\\step-07-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 37,
+      "parsed_drawn": 37,
+      "candidates": 0,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [],
+      "color_counts": {
+        "TAP": 18,
+        "SCROLL": 1,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "",
+      "size_kb": 67.7,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-script\\step-07\\step-07-annotated.webp"
+    },
+    {
+      "n": 8,
+      "operation": "TAP_TEXT",
+      "target": null,
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-script\\step-08\\step-08-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 38,
+      "parsed_drawn": 38,
+      "candidates": 0,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [],
+      "color_counts": {
+        "TAP": 18,
+        "SCROLL": 1,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "",
+      "size_kb": 67.3,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-script\\step-08\\step-08-annotated.webp"
+    },
+    {
+      "n": 9,
+      "operation": "WAIT",
+      "target": null,
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-script\\step-09\\step-09-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 38,
+      "parsed_drawn": 38,
+      "candidates": 0,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [],
+      "color_counts": {
+        "TAP": 18,
+        "SCROLL": 1,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "",
+      "size_kb": 67.3,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-script\\step-09\\step-09-annotated.webp"
+    },
+    {
+      "n": 10,
+      "operation": "TAP",
+      "target": null,
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-script\\step-10\\step-10-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 37,
+      "parsed_drawn": 37,
+      "candidates": 0,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [],
+      "color_counts": {
+        "TAP": 18,
+        "SCROLL": 1,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "",
+      "size_kb": 73.1,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-script\\step-10\\step-10-annotated.webp"
+    },
+    {
+      "n": 11,
+      "operation": "WAIT",
+      "target": null,
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-script\\step-11\\step-11-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 37,
+      "parsed_drawn": 37,
+      "candidates": 0,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [],
+      "color_counts": {
+        "TAP": 18,
+        "SCROLL": 1,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "",
+      "size_kb": 62.4,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-script\\step-11\\step-11-annotated.webp"
+    },
+    {
+      "n": 12,
+      "operation": "ASSERT",
+      "target": null,
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-script\\step-12\\step-12-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 19,
+      "parsed_drawn": 19,
+      "candidates": 0,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [],
+      "color_counts": {
+        "TAP": 12,
+        "SCROLL": 0,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "",
+      "size_kb": 50.2,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-script\\step-12\\step-12-annotated.webp"
+    }
+  ],
+  "final": {
+    "app": "com.oneplus.deskclock",
+    "elements": 19,
+    "checks": [
+      {
+        "keyword": "7:30",
+        "pass": true
+      }
+    ],
+    "passed": true,
+    "screenshot": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-script\\final-state.webp",
+    "annotated": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-script\\final\\step-13-annotated.webp"
+  },
+  "dir": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-script"
+}

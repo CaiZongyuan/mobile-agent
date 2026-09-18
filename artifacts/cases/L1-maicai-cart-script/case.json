@@ -1,0 +1,208 @@
+{
+  "id": "L1-maicai-cart-script",
+  "pair": "L1-maicai-cart",
+  "title": "多多买菜：同一任务，改为写死步骤（不用 Jev）",
+  "tone": "长程 · 购物",
+  "engine": "script",
+  "app": "com.xunmeng.pinduoduo",
+  "goal": "（写死的脚本，无目标句）",
+  "steps": 0,
+  "verify": [
+    "鸡蛋"
+  ],
+  "expect": "购物车（已选商品）里出现鸡蛋条目",
+  "why": "对照组：把 Jev 那条跑出来的轨迹人工固化成脚本——按文本定位控件 + 固定 sleep，零模型调用。",
+  "script": [
+    {
+      "sleep": 3000,
+      "label": "等拼多多冷启动"
+    },
+    {
+      "waitFor": "多多买菜",
+      "timeout": 15000,
+      "label": "轮询等到首页出现「多多买菜」"
+    },
+    {
+      "tapText": "多多买菜",
+      "label": "点「多多买菜」入口"
+    },
+    {
+      "waitFor": "点击加入购物车",
+      "timeout": 15000,
+      "label": "轮询等到商品列表渲染完"
+    },
+    {
+      "tapText": "点击加入购物车",
+      "label": "点鸡蛋这一行的加购按钮"
+    },
+    {
+      "sleep": 2500,
+      "label": "固定等 2.5s 让加购动画和购物车栏更新"
+    },
+    {
+      "expect": "鸡蛋",
+      "label": "断言鸡蛋已进购物车"
+    }
+  ],
+  "at": "2026-09-18T12:37:10.504Z",
+  "device": {
+    "id": "d5652109",
+    "name": "OnePlus6 (USB Portal)",
+    "state": "ready"
+  },
+  "result": {
+    "status": "script_failed",
+    "steps": 4,
+    "timings": {
+      "modelMs": 0,
+      "actionMs": 1545,
+      "observationMs": 11328,
+      "waitMs": 3005,
+      "wallMs": 30324
+    },
+    "reason": "等待超时：15000ms 内没有出现「点击加入购物车」",
+    "failed": {
+      "step": 4,
+      "label": "轮询等到商品列表渲染完",
+      "error": "等待超时：15000ms 内没有出现「点击加入购物车」"
+    }
+  },
+  "decisions": [
+    {
+      "n": 1,
+      "status": "action",
+      "operation": "WAIT",
+      "target": null,
+      "label": "等拼多多冷启动",
+      "confidence": null,
+      "latencyMs": 3005,
+      "scriptStep": {
+        "sleep": 3000,
+        "label": "等拼多多冷启动"
+      }
+    },
+    {
+      "n": 2,
+      "status": "action",
+      "operation": "WAIT",
+      "target": null,
+      "label": "轮询等到首页出现「多多买菜」",
+      "confidence": null,
+      "latencyMs": 1186,
+      "scriptStep": {
+        "waitFor": "多多买菜",
+        "timeout": 15000,
+        "label": "轮询等到首页出现「多多买菜」"
+      }
+    },
+    {
+      "n": 3,
+      "status": "action",
+      "operation": "TAP_TEXT",
+      "target": null,
+      "label": "点「多多买菜」入口",
+      "confidence": null,
+      "latencyMs": 2636,
+      "scriptStep": {
+        "tapText": "多多买菜",
+        "label": "点「多多买菜」入口"
+      }
+    },
+    {
+      "n": 4,
+      "status": "error",
+      "operation": "WAIT",
+      "target": null,
+      "label": "轮询等到商品列表渲染完",
+      "confidence": null,
+      "latencyMs": 15157,
+      "scriptStep": {
+        "waitFor": "点击加入购物车",
+        "timeout": 15000,
+        "label": "轮询等到商品列表渲染完"
+      }
+    }
+  ],
+  "annotated": [
+    {
+      "n": 2,
+      "operation": "WAIT",
+      "target": null,
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-maicai-cart-script\\step-02\\step-02-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 70,
+      "parsed_drawn": 68,
+      "candidates": 0,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [],
+      "color_counts": {
+        "TAP": 41,
+        "SCROLL": 2,
+        "TYPE": 1
+      },
+      "unmatched_indices": [],
+      "chosen": "",
+      "size_kb": 234.4,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-maicai-cart-script\\step-02\\step-02-annotated.webp"
+    },
+    {
+      "n": 3,
+      "operation": "TAP_TEXT",
+      "target": null,
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-maicai-cart-script\\step-03\\step-03-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 70,
+      "parsed_drawn": 68,
+      "candidates": 0,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [],
+      "color_counts": {
+        "TAP": 41,
+        "SCROLL": 2,
+        "TYPE": 1
+      },
+      "unmatched_indices": [],
+      "chosen": "",
+      "size_kb": 240.6,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-maicai-cart-script\\step-03\\step-03-annotated.webp"
+    },
+    {
+      "n": 4,
+      "operation": "WAIT",
+      "target": null,
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-maicai-cart-script\\step-04\\step-04-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 33,
+      "parsed_drawn": 31,
+      "candidates": 0,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [],
+      "color_counts": {
+        "TAP": 10,
+        "SCROLL": 2,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "",
+      "size_kb": 164.5,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-maicai-cart-script\\step-04\\step-04-annotated.webp"
+    }
+  ],
+  "final": {
+    "app": "com.xunmeng.pinduoduo",
+    "elements": 33,
+    "checks": [
+      {
+        "keyword": "鸡蛋",
+        "pass": false
+      }
+    ],
+    "passed": false,
+    "screenshot": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-maicai-cart-script\\final-state.webp",
+    "annotated": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-maicai-cart-script\\final\\step-05-annotated.webp"
+  },
+  "dir": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-maicai-cart-script"
+}

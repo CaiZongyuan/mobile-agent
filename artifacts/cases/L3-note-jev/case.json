@@ -1,0 +1,331 @@
+{
+  "id": "L3-note-jev",
+  "pair": "L3-note",
+  "title": "便签：新建一条「明天带伞」",
+  "tone": "长程 · 输入",
+  "engine": "jev",
+  "app": "com.oneplus.note",
+  "goal": "打开便签，新建一条内容为「明天带伞」的便签并保存",
+  "steps": 18,
+  "texts": [
+    "明天带伞"
+  ],
+  "verify": [
+    "明天带伞"
+  ],
+  "expect": "便签列表里出现内容为「明天带伞」的新便签",
+  "why": "唯一需要中文打字的场景。输入走 Portal 的键盘接口（无障碍 ACTION_SET_TEXT），不走 adb input；保存后还要自己回到列表页。",
+  "at": "2026-09-18T12:33:39.398Z",
+  "device": {
+    "id": "d5652109",
+    "name": "OnePlus6 (USB Portal)",
+    "state": "ready"
+  },
+  "result": {
+    "status": "done",
+    "steps": 4,
+    "timings": {
+      "modelMs": 2470.6,
+      "actionMs": 4092.2,
+      "observationMs": 2298.6,
+      "waitMs": 0,
+      "staleRetries": 0,
+      "modelCalls": 5,
+      "wallMs": 22649.1
+    },
+    "reason": null,
+    "failed": null
+  },
+  "decisions": [
+    {
+      "n": 1,
+      "status": "action",
+      "operation": "TAP",
+      "target": "1",
+      "label": "Tap 始终允许.",
+      "confidence": 0.41,
+      "targetConfidence": 0.89,
+      "latencyMs": 491.1,
+      "probabilities": {
+        "BACK": 0.01,
+        "OPEN_APP": 0.49,
+        "WAIT": 0,
+        "BLOCKED": 0.01,
+        "DONE": 0,
+        "TAP": 0.49,
+        "HOME": 0
+      },
+      "usage": {
+        "input_tokens": 3433,
+        "output_tokens": 418,
+        "cost": 0.000144186
+      }
+    },
+    {
+      "n": 2,
+      "status": "action",
+      "operation": "TAP",
+      "target": "5",
+      "label": "Tap ui.3.",
+      "confidence": 0.92,
+      "targetConfidence": 0.87,
+      "latencyMs": 572.3,
+      "probabilities": {
+        "DONE": 0,
+        "OPEN_APP": 0.01,
+        "BACK": 0,
+        "HOME": 0,
+        "TAP": 0.93,
+        "BLOCKED": 0.04,
+        "WAIT": 0.02
+      },
+      "usage": {
+        "input_tokens": 3917,
+        "output_tokens": 424,
+        "cost": 0.000164514
+      }
+    },
+    {
+      "n": 3,
+      "status": "action",
+      "operation": "TYPE_TEXT",
+      "target": "1",
+      "label": "{\"type\":\"type\",\"text\":\"明天带伞\",\"clear\":true}",
+      "confidence": 0.83,
+      "targetConfidence": 0.95,
+      "latencyMs": 485.5,
+      "probabilities": {
+        "BACK": 0,
+        "ENTER": 0,
+        "TAP": 0.13,
+        "DONE": 0,
+        "TYPE_TEXT": 0.86,
+        "BLOCKED": 0,
+        "HOME": 0,
+        "WAIT": 0,
+        "OPEN_APP": 0.01
+      },
+      "usage": {
+        "input_tokens": 4133,
+        "output_tokens": 504,
+        "cost": 0.000173586
+      }
+    },
+    {
+      "n": 4,
+      "status": "action",
+      "operation": "TAP",
+      "target": "4",
+      "label": "Tap 保存.",
+      "confidence": 0.88,
+      "targetConfidence": 0.98,
+      "latencyMs": 457.3,
+      "probabilities": {
+        "WAIT": 0,
+        "TAP": 0.9,
+        "DONE": 0.1,
+        "TYPE_TEXT": 0,
+        "BACK": 0,
+        "OPEN_APP": 0,
+        "ENTER": 0,
+        "BLOCKED": 0,
+        "HOME": 0
+      },
+      "usage": {
+        "input_tokens": 4194,
+        "output_tokens": 504,
+        "cost": 0.000176148
+      }
+    },
+    {
+      "n": 5,
+      "status": "done",
+      "operation": "DONE",
+      "confidence": 0.85,
+      "latencyMs": 462.4,
+      "probabilities": {
+        "WAIT": 0.01,
+        "HOME": 0,
+        "OPEN_APP": 0.01,
+        "BLOCKED": 0,
+        "BACK": 0.01,
+        "DONE": 0.88,
+        "TAP": 0.09
+      },
+      "usage": {
+        "input_tokens": 3761,
+        "output_tokens": 437,
+        "cost": 0.000157962
+      }
+    }
+  ],
+  "annotated": [
+    {
+      "n": 1,
+      "operation": "TAP",
+      "target": "1",
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-jev\\step-01\\step-01-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 5,
+      "parsed_drawn": 2,
+      "candidates": 3,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [
+        "OPEN_APP",
+        "TAP",
+        "BACK",
+        "HOME",
+        "WAIT",
+        "DONE",
+        "BLOCKED"
+      ],
+      "color_counts": {
+        "TAP": 3,
+        "SCROLL": 0,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "TAP [1]",
+      "size_kb": 75,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-jev\\step-01\\step-01-annotated.webp"
+    },
+    {
+      "n": 2,
+      "operation": "TAP",
+      "target": "5",
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-jev\\step-02\\step-02-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 15,
+      "parsed_drawn": 10,
+      "candidates": 5,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [
+        "OPEN_APP",
+        "TAP",
+        "BACK",
+        "HOME",
+        "WAIT",
+        "DONE",
+        "BLOCKED"
+      ],
+      "color_counts": {
+        "TAP": 5,
+        "SCROLL": 0,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "TAP [5]",
+      "size_kb": 247,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-jev\\step-02\\step-02-annotated.webp"
+    },
+    {
+      "n": 3,
+      "operation": "TYPE_TEXT",
+      "target": "1",
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-jev\\step-03\\step-03-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 10,
+      "parsed_drawn": 0,
+      "candidates": 10,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [
+        "OPEN_APP",
+        "TAP",
+        "TYPE_TEXT",
+        "BACK",
+        "HOME",
+        "ENTER",
+        "WAIT",
+        "DONE",
+        "BLOCKED"
+      ],
+      "color_counts": {
+        "TAP": 10,
+        "SCROLL": 0,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "TYPE_TEXT [1]",
+      "size_kb": 257.4,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-jev\\step-03\\step-03-annotated.webp"
+    },
+    {
+      "n": 4,
+      "operation": "TAP",
+      "target": "4",
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-jev\\step-04\\step-04-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 10,
+      "parsed_drawn": 0,
+      "candidates": 10,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [
+        "OPEN_APP",
+        "TAP",
+        "TYPE_TEXT",
+        "BACK",
+        "HOME",
+        "ENTER",
+        "WAIT",
+        "DONE",
+        "BLOCKED"
+      ],
+      "color_counts": {
+        "TAP": 10,
+        "SCROLL": 0,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "TAP [4]",
+      "size_kb": 256.9,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-jev\\step-04\\step-04-annotated.webp"
+    },
+    {
+      "n": 5,
+      "operation": "DONE",
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-jev\\step-05\\step-05-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 7,
+      "parsed_drawn": 0,
+      "candidates": 7,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [
+        "OPEN_APP",
+        "TAP",
+        "BACK",
+        "HOME",
+        "WAIT",
+        "DONE",
+        "BLOCKED"
+      ],
+      "color_counts": {
+        "TAP": 7,
+        "SCROLL": 0,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "DONE",
+      "size_kb": 291.7,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-jev\\step-05\\step-05-annotated.webp"
+    }
+  ],
+  "final": {
+    "app": "com.oneplus.note",
+    "elements": 7,
+    "checks": [
+      {
+        "keyword": "明天带伞",
+        "pass": true
+      }
+    ],
+    "passed": true,
+    "screenshot": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-jev\\final-state.webp",
+    "annotated": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-jev\\final\\step-06-annotated.webp"
+  },
+  "dir": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-jev"
+}

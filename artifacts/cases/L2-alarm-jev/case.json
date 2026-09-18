@@ -1,0 +1,402 @@
+{
+  "id": "L2-alarm-jev",
+  "pair": "L2-alarm",
+  "title": "时钟：设一个明早 7:30 的闹钟",
+  "tone": "长程 · 系统",
+  "engine": "jev",
+  "app": "com.oneplus.deskclock",
+  "goal": "打开时钟应用，新建一个明天早上七点半的闹钟，并保存下来",
+  "steps": 20,
+  "verify": [
+    "7:30"
+  ],
+  "expect": "闹钟列表里出现 7:30 的闹钟条目",
+  "why": "典型的『状态型』长程任务：要切到闹钟标签页、点新建、在滚轮选择器上把时间拨到 7:30、再确认保存。滚轮是非标准控件，最能看出两套方案的差别。",
+  "at": "2026-09-18T12:33:07.656Z",
+  "device": {
+    "id": "d5652109",
+    "name": "OnePlus6 (USB Portal)",
+    "state": "ready"
+  },
+  "result": {
+    "status": "stuck",
+    "steps": 5,
+    "timings": {
+      "modelMs": 3242.2,
+      "actionMs": 4801.2,
+      "observationMs": 3451,
+      "waitMs": 70.7,
+      "staleRetries": 0,
+      "modelCalls": 6,
+      "wallMs": 25011.8
+    },
+    "reason": null,
+    "failed": null
+  },
+  "decisions": [
+    {
+      "n": 1,
+      "status": "action",
+      "operation": "TAP",
+      "target": "1",
+      "label": "Tap 始终允许.",
+      "confidence": 0.47,
+      "targetConfidence": 0.98,
+      "latencyMs": 472.1,
+      "probabilities": {
+        "OPEN_APP": 0.45,
+        "TAP": 0.55,
+        "BLOCKED": 0,
+        "HOME": 0,
+        "BACK": 0,
+        "WAIT": 0,
+        "DONE": 0
+      },
+      "usage": {
+        "input_tokens": 3434,
+        "output_tokens": 417,
+        "cost": 0.000144228
+      }
+    },
+    {
+      "n": 2,
+      "status": "action",
+      "operation": "TAP",
+      "target": "7",
+      "label": "Tap 知道了.",
+      "confidence": 0.82,
+      "targetConfidence": 0.48,
+      "latencyMs": 498.8,
+      "probabilities": {
+        "OPEN_APP": 0.06,
+        "BLOCKED": 0.03,
+        "DONE": 0,
+        "HOME": 0.01,
+        "WAIT": 0.02,
+        "TAP": 0.84,
+        "BACK": 0.04
+      },
+      "usage": {
+        "input_tokens": 3993,
+        "output_tokens": 437,
+        "cost": 0.000167706
+      }
+    },
+    {
+      "n": 3,
+      "status": "action",
+      "operation": "TAP",
+      "target": "6",
+      "label": "Tap 开始.",
+      "confidence": 0.93,
+      "targetConfidence": 0.37,
+      "latencyMs": 493.4,
+      "probabilities": {
+        "OPEN_APP": 0.03,
+        "TAP": 0.95,
+        "DONE": 0,
+        "HOME": 0,
+        "BACK": 0,
+        "WAIT": 0.01,
+        "BLOCKED": 0.01
+      },
+      "usage": {
+        "input_tokens": 4208,
+        "output_tokens": 459,
+        "cost": 0.000176736
+      }
+    },
+    {
+      "n": 4,
+      "status": "action",
+      "operation": "TAP",
+      "target": "3",
+      "label": "Tap 上午.",
+      "confidence": 0.88,
+      "targetConfidence": 0.73,
+      "latencyMs": 762.4,
+      "probabilities": {
+        "SCROLL_UP": 0.02,
+        "HOME": 0,
+        "TAP": 0.9,
+        "DONE": 0,
+        "WAIT": 0,
+        "OPEN_APP": 0.04,
+        "BACK": 0.01,
+        "SCROLL_DOWN": 0.01,
+        "BLOCKED": 0,
+        "SCROLL_LEFT": 0.01,
+        "SCROLL_RIGHT": 0.01
+      },
+      "usage": {
+        "input_tokens": 5339,
+        "output_tokens": 583,
+        "cost": 0.000224238
+      }
+    },
+    {
+      "n": 5,
+      "status": "action",
+      "operation": "TAP",
+      "target": "5",
+      "label": "Tap 8.",
+      "confidence": 0.87,
+      "targetConfidence": 0.31,
+      "latencyMs": 515.4,
+      "probabilities": {
+        "SCROLL_LEFT": 0.03,
+        "OPEN_APP": 0.01,
+        "SCROLL_RIGHT": 0.03,
+        "SCROLL_UP": 0.01,
+        "BACK": 0,
+        "BLOCKED": 0,
+        "HOME": 0,
+        "SCROLL_DOWN": 0.03,
+        "TAP": 0.89,
+        "DONE": 0,
+        "WAIT": 0
+      },
+      "usage": {
+        "input_tokens": 5372,
+        "output_tokens": 583,
+        "cost": 0.000225624
+      }
+    },
+    {
+      "n": 6,
+      "status": "action",
+      "operation": "TAP",
+      "target": "5",
+      "label": "Tap 8.",
+      "confidence": 0.89,
+      "targetConfidence": 0.35,
+      "latencyMs": 497.4,
+      "probabilities": {
+        "SCROLL_DOWN": 0.02,
+        "BLOCKED": 0,
+        "SCROLL_LEFT": 0.04,
+        "SCROLL_RIGHT": 0.02,
+        "SCROLL_UP": 0.01,
+        "DONE": 0,
+        "HOME": 0,
+        "BACK": 0,
+        "WAIT": 0,
+        "TAP": 0.91,
+        "OPEN_APP": 0
+      },
+      "usage": {
+        "input_tokens": 5404,
+        "output_tokens": 583,
+        "cost": 0.000226968
+      }
+    }
+  ],
+  "annotated": [
+    {
+      "n": 1,
+      "operation": "TAP",
+      "target": "1",
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-jev\\step-01\\step-01-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 5,
+      "parsed_drawn": 2,
+      "candidates": 3,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [
+        "OPEN_APP",
+        "TAP",
+        "BACK",
+        "HOME",
+        "WAIT",
+        "DONE",
+        "BLOCKED"
+      ],
+      "color_counts": {
+        "TAP": 3,
+        "SCROLL": 0,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "TAP [1]",
+      "size_kb": 71.1,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-jev\\step-01\\step-01-annotated.webp"
+    },
+    {
+      "n": 2,
+      "operation": "TAP",
+      "target": "7",
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-jev\\step-02\\step-02-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 13,
+      "parsed_drawn": 7,
+      "candidates": 7,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [
+        "OPEN_APP",
+        "TAP",
+        "BACK",
+        "HOME",
+        "WAIT",
+        "DONE",
+        "BLOCKED"
+      ],
+      "color_counts": {
+        "TAP": 7,
+        "SCROLL": 0,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "TAP [7]",
+      "size_kb": 64.3,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-jev\\step-02\\step-02-annotated.webp"
+    },
+    {
+      "n": 3,
+      "operation": "TAP",
+      "target": "6",
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-jev\\step-03\\step-03-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 15,
+      "parsed_drawn": 6,
+      "candidates": 10,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [
+        "OPEN_APP",
+        "TAP",
+        "BACK",
+        "HOME",
+        "WAIT",
+        "DONE",
+        "BLOCKED"
+      ],
+      "color_counts": {
+        "TAP": 10,
+        "SCROLL": 0,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "TAP [6]",
+      "size_kb": 66.7,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-jev\\step-03\\step-03-annotated.webp"
+    },
+    {
+      "n": 4,
+      "operation": "TAP",
+      "target": "3",
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-jev\\step-04\\step-04-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 37,
+      "parsed_drawn": 18,
+      "candidates": 19,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [
+        "OPEN_APP",
+        "TAP",
+        "SCROLL_DOWN",
+        "SCROLL_UP",
+        "SCROLL_LEFT",
+        "SCROLL_RIGHT",
+        "BACK",
+        "HOME",
+        "WAIT",
+        "DONE",
+        "BLOCKED"
+      ],
+      "color_counts": {
+        "TAP": 18,
+        "SCROLL": 1,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "TAP [3]",
+      "size_kb": 96.1,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-jev\\step-04\\step-04-annotated.webp"
+    },
+    {
+      "n": 5,
+      "operation": "TAP",
+      "target": "5",
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-jev\\step-05\\step-05-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 37,
+      "parsed_drawn": 18,
+      "candidates": 19,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [
+        "OPEN_APP",
+        "TAP",
+        "SCROLL_DOWN",
+        "SCROLL_UP",
+        "SCROLL_LEFT",
+        "SCROLL_RIGHT",
+        "BACK",
+        "HOME",
+        "WAIT",
+        "DONE",
+        "BLOCKED"
+      ],
+      "color_counts": {
+        "TAP": 18,
+        "SCROLL": 1,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "TAP [5]",
+      "size_kb": 95.5,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-jev\\step-05\\step-05-annotated.webp"
+    },
+    {
+      "n": 6,
+      "operation": "TAP",
+      "target": "5",
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-jev\\step-06\\step-06-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 37,
+      "parsed_drawn": 18,
+      "candidates": 19,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [
+        "OPEN_APP",
+        "TAP",
+        "SCROLL_DOWN",
+        "SCROLL_UP",
+        "SCROLL_LEFT",
+        "SCROLL_RIGHT",
+        "BACK",
+        "HOME",
+        "WAIT",
+        "DONE",
+        "BLOCKED"
+      ],
+      "color_counts": {
+        "TAP": 18,
+        "SCROLL": 1,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "TAP [5]",
+      "size_kb": 95.7,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-jev\\step-06\\step-06-annotated.webp"
+    }
+  ],
+  "final": {
+    "app": "com.oneplus.deskclock",
+    "elements": 37,
+    "checks": [
+      {
+        "keyword": "7:30",
+        "pass": false
+      }
+    ],
+    "passed": false,
+    "screenshot": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-jev\\final-state.webp",
+    "annotated": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-jev\\final\\step-07-annotated.webp"
+  },
+  "dir": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-jev"
+}

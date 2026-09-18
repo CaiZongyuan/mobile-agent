@@ -1,0 +1,6 @@
+{
+  "operation": "WAIT",
+  "target": null,
+  "label": "轮询等到商品列表渲染完",
+  "confidence": null
+}

@@ -1,0 +1,241 @@
+{
+  "device": "OnePlus6 (d5652109) via USB + Mobilerun Portal",
+  "resolution": "1080x2280",
+  "total_ms": 21820,
+  "aborted": null,
+  "steps": [
+    {
+      "name": "设备连接检查",
+      "action": "adb devices -l",
+      "detail": "设备 d5652109 (OnePlus6) 状态=device",
+      "ms": 5087,
+      "touch": null,
+      "shot": null,
+      "tag": "op",
+      "t_offset": 5087,
+      "note": "初版判断逻辑误报，事后以正确逻辑复核：设备当时确实在线"
+    },
+    {
+      "name": "Portal 状态读取",
+      "action": "content query phone_state",
+      "detail": "当前前台: 拼多多",
+      "ms": 427,
+      "touch": null,
+      "shot": null,
+      "tag": "op",
+      "t_offset": 5514
+    },
+    {
+      "name": "读取屏幕分辨率",
+      "action": "wm size",
+      "detail": "Physical size: 1080x2280",
+      "ms": 68,
+      "touch": null,
+      "shot": null,
+      "tag": "op",
+      "t_offset": 5582
+    },
+    {
+      "name": "重置拼多多状态",
+      "action": "am force-stop",
+      "detail": "强制停止并清除会话残留页面",
+      "ms": 175,
+      "touch": null,
+      "shot": null,
+      "tag": "op",
+      "t_offset": 5757
+    },
+    {
+      "name": "启动拼多多",
+      "action": "monkey LAUNCHER",
+      "detail": "冷启动 com.xunmeng.pinduoduo",
+      "ms": 383,
+      "touch": null,
+      "shot": null,
+      "tag": "op",
+      "t_offset": 6140
+    },
+    {
+      "name": "等待拼多多前台就绪",
+      "action": "poll phone_state",
+      "detail": "前台: com.xunmeng.pinduoduo.ui.activity.MainFrameActivity",
+      "ms": 1711,
+      "touch": null,
+      "shot": null,
+      "tag": "wait",
+      "t_offset": 7851
+    },
+    {
+      "name": "等待: 页面响应",
+      "action": "wait",
+      "detail": "首页渲染缓冲",
+      "ms": 2000,
+      "touch": null,
+      "shot": null,
+      "tag": "wait",
+      "t_offset": 9851
+    },
+    {
+      "name": "截图: 01-pdd-home",
+      "action": "screencap",
+      "detail": "屏幕截图保存为 01-pdd-home.png",
+      "ms": 917,
+      "touch": null,
+      "shot": null,
+      "tag": "shot",
+      "t_offset": 10770
+    },
+    {
+      "name": "读取无障碍树（首页）",
+      "action": "a11y_tree fetch+parse",
+      "detail": "获取 105 个可见元素",
+      "ms": 620,
+      "touch": null,
+      "shot": null,
+      "tag": "op",
+      "t_offset": 11391
+    },
+    {
+      "name": "定位多多买菜入口",
+      "action": "parse a11y_tree",
+      "detail": "入口图标 (108,810)，元素: 多多买菜",
+      "ms": 0,
+      "touch": null,
+      "shot": null,
+      "tag": "op",
+      "t_offset": 11391
+    },
+    {
+      "name": "点击: 多多买菜入口",
+      "action": "input tap",
+      "detail": "触点 (108, 810) → 多多买菜入口",
+      "ms": 401,
+      "touch": {
+        "type": "tap",
+        "x": 108,
+        "y": 810
+      },
+      "shot": null,
+      "tag": "op",
+      "t_offset": 11792
+    },
+    {
+      "name": "等待多多买菜页面加载",
+      "action": "poll phone_state",
+      "detail": "NewPageActivity 前台",
+      "ms": 501,
+      "touch": null,
+      "shot": null,
+      "tag": "wait",
+      "t_offset": 12293
+    },
+    {
+      "name": "等待: 页面响应",
+      "action": "wait",
+      "detail": "WebView 渲染缓冲",
+      "ms": 2500,
+      "touch": null,
+      "shot": null,
+      "tag": "wait",
+      "t_offset": 14793
+    },
+    {
+      "name": "截图: 02-maicai-loaded",
+      "action": "screencap",
+      "detail": "屏幕截图保存为 02-maicai-loaded.png",
+      "ms": 816,
+      "touch": null,
+      "shot": null,
+      "tag": "shot",
+      "t_offset": 15610
+    },
+    {
+      "name": "读取无障碍树（买菜页）",
+      "action": "a11y_tree fetch+parse",
+      "detail": "获取 145 个可见元素",
+      "ms": 785,
+      "touch": null,
+      "shot": null,
+      "tag": "op",
+      "t_offset": 16395
+    },
+    {
+      "name": "点击: 关闭新人优惠券弹窗",
+      "action": "input tap",
+      "detail": "触点 (904, 352) → 关闭新人优惠券弹窗",
+      "ms": 414,
+      "touch": {
+        "type": "tap",
+        "x": 904,
+        "y": 352
+      },
+      "shot": null,
+      "tag": "op",
+      "t_offset": 16809
+    },
+    {
+      "name": "等待: 页面响应",
+      "action": "wait",
+      "detail": "弹窗关闭动画",
+      "ms": 1200,
+      "touch": null,
+      "shot": null,
+      "tag": "wait",
+      "t_offset": 18009
+    },
+    {
+      "name": "点击: 肉蛋分类 tab",
+      "action": "input tap",
+      "detail": "触点 (666, 1031) → 肉蛋分类 tab",
+      "ms": 400,
+      "touch": {
+        "type": "tap",
+        "x": 666,
+        "y": 1031
+      },
+      "shot": null,
+      "tag": "op",
+      "t_offset": 18409
+    },
+    {
+      "name": "等待: 页面响应",
+      "action": "wait",
+      "detail": "分类页数据加载",
+      "ms": 2000,
+      "touch": null,
+      "shot": null,
+      "tag": "wait",
+      "t_offset": 20409
+    },
+    {
+      "name": "截图: 03-meigory",
+      "action": "screencap",
+      "detail": "屏幕截图保存为 03-meigory.png",
+      "ms": 780,
+      "touch": null,
+      "shot": null,
+      "tag": "shot",
+      "t_offset": 21191
+    },
+    {
+      "name": "读取无障碍树（分类页）",
+      "action": "a11y_tree fetch+parse",
+      "detail": "获取 129 个可见元素",
+      "ms": 629,
+      "touch": null,
+      "shot": null,
+      "tag": "op",
+      "t_offset": 21820
+    },
+    {
+      "name": "解析鸡蛋商品列表",
+      "action": "parse a11y_tree",
+      "detail": "找到 1 款鸡蛋: 30枚/盒 | 1800g无抗正宗土鸡蛋【新鲜现捡】，22.99元",
+      "ms": 0,
+      "touch": null,
+      "shot": null,
+      "tag": "op",
+      "t_offset": 21820
+    }
+  ]
+}

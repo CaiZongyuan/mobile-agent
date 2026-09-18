@@ -1,0 +1,352 @@
+{
+  "deviceId": "d5652109",
+  "phone": {
+    "packageName": "com.oneplus.note",
+    "currentApp": "便签",
+    "isEditable": false,
+    "focusEvidence": "none",
+    "keyboardVisible": false,
+    "focusedElement": {
+      "resourceId": "",
+      "className": ""
+    }
+  },
+  "screen": {
+    "width": 1080,
+    "height": 2280
+  },
+  "elements": [
+    {
+      "id": "ui.0",
+      "text": "便签",
+      "label": "",
+      "resourceId": "",
+      "hint": "",
+      "bounds": {
+        "left": 47,
+        "top": 174,
+        "right": 141,
+        "bottom": 232
+      },
+      "clickable": false,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.1",
+      "text": "",
+      "label": "搜索便签",
+      "resourceId": "com.oneplus.note:id/search",
+      "hint": "",
+      "bounds": {
+        "left": 938,
+        "top": 140,
+        "right": 1064,
+        "bottom": 266
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.2.0.0",
+      "text": "",
+      "label": "",
+      "resourceId": "com.oneplus.note:id/item_layout",
+      "hint": "",
+      "bounds": {
+        "left": 47,
+        "top": 344,
+        "right": 528,
+        "bottom": 880
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.2.0.0.0",
+      "text": "欢迎使用便签",
+      "label": "",
+      "resourceId": "com.oneplus.note:id/title",
+      "hint": "",
+      "bounds": {
+        "left": 94,
+        "top": 402,
+        "right": 481,
+        "bottom": 460
+      },
+      "clickable": false,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.2.0.0.1",
+      "text": "你可以在便签里快速记录灵感，并支持添加图片、项目列表、待办事件。",
+      "label": "",
+      "resourceId": "com.oneplus.note:id/summary_textView",
+      "hint": "",
+      "bounds": {
+        "left": 94,
+        "top": 492,
+        "right": 481,
+        "bottom": 735
+      },
+      "clickable": false,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.2.0.0.2",
+      "text": "星期五 下午8:33",
+      "label": "",
+      "resourceId": "com.oneplus.note:id/modify_time",
+      "hint": "",
+      "bounds": {
+        "left": 94,
+        "top": 795,
+        "right": 321,
+        "bottom": 833
+      },
+      "clickable": false,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.2.0.1",
+      "text": "",
+      "label": "",
+      "resourceId": "com.oneplus.note:id/item_layout",
+      "hint": "",
+      "bounds": {
+        "left": 552,
+        "top": 344,
+        "right": 1033,
+        "bottom": 814
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.2.0.1.0",
+      "text": "在氢视窗中查看",
+      "label": "",
+      "resourceId": "com.oneplus.note:id/title",
+      "hint": "",
+      "bounds": {
+        "left": 599,
+        "top": 402,
+        "right": 986,
+        "bottom": 460
+      },
+      "clickable": false,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.2.0.1.1",
+      "text": "你可以将便签显示在氢视窗中，方便你随时查看。",
+      "label": "",
+      "resourceId": "com.oneplus.note:id/summary_textView",
+      "hint": "",
+      "bounds": {
+        "left": 599,
+        "top": 492,
+        "right": 986,
+        "bottom": 669
+      },
+      "clickable": false,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.2.0.1.2",
+      "text": "星期五 下午8:33",
+      "label": "",
+      "resourceId": "com.oneplus.note:id/modify_time",
+      "hint": "",
+      "bounds": {
+        "left": 599,
+        "top": 729,
+        "right": 826,
+        "bottom": 767
+      },
+      "clickable": false,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.2.0.2",
+      "text": "",
+      "label": "",
+      "resourceId": "com.oneplus.note:id/item_layout",
+      "hint": "",
+      "bounds": {
+        "left": 552,
+        "top": 838,
+        "right": 1033,
+        "bottom": 1308
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.2.0.2.0",
+      "text": "通过图片分享",
+      "label": "",
+      "resourceId": "com.oneplus.note:id/title",
+      "hint": "",
+      "bounds": {
+        "left": 599,
+        "top": 896,
+        "right": 986,
+        "bottom": 954
+      },
+      "clickable": false,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.2.0.2.1",
+      "text": "你可以将你的便签内容生成为长图片，方便你分享到社交平台。",
+      "label": "",
+      "resourceId": "com.oneplus.note:id/summary_textView",
+      "hint": "",
+      "bounds": {
+        "left": 599,
+        "top": 986,
+        "right": 986,
+        "bottom": 1163
+      },
+      "clickable": false,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.2.0.2.2",
+      "text": "星期五 下午8:33",
+      "label": "",
+      "resourceId": "com.oneplus.note:id/modify_time",
+      "hint": "",
+      "bounds": {
+        "left": 599,
+        "top": 1223,
+        "right": 826,
+        "bottom": 1261
+      },
+      "clickable": false,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.3",
+      "text": "",
+      "label": "",
+      "resourceId": "com.oneplus.note:id/add_item_button",
+      "hint": "",
+      "bounds": {
+        "left": 865,
+        "top": 2065,
+        "right": 1033,
+        "bottom": 2233
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    }
+  ],
+  "fingerprint": "77db3520f0da33656641979fb6b2f71737f5b31ecb7f9aa1cc0613fdb7747bdf",
+  "observedAt": 1789734797149
+}

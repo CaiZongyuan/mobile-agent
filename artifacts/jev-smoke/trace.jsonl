@@ -1,0 +1,3 @@
+{"type":"meta","goal":"打开拼多多，进入多多买菜，在肉蛋分类里找到鸡蛋商品","mode":"preview","device":{"id":"d5652109","name":"OnePlus6 (USB Portal)","state":"ready"},"t0":1789729207084}
+{"type":"step","n":1,"status":"done","operation":"DONE","choice":"DONE","confidence":0.64,"latencyMs":4477,"requestedModel":"~typesafe/jev-latest","responseModel":"typesafe/jev-1.13-20260917","usage":{"input_tokens":10212,"output_tokens":838,"cost":0.000428904},"probabilities":{"SCROLL_LEFT":0,"BLOCKED":0,"BACK":0,"SCROLL_RIGHT":0,"SCROLL_DOWN":0,"DONE":0.68,"HOME":0,"WAIT":0,"TAP":0.28,"OPEN_APP":0.04,"SCROLL_UP":0},"elapsedMs":11496}
+{"type":"result","status":"done","steps":0,"timings":{"modelMs":4538.2,"actionMs":0,"observationMs":927,"waitMs":0,"staleRetries":0,"modelCalls":1,"wallMs":5924.6}}

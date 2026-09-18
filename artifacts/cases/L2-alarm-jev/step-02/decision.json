@@ -1,0 +1,41 @@
+{
+  "step": 1,
+  "attempt": 1,
+  "status": "action",
+  "operation": "TAP",
+  "target": "7",
+  "choice": "tap_ui.3.1",
+  "confidence": 0.82,
+  "targetConfidence": 0.48,
+  "operationProbabilities": {
+    "OPEN_APP": 0.06,
+    "BLOCKED": 0.03,
+    "DONE": 0,
+    "HOME": 0.01,
+    "WAIT": 0.02,
+    "TAP": 0.84,
+    "BACK": 0.04
+  },
+  "targetProbabilities": {
+    "1": 0.29,
+    "2": 0.08,
+    "3": 0.01,
+    "4": 0.01,
+    "5": 0,
+    "6": 0.06,
+    "7": 0.55
+  },
+  "usage": {
+    "input_tokens": 3993,
+    "output_tokens": 437,
+    "cost": 0.000167706
+  },
+  "requestedModel": "~typesafe/jev-latest",
+  "responseModel": "typesafe/jev-1.13-20260917",
+  "latencyMs": 498.8,
+  "action": {
+    "type": "tap-element",
+    "elementId": "ui.3.1"
+  },
+  "label": "Tap 知道了."
+}

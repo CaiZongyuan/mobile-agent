@@ -1,0 +1,66 @@
+{
+  "deviceId": "d5652109",
+  "phone": {
+    "packageName": "com.xunmeng.pinduoduo",
+    "currentApp": "拼多多",
+    "isEditable": false,
+    "focusEvidence": "none",
+    "keyboardVisible": false,
+    "focusedElement": {
+      "resourceId": "",
+      "className": ""
+    }
+  },
+  "screen": {
+    "width": 1080,
+    "height": 2280
+  },
+  "elements": [
+    {
+      "id": "ui.0",
+      "text": "",
+      "label": "",
+      "resourceId": "",
+      "hint": "",
+      "bounds": {
+        "left": 0,
+        "top": 0,
+        "right": 1080,
+        "bottom": 2238
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.1.0",
+      "text": "",
+      "label": "",
+      "resourceId": "",
+      "hint": "",
+      "bounds": {
+        "left": 0,
+        "top": 0,
+        "right": 1080,
+        "bottom": 2238
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    }
+  ],
+  "fingerprint": "73502dcd788f5bc34a7bf7e10303ed42e4ebae8b1ff18fc44a623a94eb07691d",
+  "observedAt": 1789734735077
+}

@@ -1,0 +1,26 @@
+.env
+.env.local
+
+# 上游参考实现（独立仓库，不纳入版本管理）
+references/
+
+# Agent 本地会话记忆
+.workbuddy/
+
+# 运行产物
+node_modules/
+__pycache__/
+*.pyc
+.next/
+
+# 跑批日志与临时草稿
+_run-*.log
+.tmp-annot-test/
+*.old-*
+
+# 跑批归档（被重跑替换的历史产物，保留在本地即可）
+artifacts/cases/_archive/
+
+# 系统
+.DS_Store
+Thumbs.db

@@ -1,0 +1,39 @@
+{
+  "step": 1,
+  "attempt": 1,
+  "status": "action",
+  "operation": "TAP",
+  "target": "5",
+  "choice": "tap_ui.3",
+  "confidence": 0.92,
+  "targetConfidence": 0.87,
+  "operationProbabilities": {
+    "DONE": 0,
+    "OPEN_APP": 0.01,
+    "BACK": 0,
+    "HOME": 0,
+    "TAP": 0.93,
+    "BLOCKED": 0.04,
+    "WAIT": 0.02
+  },
+  "targetProbabilities": {
+    "1": 0.02,
+    "2": 0.09,
+    "3": 0,
+    "4": 0,
+    "5": 0.89
+  },
+  "usage": {
+    "input_tokens": 3917,
+    "output_tokens": 424,
+    "cost": 0.000164514
+  },
+  "requestedModel": "~typesafe/jev-latest",
+  "responseModel": "typesafe/jev-1.13-20260917",
+  "latencyMs": 572.3,
+  "action": {
+    "type": "tap-element",
+    "elementId": "ui.3"
+  },
+  "label": "Tap ui.3."
+}

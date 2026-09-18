@@ -1,0 +1,6 @@
+{
+  "operation": "WAIT",
+  "target": null,
+  "label": "轮询等到首页出现「多多买菜」",
+  "confidence": null
+}

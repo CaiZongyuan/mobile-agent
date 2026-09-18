@@ -1,0 +1,349 @@
+{
+  "id": "L1-maicai-cart-jev",
+  "pair": "L1-maicai-cart",
+  "title": "多多买菜：把鸡蛋加入购物车并确认",
+  "tone": "长程 · 购物",
+  "engine": "jev",
+  "app": "com.xunmeng.pinduoduo",
+  "goal": "打开拼多多，进入多多买菜，找到鸡蛋，把鸡蛋加入购物车，然后打开购物车确认鸡蛋已经在里面",
+  "steps": 24,
+  "verify": [
+    "鸡蛋"
+  ],
+  "expect": "购物车（已选商品）里出现鸡蛋条目",
+  "why": "换一条**界面上确实存在**的购物路径：多多买菜每个商品都有『+』加购按钮，底部有一条购物车栏。跨 4 层（首页 → 多多买菜 → 商品列表 → 购物车），既不短也不依赖详情页里不存在的按钮。",
+  "at": "2026-09-18T12:32:34.057Z",
+  "device": {
+    "id": "d5652109",
+    "name": "OnePlus6 (USB Portal)",
+    "state": "ready"
+  },
+  "result": {
+    "status": "done",
+    "steps": 3,
+    "timings": {
+      "modelMs": 3406.5,
+      "actionMs": 5032.5,
+      "observationMs": 4393.5,
+      "waitMs": 0,
+      "staleRetries": 1,
+      "modelCalls": 5,
+      "wallMs": 27134.2
+    },
+    "reason": null,
+    "failed": null
+  },
+  "decisions": [
+    {
+      "n": 1,
+      "status": "action",
+      "operation": "BACK",
+      "label": "{\"type\":\"global\",\"name\":\"back\"}",
+      "confidence": 0.37,
+      "latencyMs": 1008.8,
+      "probabilities": {
+        "SCROLL_RIGHT": 0,
+        "TAP": 0.16,
+        "SCROLL_DOWN": 0.03,
+        "DONE": 0,
+        "OPEN_APP": 0.19,
+        "SCROLL_LEFT": 0,
+        "BACK": 0.44,
+        "HOME": 0.11,
+        "BLOCKED": 0.05,
+        "WAIT": 0,
+        "SCROLL_UP": 0.02
+      },
+      "usage": {
+        "input_tokens": 7131,
+        "output_tokens": 567,
+        "cost": 0.000299502
+      }
+    },
+    {
+      "n": 2,
+      "status": "action",
+      "operation": "TAP",
+      "target": "17",
+      "label": "Tap 多多买菜 / ¥ / 6.99 / 12.99 / 8.99 / 4.49.",
+      "confidence": 0.98,
+      "targetConfidence": 0.95,
+      "latencyMs": 478.3,
+      "probabilities": {
+        "SCROLL_DOWN": 0,
+        "TAP": 0.99,
+        "WAIT": 0,
+        "SCROLL_RIGHT": 0,
+        "OPEN_APP": 0.01,
+        "DONE": 0,
+        "BACK": 0,
+        "SCROLL_LEFT": 0,
+        "HOME": 0,
+        "SCROLL_UP": 0,
+        "BLOCKED": 0
+      },
+      "usage": {
+        "input_tokens": 7545,
+        "output_tokens": 729,
+        "cost": 0.00031689
+      }
+    },
+    {
+      "n": 3,
+      "status": "action",
+      "operation": "TAP",
+      "target": "1",
+      "label": "Tap ui.0.",
+      "confidence": 0.7,
+      "targetConfidence": 0.02,
+      "latencyMs": 837.6,
+      "probabilities": {
+        "OPEN_APP": 0.14,
+        "WAIT": 0.07,
+        "HOME": 0.01,
+        "BACK": 0.01,
+        "BLOCKED": 0.02,
+        "DONE": 0,
+        "TAP": 0.75
+      },
+      "usage": {
+        "input_tokens": 3404,
+        "output_tokens": 403,
+        "cost": 0.000142968
+      }
+    },
+    {
+      "n": 4,
+      "status": "action",
+      "operation": "TAP",
+      "target": "31",
+      "label": "Tap 15枚/盒【营养实惠】750g林地草鸡蛋，12.99元，点击加入购物车.",
+      "confidence": 0.96,
+      "targetConfidence": 0.82,
+      "latencyMs": 481,
+      "probabilities": {
+        "SCROLL_UP": 0,
+        "TAP": 0.97,
+        "SCROLL_LEFT": 0,
+        "SCROLL_RIGHT": 0,
+        "OPEN_APP": 0.02,
+        "BLOCKED": 0,
+        "HOME": 0,
+        "WAIT": 0,
+        "SCROLL_DOWN": 0,
+        "BACK": 0,
+        "DONE": 0.01
+      },
+      "usage": {
+        "input_tokens": 8708,
+        "output_tokens": 729,
+        "cost": 0.000365736
+      }
+    },
+    {
+      "n": 5,
+      "status": "done",
+      "operation": "DONE",
+      "confidence": 0.57,
+      "latencyMs": 528,
+      "probabilities": {
+        "SCROLL_LEFT": 0,
+        "HOME": 0,
+        "DONE": 0.62,
+        "BLOCKED": 0,
+        "SCROLL_DOWN": 0,
+        "WAIT": 0,
+        "OPEN_APP": 0,
+        "TAP": 0.38,
+        "BACK": 0,
+        "SCROLL_UP": 0,
+        "SCROLL_RIGHT": 0
+      },
+      "usage": {
+        "input_tokens": 10361,
+        "output_tokens": 784,
+        "cost": 0.000435162
+      }
+    }
+  ],
+  "annotated": [
+    {
+      "n": 1,
+      "operation": "BACK",
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-maicai-cart-jev\\step-01\\step-01-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 57,
+      "parsed_drawn": 38,
+      "candidates": 17,
+      "fullscreen_skipped": 1,
+      "candidate_ops": [
+        "OPEN_APP",
+        "TAP",
+        "SCROLL_DOWN",
+        "SCROLL_UP",
+        "SCROLL_LEFT",
+        "SCROLL_RIGHT",
+        "BACK",
+        "HOME",
+        "WAIT",
+        "DONE",
+        "BLOCKED"
+      ],
+      "color_counts": {
+        "TAP": 15,
+        "SCROLL": 2,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "BACK",
+      "size_kb": 417.1,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-maicai-cart-jev\\step-01\\step-01-annotated.webp"
+    },
+    {
+      "n": 2,
+      "operation": "TAP",
+      "target": "17",
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-maicai-cart-jev\\step-02\\step-02-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 97,
+      "parsed_drawn": 59,
+      "candidates": 37,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [
+        "OPEN_APP",
+        "TAP",
+        "SCROLL_DOWN",
+        "SCROLL_UP",
+        "SCROLL_LEFT",
+        "SCROLL_RIGHT",
+        "BACK",
+        "HOME",
+        "WAIT",
+        "DONE",
+        "BLOCKED"
+      ],
+      "color_counts": {
+        "TAP": 35,
+        "SCROLL": 2,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "TAP [17]",
+      "size_kb": 324.4,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-maicai-cart-jev\\step-02\\step-02-annotated.webp"
+    },
+    {
+      "n": 3,
+      "operation": "TAP",
+      "target": "1",
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-maicai-cart-jev\\step-03\\step-03-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 2,
+      "parsed_drawn": 0,
+      "candidates": 2,
+      "fullscreen_skipped": 1,
+      "candidate_ops": [
+        "OPEN_APP",
+        "TAP",
+        "BACK",
+        "HOME",
+        "WAIT",
+        "DONE",
+        "BLOCKED"
+      ],
+      "color_counts": {
+        "TAP": 2,
+        "SCROLL": 0,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "TAP [1]",
+      "size_kb": 249.7,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-maicai-cart-jev\\step-03\\step-03-annotated.webp"
+    },
+    {
+      "n": 4,
+      "operation": "TAP",
+      "target": "31",
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-maicai-cart-jev\\step-04\\step-04-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 60,
+      "parsed_drawn": 26,
+      "candidates": 37,
+      "fullscreen_skipped": 2,
+      "candidate_ops": [
+        "OPEN_APP",
+        "TAP",
+        "SCROLL_DOWN",
+        "SCROLL_UP",
+        "SCROLL_LEFT",
+        "SCROLL_RIGHT",
+        "BACK",
+        "HOME",
+        "WAIT",
+        "DONE",
+        "BLOCKED"
+      ],
+      "color_counts": {
+        "TAP": 35,
+        "SCROLL": 2,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "TAP [31]",
+      "size_kb": 283.9,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-maicai-cart-jev\\step-04\\step-04-annotated.webp"
+    },
+    {
+      "n": 5,
+      "operation": "DONE",
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-maicai-cart-jev\\step-05\\step-05-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 70,
+      "parsed_drawn": 29,
+      "candidates": 44,
+      "fullscreen_skipped": 2,
+      "candidate_ops": [
+        "OPEN_APP",
+        "TAP",
+        "SCROLL_DOWN",
+        "SCROLL_UP",
+        "SCROLL_LEFT",
+        "SCROLL_RIGHT",
+        "BACK",
+        "HOME",
+        "WAIT",
+        "DONE",
+        "BLOCKED"
+      ],
+      "color_counts": {
+        "TAP": 42,
+        "SCROLL": 2,
+        "TYPE": 0
+      },
+      "unmatched_indices": [],
+      "chosen": "DONE",
+      "size_kb": 279.4,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-maicai-cart-jev\\step-05\\step-05-annotated.webp"
+    }
+  ],
+  "final": {
+    "app": "com.xunmeng.pinduoduo",
+    "elements": 70,
+    "checks": [
+      {
+        "keyword": "鸡蛋",
+        "pass": true
+      }
+    ],
+    "passed": true,
+    "screenshot": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-maicai-cart-jev\\final-state.webp",
+    "annotated": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-maicai-cart-jev\\final\\step-06-annotated.webp"
+  },
+  "dir": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-maicai-cart-jev"
+}

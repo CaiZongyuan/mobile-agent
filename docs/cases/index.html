@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>长程生活场景 · Jev 决策 vs 写死脚本</title>
+<style>
+:root{--bg:#0d1117;--panel:#161b22;--card:#1c2128;--line:#30363d;--txt:#e6edf3;--dim:#8b949e;--blue:#58a6ff;--purple:#a371f7;--green:#3fb950;--red:#d1242f;--orange:#f0883e;--gold:#e3b341;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--txt);font:14px/1.65 "Segoe UI","Microsoft YaHei",sans-serif;padding:36px 20px 80px;}
+.wrap{max-width:1180px;margin:0 auto;}
+h1{font-size:26px;letter-spacing:.2px;}
+h2{font-size:19px;margin:46px 0 6px;padding-left:11px;border-left:3px solid var(--purple);}
+h3{font-size:15px;margin:20px 0 8px;color:var(--blue);}
+p{margin:8px 0;}
+a{color:var(--blue);text-decoration:none;} a:hover{text-decoration:underline;}
+.sub{color:var(--dim);margin-bottom:26px;}
+.mono{font-family:Consolas,"Cascadia Mono",monospace;font-size:12px;}
+.dim{color:var(--dim);} .rt{text-align:right;} .ctr{text-align:center;}
+.kpis{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0 6px;}
+.kpi{flex:1 1 140px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px 16px;}
+.kpi .n{font-size:23px;font-weight:700;line-height:1.2;}
+.kpi .l{color:var(--dim);font-size:12px;margin-top:2px;}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:13px;margin:10px 0 16px;}
+th,td{padding:7px 11px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;}
+th{background:#21262d;color:var(--dim);font-size:12px;font-weight:600;}
+tr:last-child td{border-bottom:none;}
+.chip{display:inline-block;padding:1px 8px;border-radius:20px;font-size:11px;border:1px solid;}
+.pair{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:18px 0 26px;}
+.pair-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
+.pair-head .no{font:700 15px/1 Consolas,monospace;color:var(--gold);}
+.pair-head .t{font-size:17px;font-weight:600;}
+.arms{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;}
+.arm{flex:1 1 460px;background:#0d1117;border:1px solid var(--line);border-radius:10px;padding:14px 16px;}
+.arm.jev{border-color:#6e40c9;}
+.arm.script{border-color:#9e6a03;}
+.arm h4{font-size:14px;margin-bottom:4px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.arm .desc{color:var(--dim);font-size:12px;margin-bottom:10px;}
+.tl{margin:8px 0 4px;}
+.tlrow{display:flex;align-items:center;gap:8px;font-size:12px;padding:1px 0;}
+.tlrow .ix{width:22px;color:var(--dim);font-family:Consolas,monospace;text-align:right;flex:0 0 22px;}
+.tlrow .lb{flex:0 0 152px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.tlrow .bar{flex:1 1 auto;height:11px;background:#21262d;border-radius:3px;position:relative;min-width:40px;}
+.tlrow .bar>span{position:absolute;left:0;top:0;bottom:0;border-radius:3px;}
+.tlrow .ms{flex:0 0 58px;text-align:right;color:var(--dim);font-family:Consolas,monospace;}
+.tlrow.err .lb{color:#ff7b72;}
+.shots{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0 4px;}
+.shot{flex:0 0 auto;background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden;width:150px;}
+.shot img{display:block;width:100%;height:auto;background:#000;}
+.shot .cap{padding:5px 7px;font-size:11px;line-height:1.4;}
+.shot .cap span{display:block;color:var(--dim);font-size:10px;}
+details{margin:10px 0;background:#0d1117;border:1px solid var(--line);border-radius:8px;}
+details>summary{cursor:pointer;padding:8px 12px;font-size:12.5px;color:var(--dim);user-select:none;}
+details>summary:hover{color:var(--txt);}
+details .body{padding:0 12px 12px;}
+pre{background:#0d1117;border:1px solid var(--line);border-radius:8px;padding:11px 13px;overflow:auto;max-height:420px;font:12px/1.55 Consolas,monospace;color:#c9d1d9;}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--dim);margin:10px 0 4px;}
+.bar{height:18px;border-radius:4px;background:#21262d;position:relative;overflow:hidden;}
+.bar>span{position:absolute;left:0;top:0;bottom:0;border-radius:4px;}
+.note{background:#161b22;border-left:3px solid var(--gold);padding:11px 15px;border-radius:0 8px 8px 0;font-size:13px;margin:14px 0;}
+.win{color:var(--green);font-weight:600;} .lose{color:var(--red);font-weight:600;}
+.foot{color:var(--dim);font-size:12px;margin-top:44px;border-top:1px solid var(--line);padding-top:14px;}
+ul{margin-left:20px;} li{margin:5px 0;}
+</style></head><body><div class="wrap">
+<h1>长程生活场景 · 两种决策方式对照</h1>
+<p class="sub">同一台 OnePlus6，同一套 Mobilerun Portal 读屏 + adb 执行，<b>只有「下一步做什么」由谁决定</b>这一点不同：
+一组交给 Jev 逐步决策，另一组把步骤人工写死在代码里。</p>
+<div class="note">
+<b>怎么读标注图：</b>
+<b>灰虚线框</b> = 无障碍树里解析出来、但没进候选集的元素（多为纯装饰性容器）；
+<b>彩色实框 + 编号</b> = 真正递给模型的候选操作，编号就是请求里 <code class="mono">elements[index]</code> 的下标；
+<b>红色准星</b> = 模型这一步实际选中的目标。图片底部信息带写着目标、解析/候选计数与本次置信度。
+</div>
+<p class="dim">快速跳转：<a href="#F1-pdd-add-cart">01 搜洗衣液 → 加购物车（失败样本，已冻结）</a> · <a href="#L1-maicai-cart">02 把鸡蛋加入购物车并确认</a> · <a href="#L2-alarm">03 设一个明早 7:30 的闹钟</a> · <a href="#L3-note">04 新建一条「明天带伞」</a></p>
+
+<h2>总览：两种引擎，同一批生活场景</h2>
+<div class="kpis">
+<div class="kpi"><div class="n">7</div><div class="l">案例总数</div></div><div class="kpi"><div class="n" style="color:#a371f7">2 / 4</div><div class="l">Jev 臂跑通</div></div><div class="kpi"><div class="n" style="color:#f0883e">2 / 3</div><div class="l">脚本臂跑通</div></div><div class="kpi"><div class="n">271s</div><div class="l">累计端到端</div></div><div class="kpi"><div class="n">$0.00931</div><div class="l">累计模型花费</div></div>
+</div>
+<table><thead><tr><th>案例</th><th>引擎</th><th>场景</th><th>终态</th>
+<th class="rt">步数</th><th class="rt">端到端</th><th class="rt">模型耗时</th><th class="rt">花费</th>
+<th>校验基准</th></tr></thead><tbody><tr><td class='mono'>F1-pdd-add-cart</td><td><span class="chip" style="border-color:#a371f7;color:#a371f7">Jev 决策</span></td><td>拼多多：搜洗衣液 → 加购物车（失败样本，已冻结）</td><td><span class='chip' style='border-color:#d1242f;color:#d1242f'>卡住（重复动作）</span></td><td class='mono rt'>15</td><td class='mono rt'>104.1s</td><td class='mono rt'>9.9s</td><td class='mono rt'>$0.00577</td><td>购物车页里能看到刚加进去的洗衣液商品</td></tr><tr><td class='mono'>L1-maicai-cart-jev</td><td><span class="chip" style="border-color:#a371f7;color:#a371f7">Jev 决策</span></td><td>多多买菜：把鸡蛋加入购物车并确认</td><td><span class='chip' style='border-color:#3fb950;color:#3fb950'>已完成</span></td><td class='mono rt'>3</td><td class='mono rt'>27.1s</td><td class='mono rt'>3.4s</td><td class='mono rt'>$0.00156</td><td>购物车（已选商品）里出现鸡蛋条目</td></tr><tr><td class='mono'>L1-maicai-cart-script</td><td><span class="chip" style="border-color:#f0883e;color:#f0883e">写死脚本</span></td><td>多多买菜：同一任务，改为写死步骤（不用 Jev）</td><td><span class='chip' style='border-color:#d1242f;color:#d1242f'>脚本中断</span></td><td class='mono rt'>4</td><td class='mono rt'>30.3s</td><td class='mono rt'>0.0s</td><td class='mono rt'>$0.00000</td><td>购物车（已选商品）里出现鸡蛋条目</td></tr><tr><td class='mono'>L2-alarm-jev</td><td><span class="chip" style="border-color:#a371f7;color:#a371f7">Jev 决策</span></td><td>时钟：设一个明早 7:30 的闹钟</td><td><span class='chip' style='border-color:#d1242f;color:#d1242f'>卡住（重复动作）</span></td><td class='mono rt'>5</td><td class='mono rt'>25.0s</td><td class='mono rt'>3.2s</td><td class='mono rt'>$0.00117</td><td>闹钟列表里出现 7:30 的闹钟条目</td></tr><tr><td class='mono'>L2-alarm-script</td><td><span class="chip" style="border-color:#f0883e;color:#f0883e">写死脚本</span></td><td>时钟：同一任务，改为写死步骤（不用 Jev）</td><td><span class='chip' style='border-color:#3fb950;color:#3fb950'>已完成</span></td><td class='mono rt'>12</td><td class='mono rt'>31.6s</td><td class='mono rt'>0.0s</td><td class='mono rt'>$0.00000</td><td>闹钟列表里出现 7:30 的闹钟条目</td></tr><tr><td class='mono'>L3-note-jev</td><td><span class="chip" style="border-color:#a371f7;color:#a371f7">Jev 决策</span></td><td>便签：新建一条「明天带伞」</td><td><span class='chip' style='border-color:#3fb950;color:#3fb950'>已完成</span></td><td class='mono rt'>4</td><td class='mono rt'>22.6s</td><td class='mono rt'>2.5s</td><td class='mono rt'>$0.00082</td><td>便签列表里出现内容为「明天带伞」的新便签</td></tr><tr><td class='mono'>L3-note-script</td><td><span class="chip" style="border-color:#f0883e;color:#f0883e">写死脚本</span></td><td>便签：同一任务，改为写死步骤（不用 Jev）</td><td><span class='chip' style='border-color:#3fb950;color:#3fb950'>已完成</span></td><td class='mono rt'>9</td><td class='mono rt'>30.0s</td><td class='mono rt'>0.0s</td><td class='mono rt'>$0.00000</td><td>便签列表里出现内容为「明天带伞」的新便签</td></tr></tbody></table>
+
+<section class="pair" id="F1-pdd-add-cart">
+  <div class="pair-head">
+    <span class="no">01</span><span class="t">搜洗衣液 → 加购物车（失败样本，已冻结）</span>
+    <span class="chip" style="border-color:#d1242f;color:#d1242f">失败案例</span>
+  </div>
+  <div class="note"><b>场景</b>　打开拼多多，搜索「洗衣液」，把搜索结果里的第一款商品加入购物车，最后打开购物车页面确认它已经在里面</div>
+  <p class="dim" style="font-size:12.5px">生活里最顺口的长程需求，也是本次跑批里唯一失败的样本。前 5 步一切正常（拉起 App → 点搜索框 → 打字 → 提交 → 进第一款商品详情页），但拼多多的商品详情页**没有『加入购物车』入口**（只有『免拼购买』『发起拼单』）。模型随后开始来回滚动、返回、重复点击，第 15 步触发 stuck 保护退出。教训：长程任务的成败往往取决于**目标在界面上是否真的可达**，而不是模型的推理能力。</p>
+  
+  <div class="arms">
+<div class="arm jev">
+  <h4><span class="chip" style="border-color:#a371f7;color:#a371f7">Jev 决策</span>
+      <span class="chip" style="border-color:#d1242f;color:#d1242f">卡住（重复动作）</span>
+      <span class="dim" style="font-size:12px">15 步 · 104.1s</span></h4>
+  <div class="desc">每步一次模型调用，模型在候选集里做选择题</div>
+  <div class="kpis" style="margin:8px 0">
+    <div class="kpi"><div class="n">104.1s</div><div class="l">端到端</div></div><div class="kpi"><div class="n">9.9s</div><div class="l">模型推理</div></div><div class="kpi"><div class="n">0.1s</div><div class="l">固定等待</div></div><div class="kpi"><div class="n">$0.00577</div><div class="l">模型花费</div></div>
+  </div>
+  <h3 style="margin-top:6px">逐步耗时</h3>
+  <div class="tl"><div class="tlrow"><div class="ix">1</div><div class="lb" title="Focus text input: 大蒜种子蒜种.">Focus text input: 大蒜种子蒜种.</div><div class="bar"><span style="width:100.0%;background:#58a6ff"></span></div><div class="ms">950</div></div><div class="tlrow"><div class="ix">2</div><div class="lb" title="{&quot;type&quot;:&quot;type&quot;,&quot;text&quot;:&quot;洗衣液&quot;,&quot;clear&quot;:true}">{&quot;type&quot;:&quot;type&quot;,&quot;text&quot;:&quot;洗衣液&quot;,&quot;clear&quot;:true</div><div class="bar"><span style="width:60.8%;background:#3fb950"></span></div><div class="ms">577</div></div><div class="tlrow"><div class="ix">3</div><div class="lb" title="Tap 搜索.">Tap 搜索.</div><div class="bar"><span style="width:51.3%;background:#58a6ff"></span></div><div class="ms">488</div></div><div class="tlrow"><div class="ix">4</div><div class="lb" title="Scroll down to reveal content further down in this scrollable region. Gesture: {&quot;type&quot;:&quot;swipe&quot;,&quot;startX&quot;:540,&quot;startY&quot;:1790,&quot;endX&quot;:540,&quot;endY&quot;:447,&quot;duration&quot;:300,&quot;regionId&quot;:&quot;ui.0.0&quot;}">Scroll down to reveal content further do</div><div class="bar"><span style="width:91.7%;background:#a371f7"></span></div><div class="ms">871</div></div><div class="tlrow"><div class="ix">5</div><div class="lb" title="Tap 【山姆特选】玫瑰花 / 【山姆特选】玫瑰花香洗衣液抑菌除螨强力去渍家庭大容量母婴学生
+ / 好评超91%同款 / 退货包运费 / 限时¥17.86本店已拼500万+件.">Tap 【山姆特选】玫瑰花 / 【山姆特选】玫瑰花香洗衣液抑菌除螨强力去渍家庭大</div><div class="bar"><span style="width:45.8%;background:#58a6ff"></span></div><div class="ms">435</div></div><div class="tlrow"><div class="ix">6</div><div class="lb" title="Scroll down to reveal content further down in this scrollable region. Gesture: {&quot;type&quot;:&quot;swipe&quot;,&quot;startX&quot;:540,&quot;startY&quot;:1666,&quot;endX&quot;:540,&quot;endY&quot;:416,&quot;duration&quot;:300,&quot;regionId&quot;:&quot;ui.0&quot;}">Scroll down to reveal content further do</div><div class="bar"><span style="width:52.6%;background:#a371f7"></span></div><div class="ms">500</div></div><div class="tlrow"><div class="ix">7</div><div class="lb" title="Scroll down to reveal content further down in this scrollable region. Gesture: {&quot;type&quot;:&quot;swipe&quot;,&quot;startX&quot;:540,&quot;startY&quot;:1666,&quot;endX&quot;:540,&quot;endY&quot;:416,&quot;duration&quot;:300,&quot;regionId&quot;:&quot;ui.0&quot;}">Scroll down to reveal content further do</div><div class="bar"><span style="width:83.0%;background:#a371f7"></span></div><div class="ms">789</div></div><div class="tlrow"><div class="ix">8</div><div class="lb" title="Scroll down to reveal content further down in this scrollable region. Gesture: {&quot;type&quot;:&quot;swipe&quot;,&quot;startX&quot;:540,&quot;startY&quot;:1666,&quot;endX&quot;:540,&quot;endY&quot;:416,&quot;duration&quot;:300,&quot;regionId&quot;:&quot;ui.0&quot;}">Scroll down to reveal content further do</div><div class="bar"><span style="width:44.8%;background:#a371f7"></span></div><div class="ms">425</div></div><div class="tlrow"><div class="ix">9</div><div class="lb" title="Scroll down to reveal content further down in this scrollable region. Gesture: {&quot;type&quot;:&quot;swipe&quot;,&quot;startX&quot;:540,&quot;startY&quot;:1666,&quot;endX&quot;:540,&quot;endY&quot;:416,&quot;duration&quot;:300,&quot;regionId&quot;:&quot;ui.0&quot;}">Scroll down to reveal content further do</div><div class="bar"><span style="width:50.8%;background:#a371f7"></span></div><div class="ms">482</div></div><div class="tlrow"><div class="ix">10</div><div class="lb" title="Scroll down to reveal content further down in this scrollable region. Gesture: {&quot;type&quot;:&quot;swipe&quot;,&quot;startX&quot;:540,&quot;startY&quot;:1666,&quot;endX&quot;:540,&quot;endY&quot;:416,&quot;duration&quot;:300,&quot;regionId&quot;:&quot;ui.0&quot;}">Scroll down to reveal content further do</div><div class="bar"><span style="width:47.3%;background:#a371f7"></span></div><div class="ms">450</div></div><div class="tlrow"><div class="ix">11</div><div class="lb" title="Scroll down to reveal content further down in this scrollable region. Gesture: {&quot;type&quot;:&quot;swipe&quot;,&quot;startX&quot;:540,&quot;startY&quot;:1666,&quot;endX&quot;:540,&quot;endY&quot;:416,&quot;duration&quot;:300,&quot;regionId&quot;:&quot;ui.0&quot;}">Scroll down to reveal content further do</div><div class="bar"><span style="width:50.2%;background:#a371f7"></span></div><div class="ms">477</div></div><div class="tlrow"><div class="ix">12</div><div class="lb" title="{&quot;type&quot;:&quot;global&quot;,&quot;name&quot;:&quot;back&quot;}">{&quot;type&quot;:&quot;global&quot;,&quot;name&quot;:&quot;back&quot;}</div><div class="bar"><span style="width:53.8%;background:#f0883e"></span></div><div class="ms">511</div></div><div class="tlrow"><div class="ix">13</div><div class="lb" title="Tap 更多相似商品 / 【山姆特选】玫瑰花 / 【山姆特选】玫瑰花香洗衣液抑菌除螨强力去渍家庭大容量母婴学生
+ / 好评超91%同款 / 退货包运费 / 限时¥17.86本店已拼500万+件.">Tap 更多相似商品 / 【山姆特选】玫瑰花 / 【山姆特选】玫瑰花香洗衣液抑菌</div><div class="bar"><span style="width:52.2%;background:#58a6ff"></span></div><div class="ms">496</div></div><div class="tlrow"><div class="ix">14</div><div class="lb" title="Tap 【山姆特选】玫瑰花 / 【山姆特选】玫瑰花香洗衣液抑菌除螨强力去渍家庭大容量母婴学生
+ / 好评超91%同款 / 退货包运费 / 限时¥17.86本店已拼500万+件.">Tap 【山姆特选】玫瑰花 / 【山姆特选】玫瑰花香洗衣液抑菌除螨强力去渍家庭大</div><div class="bar"><span style="width:48.2%;background:#58a6ff"></span></div><div class="ms">458</div></div><div class="tlrow"><div class="ix">15</div><div class="lb" title="Scroll down to reveal content further down in this scrollable region. Gesture: {&quot;type&quot;:&quot;swipe&quot;,&quot;startX&quot;:540,&quot;startY&quot;:1666,&quot;endX&quot;:540,&quot;endY&quot;:416,&quot;duration&quot;:300,&quot;regionId&quot;:&quot;ui.0&quot;}">Scroll down to reveal content further do</div><div class="bar"><span style="width:52.0%;background:#a371f7"></span></div><div class="ms">494</div></div><div class="tlrow"><div class="ix">16</div><div class="lb" title="{&quot;type&quot;:&quot;global&quot;,&quot;name&quot;:&quot;back&quot;}">{&quot;type&quot;:&quot;global&quot;,&quot;name&quot;:&quot;back&quot;}</div><div class="bar"><span style="width:53.9%;background:#f0883e"></span></div><div class="ms">512</div></div><div class="tlrow"><div class="ix">17</div><div class="lb" title="Tap 更多相似商品 / 【山姆特选】玫瑰花 / 【山姆特选】玫瑰花香洗衣液抑菌除螨强力去渍家庭大容量母婴学生
+ / 好评超91%同款 / 退货包运费 / 限时¥17.86本店已拼500万+件.">Tap 更多相似商品 / 【山姆特选】玫瑰花 / 【山姆特选】玫瑰花香洗衣液抑菌</div><div class="bar"><span style="width:47.4%;background:#58a6ff"></span></div><div class="ms">451</div></div><div class="tlrow"><div class="ix">18</div><div class="lb" title="Tap 【山姆特选】玫瑰花 / 【山姆特选】玫瑰花香洗衣液抑菌除螨强力去渍家庭大容量母婴学生
+ / 好评超91%同款 / 退货包运费 / 限时¥17.86本店已拼500万+件.">Tap 【山姆特选】玫瑰花 / 【山姆特选】玫瑰花香洗衣液抑菌除螨强力去渍家庭大</div><div class="bar"><span style="width:46.5%;background:#58a6ff"></span></div><div class="ms">441</div></div></div><p class="dim" style="font-size:11px">横条长度 = 该步耗时（最长 950 ms）</p>
+  <h3>现场</h3>
+  <div class="shots"><div class="shot"><img src="img/F1-pdd-add-cart/step-01-annotated.webp" alt="起点" loading="lazy"><div class="cap">起点<span>模型/脚本接手的这一屏</span></div></div><div class="shot"><img src="img/F1-pdd-add-cart/step-10-annotated.webp" alt="中途" loading="lazy"><div class="cap">中途<span>第 10 步</span></div></div><div class="shot"><img src="img/F1-pdd-add-cart/after-15.webp" alt="最后一次动作后" loading="lazy"><div class="cap">最后一次动作后<span></span></div></div><div class="shot"><img src="img/F1-pdd-add-cart/step-19-annotated.webp" alt="终态" loading="lazy"><div class="cap">终态<span>校验用的是这一屏</span></div></div></div>
+  <table><thead><tr><th>终态校验（读无障碍树）</th><th>结果</th></tr></thead><tbody><tr><td class="mono">洗衣液</td><td><b class="win">出现</b></td></tr></tbody></table>
+  
+  <details><summary>▸ Jev 实际收到的请求体（step-02 那一步）</summary><div class="body"><pre>{
+  &quot;goal&quot;: &quot;打开拼多多，搜索「洗衣液」，把搜索结果里的第一款商品加入购物车，最后打开购物车页面确认它已经在里面&quot;,
+  &quot;app&quot;: &quot;com.xunmeng.pinduoduo&quot;,
+  &quot;visibleText&quot;: [
+    &quot;返回&quot;,
+    &quot;按住 语音搜索&quot;,
+    &quot;返回&quot;,
+    &quot;大蒜种子蒜种&quot;,
+    &quot;搜索&quot;,
+    &quot;商品&quot;,
+    &quot;商品&quot;,
+    &quot;拍照搜索&quot;,
+    &quot;搜索&quot;,
+    &quot;搜索发现&quot;
+  ],
+  &quot;recentActions&quot;: [
+    {
+      &quot;operation&quot;: &quot;TAP&quot;,
+      &quot;label&quot;: &quot;Focus text input: 大蒜种子蒜种.&quot;,
+      &quot;screenChanged&quot;: false
+    }
+  ],
+  &quot;elements&quot;: [
+    {
+      &quot;index&quot;: &quot;1&quot;,
+      &quot;label&quot;: &quot;返回&quot;,
+      &quot;editable&quot;: false,
+      &quot;scrollable&quot;: false,
+      &quot;operations&quot;: [
+        &quot;TAP&quot;
+      ]
+    },
+    {
+      &quot;index&quot;: &quot;2&quot;,
+      &quot;label&quot;: &quot;Focus text input: 大蒜种子蒜种&quot;,
+      &quot;editable&quot;: true,
+      &quot;scrollable&quot;: false,
+      &quot;operations&quot;: [
+        &quot;TAP&quot;
+      ]
+    },
+    {
+      &quot;index&quot;: &quot;3&quot;,
+      &quot;label&quot;: &quot;商品&quot;,
+      &quot;editable&quot;: false,
+      &quot;scrollable&quot;: false,
+      &quot;operations&quot;: [
+        &quot;TAP&quot;
+      ]
+    },
+    {
+      &quot;index&quot;: &quot;4&quot;,
+      &quot;label&quot;: &quot;拍照搜索&quot;,
+      &quot;editable&quot;: false,
+      &quot;scrollable&quot;: false,
+      &quot;operations&quot;: [
+        &quot;TAP&quot;
+      ]
+    },
+    {
+      &quot;…&quot;: &quot;共 28 个候选，此处截断&quot;
+    }
+  ]
+}</pre><p class="dim" style="font-size:12px">完整文件：<code class="mono">artifacts/cases/F1-pdd-add-cart/step-02/request.json</code></p></div></details>
+  <details><summary>▸ 模型这一刻的原始回答（完整概率分布，step-02）</summary><div class="body"><p class="dim" style="font-size:12px">返回的不是一段话，而是每个问题一张概率表。标红项就是被采纳的 choice——校验规则要求它必须是最大项、且概率和归一到 1。</p><p style="margin:12px 0 2px"><b>question <code class="mono">operation</code></b>　type=<code class="mono">choice</code>　答案=<b style="color:#d1242f">TYPE_TEXT</b>　置信度=<code class="mono">0.46</code></p><table style="margin:6px 0 12px"><tbody><tr><td class="mono" style="width:34%">TYPE_TEXT</td><td><div class="bar"><span style="width:51.0%;background:#d1242f"></span></div></td><td class="mono rt" style="width:56px">0.510</td></tr><tr><td class="mono" style="width:34%">TAP</td><td><div class="bar"><span style="width:48.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.480</td></tr><tr><td class="mono" style="width:34%">OPEN_APP</td><td><div class="bar"><span style="width:1.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.010</td></tr><tr><td class="mono" style="width:34%">SCROLL_UP</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">SCROLL_DOWN</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">HOME</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">ENTER</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">SCROLL_RIGHT</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">DONE</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">BACK</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr></tbody></table><p style="margin:12px 0 2px"><b>question <code class="mono">app_target</code></b>　type=<code class="mono">choice</code>　答案=<b style="color:#d1242f">33</b>　置信度=<code class="mono">0.55</code></p><table style="margin:6px 0 12px"><tbody><tr><td class="mono" style="width:34%">33</td><td><div class="bar"><span style="width:57.0%;background:#d1242f"></span></div></td><td class="mono rt" style="width:56px">0.570</td></tr><tr><td class="mono" style="width:34%">27</td><td><div class="bar"><span style="width:11.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.110</td></tr><tr><td class="mono" style="width:34%">1</td><td><div class="bar"><span style="width:5.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.050</td></tr><tr><td class="mono" style="width:34%">8</td><td><div class="bar"><span style="width:5.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.050</td></tr><tr><td class="mono" style="width:34%">32</td><td><div class="bar"><span style="width:5.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.050</td></tr><tr><td class="mono" style="width:34%">15</td><td><div class="bar"><span style="width:3.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.030</td></tr><tr><td class="mono" style="width:34%">34</td><td><div class="bar"><span style="width:3.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.030</td></tr><tr><td class="mono" style="width:34%">14</td><td><div class="bar"><span style="width:2.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.020</td></tr><tr><td class="mono" style="width:34%">25</td><td><div class="bar"><span style="width:2.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.020</td></tr><tr><td class="mono" style="width:34%">2</td><td><div class="bar"><span style="width:1.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.010</td></tr></tbody></table><p style="margin:12px 0 2px"><b>question <code class="mono">tap_target</code></b>　type=<code class="mono">choice</code>　答案=<b style="color:#d1242f">15</b>　置信度=<code class="mono">0.47</code></p><table style="margin:6px 0 12px"><tbody><tr><td class="mono" style="width:34%">2</td><td><div class="bar"><span style="width:50.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.500</td></tr><tr><td class="mono" style="width:34%">15</td><td><div class="bar"><span style="width:49.0%;background:#d1242f"></span></div></td><td class="mono rt" style="width:56px">0.490</td></tr><tr><td class="mono" style="width:34%">5</td><td><div class="bar"><span style="width:1.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.010</td></tr><tr><td class="mono" style="width:34%">1</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">3</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">4</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">6</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">7</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">8</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">9</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr></tbody></table><p style="margin:12px 0 2px"><b>question <code class="mono">scroll_target</code></b>　type=<code class="mono">choice</code>　答案=<b style="color:#d1242f">28</b>　置信度=<code class="mono">1</code></p><table style="margin:6px 0 12px"><tbody><tr><td class="mono" style="width:34%">28</td><td><div class="bar"><span style="width:100.0%;background:#d1242f"></span></div></td><td class="mono rt" style="width:56px">1.000</td></tr></tbody></table><p style="margin:12px 0 2px"><b>question <code class="mono">text_value</code></b>　type=<code class="mono">choice</code>　答案=<b style="color:#d1242f">1</b>　置信度=<code class="mono">0.97</code></p><table style="margin:6px 0 12px"><tbody><tr><td class="mono" style="width:34%">1</td><td><div class="bar"><span style="width:99.0%;background:#d1242f"></span></div></td><td class="mono rt" style="width:56px">0.990</td></tr><tr><td class="mono" style="width:34%">NONE</td><td><div class="bar"><span style="width:1.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.010</td></tr></tbody></table><p class="dim" style="font-size:12px">实际服务模型 <code class="mono">typesafe/jev-1.13-20260917</code>，响应 id <code class="mono">gen-dec-1789734560-c9XzOCmQalVY6AnnYwut</code></p></div></details>
+  
+  <p class="dim" style="font-size:11.5px">产物目录 <code class="mono">artifacts/cases/F1-pdd-add-cart</code></p>
+</div></div>
+</section>
+<section class="pair" id="L1-maicai-cart">
+  <div class="pair-head">
+    <span class="no">02</span><span class="t">把鸡蛋加入购物车并确认</span>
+    <span class="chip" style="border-color:#58a6ff;color:#58a6ff">长程 · 购物</span>
+  </div>
+  <div class="note"><b>场景</b>　打开拼多多，进入多多买菜，找到鸡蛋，把鸡蛋加入购物车，然后打开购物车确认鸡蛋已经在里面</div>
+  <p class="dim" style="font-size:12.5px">换一条**界面上确实存在**的购物路径：多多买菜每个商品都有『+』加购按钮，底部有一条购物车栏。跨 4 层（首页 → 多多买菜 → 商品列表 → 购物车），既不短也不依赖详情页里不存在的按钮。</p>
+  <table><thead><tr><th style="width:22%">维度</th><th>Jev 决策</th><th>写死脚本</th></tr></thead><tbody><tr><td>决策方式</td><td>每步一次 Jev 调用</td><td>零模型调用，流程写死在代码里</td></tr><tr><td>端到端耗时</td><td><b class="win">27.1</b></td><td>30.3</td></tr><tr><td>模型推理耗时</td><td>3.4 秒</td><td>0 秒（无模型）</td></tr><tr><td>固定等待</td><td>0.0 秒</td><td>3.0 秒</td></tr><tr><td>步骤数</td><td>3</td><td>4</td></tr><tr><td>终态校验</td><td>通过</td><td>未通过</td></tr><tr><td>模型花费</td><td>$0.00156</td><td>$0</td></tr><tr><td>校验命中</td><td>1/1</td><td>0/1</td></tr><tr><td>换任务要改什么</td><td>改一行 goal 字符串</td><td>重写整张步骤表 / 重新量坐标</td></tr></tbody></table>
+  <div class="arms">
+<div class="arm jev">
+  <h4><span class="chip" style="border-color:#a371f7;color:#a371f7">Jev 决策</span>
+      <span class="chip" style="border-color:#3fb950;color:#3fb950">已完成</span>
+      <span class="dim" style="font-size:12px">3 步 · 27.1s</span></h4>
+  <div class="desc">每步一次模型调用，模型在候选集里做选择题</div>
+  <div class="kpis" style="margin:8px 0">
+    <div class="kpi"><div class="n">27.1s</div><div class="l">端到端</div></div><div class="kpi"><div class="n">3.4s</div><div class="l">模型推理</div></div><div class="kpi"><div class="n">0.0s</div><div class="l">固定等待</div></div><div class="kpi"><div class="n">$0.00156</div><div class="l">模型花费</div></div>
+  </div>
+  <h3 style="margin-top:6px">逐步耗时</h3>
+  <div class="tl"><div class="tlrow"><div class="ix">1</div><div class="lb" title="{&quot;type&quot;:&quot;global&quot;,&quot;name&quot;:&quot;back&quot;}">{&quot;type&quot;:&quot;global&quot;,&quot;name&quot;:&quot;back&quot;}</div><div class="bar"><span style="width:100.0%;background:#f0883e"></span></div><div class="ms">1008</div></div><div class="tlrow"><div class="ix">2</div><div class="lb" title="Tap 多多买菜 / ¥ / 6.99 / 12.99 / 8.99 / 4.49.">Tap 多多买菜 / ¥ / 6.99 / 12.99 / 8.99 / 4.4</div><div class="bar"><span style="width:47.4%;background:#58a6ff"></span></div><div class="ms">478</div></div><div class="tlrow"><div class="ix">3</div><div class="lb" title="Tap ui.0.">Tap ui.0.</div><div class="bar"><span style="width:83.0%;background:#58a6ff"></span></div><div class="ms">837</div></div><div class="tlrow"><div class="ix">4</div><div class="lb" title="Tap 15枚/盒【营养实惠】750g林地草鸡蛋，12.99元，点击加入购物车.">Tap 15枚/盒【营养实惠】750g林地草鸡蛋，12.99元，点击加入购物车.</div><div class="bar"><span style="width:47.7%;background:#58a6ff"></span></div><div class="ms">481</div></div><div class="tlrow"><div class="ix">5</div><div class="lb" title=""></div><div class="bar"><span style="width:52.3%;background:#e3b341"></span></div><div class="ms">528</div></div></div><p class="dim" style="font-size:11px">横条长度 = 该步耗时（最长 1008 ms）</p>
+  <h3>现场</h3>
+  <div class="shots"><div class="shot"><img src="img/L1-maicai-cart-jev/step-01-annotated.webp" alt="起点" loading="lazy"><div class="cap">起点<span>模型/脚本接手的这一屏</span></div></div><div class="shot"><img src="img/L1-maicai-cart-jev/step-03-annotated.webp" alt="中途" loading="lazy"><div class="cap">中途<span>第 3 步</span></div></div><div class="shot"><img src="img/L1-maicai-cart-jev/after-03.webp" alt="最后一次动作后" loading="lazy"><div class="cap">最后一次动作后<span></span></div></div><div class="shot"><img src="img/L1-maicai-cart-jev/step-06-annotated.webp" alt="终态" loading="lazy"><div class="cap">终态<span>校验用的是这一屏</span></div></div></div>
+  <table><thead><tr><th>终态校验（读无障碍树）</th><th>结果</th></tr></thead><tbody><tr><td class="mono">鸡蛋</td><td><b class="win">出现</b></td></tr></tbody></table>
+  
+  <details><summary>▸ Jev 实际收到的请求体（step-02 那一步）</summary><div class="body"><pre>{
+  &quot;goal&quot;: &quot;打开拼多多，进入多多买菜，找到鸡蛋，把鸡蛋加入购物车，然后打开购物车确认鸡蛋已经在里面&quot;,
+  &quot;app&quot;: &quot;com.xunmeng.pinduoduo&quot;,
+  &quot;visibleText&quot;: [
+    &quot;拍照搜索&quot;,
+    &quot;洗衣液&quot;,
+    &quot;搜索&quot;,
+    &quot;拍照搜索&quot;,
+    &quot;推荐&quot;,
+    &quot;手机&quot;,
+    &quot;食品&quot;,
+    &quot;百货&quot;,
+    &quot;女装&quot;,
+    &quot;医药&quot;
+  ],
+  &quot;recentActions&quot;: [
+    {
+      &quot;operation&quot;: &quot;BACK&quot;,
+      &quot;label&quot;: &quot;{\&quot;type\&quot;:\&quot;global\&quot;,\&quot;name\&quot;:\&quot;back\&quot;}&quot;,
+      &quot;screenChanged&quot;: true
+    }
+  ],
+  &quot;elements&quot;: [
+    {
+      &quot;index&quot;: &quot;1&quot;,
+      &quot;label&quot;: &quot;洗衣液 / 搜索 / 拍照搜索&quot;,
+      &quot;editable&quot;: false,
+      &quot;scrollable&quot;: false,
+      &quot;operations&quot;: [
+        &quot;TAP&quot;
+      ]
+    },
+    {
+      &quot;index&quot;: &quot;2&quot;,
+      &quot;label&quot;: &quot;拍照搜索&quot;,
+      &quot;editable&quot;: false,
+      &quot;scrollable&quot;: false,
+      &quot;operations&quot;: [
+        &quot;TAP&quot;
+      ]
+    },
+    {
+      &quot;index&quot;: &quot;3&quot;,
+      &quot;label&quot;: &quot;推荐&quot;,
+      &quot;editable&quot;: false,
+      &quot;scrollable&quot;: false,
+      &quot;operations&quot;: [
+        &quot;TAP&quot;
+      ],
+      &quot;selected&quot;: true
+    },
+    {
+      &quot;index&quot;: &quot;4&quot;,
+      &quot;label&quot;: &quot;手机&quot;,
+      &quot;editable&quot;: false,
+      &quot;scrollable&quot;: false,
+      &quot;operations&quot;: [
+        &quot;TAP&quot;
+      ]
+    },
+    {
+      &quot;…&quot;: &quot;共 37 个候选，此处截断&quot;
+    }
+  ]
+}</pre><p class="dim" style="font-size:12px">完整文件：<code class="mono">artifacts/cases/L1-maicai-cart-jev/step-02/request.json</code></p></div></details>
+  <details><summary>▸ 模型这一刻的原始回答（完整概率分布，step-02）</summary><div class="body"><p class="dim" style="font-size:12px">返回的不是一段话，而是每个问题一张概率表。标红项就是被采纳的 choice——校验规则要求它必须是最大项、且概率和归一到 1。</p><p style="margin:12px 0 2px"><b>question <code class="mono">operation</code></b>　type=<code class="mono">choice</code>　答案=<b style="color:#d1242f">TAP</b>　置信度=<code class="mono">0.98</code></p><table style="margin:6px 0 12px"><tbody><tr><td class="mono" style="width:34%">TAP</td><td><div class="bar"><span style="width:99.0%;background:#d1242f"></span></div></td><td class="mono rt" style="width:56px">0.990</td></tr><tr><td class="mono" style="width:34%">OPEN_APP</td><td><div class="bar"><span style="width:1.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.010</td></tr><tr><td class="mono" style="width:34%">SCROLL_DOWN</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">WAIT</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">SCROLL_RIGHT</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">DONE</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">BACK</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">SCROLL_LEFT</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">HOME</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">SCROLL_UP</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr></tbody></table><p style="margin:12px 0 2px"><b>question <code class="mono">app_target</code></b>　type=<code class="mono">choice</code>　答案=<b style="color:#d1242f">33</b>　置信度=<code class="mono">0.33</code></p><table style="margin:6px 0 12px"><tbody><tr><td class="mono" style="width:34%">33</td><td><div class="bar"><span style="width:36.0%;background:#d1242f"></span></div></td><td class="mono rt" style="width:56px">0.360</td></tr><tr><td class="mono" style="width:34%">32</td><td><div class="bar"><span style="width:15.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.150</td></tr><tr><td class="mono" style="width:34%">17</td><td><div class="bar"><span style="width:12.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.120</td></tr><tr><td class="mono" style="width:34%">27</td><td><div class="bar"><span style="width:9.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.090</td></tr><tr><td class="mono" style="width:34%">1</td><td><div class="bar"><span style="width:6.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.060</td></tr><tr><td class="mono" style="width:34%">25</td><td><div class="bar"><span style="width:6.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.060</td></tr><tr><td class="mono" style="width:34%">8</td><td><div class="bar"><span style="width:2.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.020</td></tr><tr><td class="mono" style="width:34%">9</td><td><div class="bar"><span style="width:2.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.020</td></tr><tr><td class="mono" style="width:34%">34</td><td><div class="bar"><span style="width:2.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.020</td></tr><tr><td class="mono" style="width:34%">35</td><td><div class="bar"><span style="width:2.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.020</td></tr></tbody></table><p style="margin:12px 0 2px"><b>question <code class="mono">tap_target</code></b>　type=<code class="mono">choice</code>　答案=<b style="color:#d1242f">17</b>　置信度=<code class="mono">0.95</code></p><table style="margin:6px 0 12px"><tbody><tr><td class="mono" style="width:34%">17</td><td><div class="bar"><span style="width:96.0%;background:#d1242f"></span></div></td><td class="mono rt" style="width:56px">0.960</td></tr><tr><td class="mono" style="width:34%">1</td><td><div class="bar"><span style="width:4.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.040</td></tr><tr><td class="mono" style="width:34%">2</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">3</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">4</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">5</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">6</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">7</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">8</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">9</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr></tbody></table><p style="margin:12px 0 2px"><b>question <code class="mono">scroll_target</code></b>　type=<code class="mono">choice</code>　答案=<b style="color:#d1242f">37</b>　置信度=<code class="mono">0.9</code></p><table style="margin:6px 0 12px"><tbody><tr><td class="mono" style="width:34%">37</td><td><div class="bar"><span style="width:95.0%;background:#d1242f"></span></div></td><td class="mono rt" style="width:56px">0.950</td></tr><tr><td class="mono" style="width:34%">36</td><td><div class="bar"><span style="width:5.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.050</td></tr></tbody></table><p class="dim" style="font-size:12px">实际服务模型 <code class="mono">typesafe/jev-1.13-20260917</code>，响应 id <code class="mono">gen-dec-1789734730-MKsNOMQ1h1YAkKQDFNLv</code></p></div></details>
+  
+  <p class="dim" style="font-size:11.5px">产物目录 <code class="mono">artifacts/cases/L1-maicai-cart-jev</code></p>
+</div>
+<div class="arm script">
+  <h4><span class="chip" style="border-color:#f0883e;color:#f0883e">写死脚本</span>
+      <span class="chip" style="border-color:#d1242f;color:#d1242f">脚本中断</span>
+      <span class="dim" style="font-size:12px">4 步 · 30.3s</span></h4>
+  <div class="desc">不用模型，步骤与坐标由人工写死</div>
+  <div class="kpis" style="margin:8px 0">
+    <div class="kpi"><div class="n">30.3s</div><div class="l">端到端</div></div><div class="kpi"><div class="n">0.0s</div><div class="l">模型推理</div></div><div class="kpi"><div class="n">3.0s</div><div class="l">固定等待</div></div><div class="kpi"><div class="n">$0.00000</div><div class="l">模型花费</div></div>
+  </div>
+  <h3 style="margin-top:6px">逐步耗时</h3>
+  <div class="tl"><div class="tlrow"><div class="ix">1</div><div class="lb" title="等拼多多冷启动">等拼多多冷启动</div><div class="bar"><span style="width:19.8%;background:#8b949e"></span></div><div class="ms">3005</div></div><div class="tlrow"><div class="ix">2</div><div class="lb" title="轮询等到首页出现「多多买菜」">轮询等到首页出现「多多买菜」</div><div class="bar"><span style="width:7.8%;background:#8b949e"></span></div><div class="ms">1186</div></div><div class="tlrow"><div class="ix">3</div><div class="lb" title="点「多多买菜」入口">点「多多买菜」入口</div><div class="bar"><span style="width:17.4%;background:#58a6ff"></span></div><div class="ms">2636</div></div><div class="tlrow err"><div class="ix">4</div><div class="lb" title="轮询等到商品列表渲染完">轮询等到商品列表渲染完</div><div class="bar"><span style="width:100.0%;background:#d1242f"></span></div><div class="ms">15157</div></div></div><p class="dim" style="font-size:11px">横条长度 = 该步耗时（最长 15157 ms）</p>
+  <h3>现场</h3>
+  <div class="shots"><div class="shot"><img src="img/L1-maicai-cart-script/step-01-annotated.webp" alt="起点" loading="lazy"><div class="cap">起点<span>模型/脚本接手的这一屏</span></div></div><div class="shot"><img src="img/L1-maicai-cart-script/step-03-annotated.webp" alt="中途" loading="lazy"><div class="cap">中途<span>第 3 步</span></div></div><div class="shot"><img src="img/L1-maicai-cart-script/after-04.webp" alt="最后一次动作后" loading="lazy"><div class="cap">最后一次动作后<span></span></div></div><div class="shot"><img src="img/L1-maicai-cart-script/step-05-annotated.webp" alt="终态" loading="lazy"><div class="cap">终态<span>校验用的是这一屏</span></div></div></div>
+  <table><thead><tr><th>终态校验（读无障碍树）</th><th>结果</th></tr></thead><tbody><tr><td class="mono">鸡蛋</td><td><b class="lose">未出现</b></td></tr></tbody></table>
+  <div class="note" style="border-color:#d1242f">脚本在第 4 步断了：<br><code class="mono">等待超时：15000ms 内没有出现「点击加入购物车」</code><br><span class="dim" style="font-size:12px">手工脚本没有自愈能力——找不到预期控件就停在那里，这正是它与决策模型的差别。</span></div>
+  
+  
+  <details open><summary>▸ 这就是「写死」的部分：7 条硬编码步骤</summary><div class="body"><table><thead><tr><th class="ctr">#</th><th>类型</th><th>参数</th><th>说明</th></tr></thead><tbody><tr><td class="mono ctr">1</td><td class="mono">sleep</td><td class="mono dim">3000</td><td>等拼多多冷启动</td></tr><tr><td class="mono ctr">2</td><td class="mono"></td><td class="mono dim"></td><td>轮询等到首页出现「多多买菜」</td></tr><tr><td class="mono ctr">3</td><td class="mono">tapText</td><td class="mono dim">多多买菜</td><td>点「多多买菜」入口</td></tr><tr><td class="mono ctr">4</td><td class="mono"></td><td class="mono dim"></td><td>轮询等到商品列表渲染完</td></tr><tr><td class="mono ctr">5</td><td class="mono">tapText</td><td class="mono dim">点击加入购物车</td><td>点鸡蛋这一行的加购按钮</td></tr><tr><td class="mono ctr">6</td><td class="mono">sleep</td><td class="mono dim">2500</td><td>固定等 2.5s 让加购动画和购物车栏更新</td></tr><tr><td class="mono ctr">7</td><td class="mono">expect</td><td class="mono dim">鸡蛋</td><td>断言鸡蛋已进购物车</td></tr></tbody></table><p class="dim" style="font-size:12px">脚本引擎与 Jev 引擎共用同一份 PortalDevice，差的只是「下一步做什么」由谁决定：这里由上面这张表决定。</p></div></details>
+  <p class="dim" style="font-size:11.5px">产物目录 <code class="mono">artifacts/cases/L1-maicai-cart-script</code></p>
+</div></div>
+</section>
+<section class="pair" id="L2-alarm">
+  <div class="pair-head">
+    <span class="no">03</span><span class="t">设一个明早 7:30 的闹钟</span>
+    <span class="chip" style="border-color:#a371f7;color:#a371f7">长程 · 系统</span>
+  </div>
+  <div class="note"><b>场景</b>　打开时钟应用，新建一个明天早上七点半的闹钟，并保存下来</div>
+  <p class="dim" style="font-size:12.5px">典型的『状态型』长程任务：要切到闹钟标签页、点新建、在滚轮选择器上把时间拨到 7:30、再确认保存。滚轮是非标准控件，最能看出两套方案的差别。</p>
+  <table><thead><tr><th style="width:22%">维度</th><th>Jev 决策</th><th>写死脚本</th></tr></thead><tbody><tr><td>决策方式</td><td>每步一次 Jev 调用</td><td>零模型调用，流程写死在代码里</td></tr><tr><td>端到端耗时</td><td><b class="win">25.0</b></td><td>31.6</td></tr><tr><td>模型推理耗时</td><td>3.2 秒</td><td>0 秒（无模型）</td></tr><tr><td>固定等待</td><td>0.1 秒</td><td>7.0 秒</td></tr><tr><td>步骤数</td><td>5</td><td>12</td></tr><tr><td>终态校验</td><td>未通过</td><td>通过</td></tr><tr><td>模型花费</td><td>$0.00117</td><td>$0</td></tr><tr><td>校验命中</td><td>0/1</td><td>1/1</td></tr><tr><td>换任务要改什么</td><td>改一行 goal 字符串</td><td>重写整张步骤表 / 重新量坐标</td></tr></tbody></table>
+  <div class="arms">
+<div class="arm jev">
+  <h4><span class="chip" style="border-color:#a371f7;color:#a371f7">Jev 决策</span>
+      <span class="chip" style="border-color:#d1242f;color:#d1242f">卡住（重复动作）</span>
+      <span class="dim" style="font-size:12px">5 步 · 25.0s</span></h4>
+  <div class="desc">每步一次模型调用，模型在候选集里做选择题</div>
+  <div class="kpis" style="margin:8px 0">
+    <div class="kpi"><div class="n">25.0s</div><div class="l">端到端</div></div><div class="kpi"><div class="n">3.2s</div><div class="l">模型推理</div></div><div class="kpi"><div class="n">0.1s</div><div class="l">固定等待</div></div><div class="kpi"><div class="n">$0.00117</div><div class="l">模型花费</div></div>
+  </div>
+  <h3 style="margin-top:6px">逐步耗时</h3>
+  <div class="tl"><div class="tlrow"><div class="ix">1</div><div class="lb" title="Tap 始终允许.">Tap 始终允许.</div><div class="bar"><span style="width:61.9%;background:#58a6ff"></span></div><div class="ms">472</div></div><div class="tlrow"><div class="ix">2</div><div class="lb" title="Tap 知道了.">Tap 知道了.</div><div class="bar"><span style="width:65.4%;background:#58a6ff"></span></div><div class="ms">498</div></div><div class="tlrow"><div class="ix">3</div><div class="lb" title="Tap 开始.">Tap 开始.</div><div class="bar"><span style="width:64.7%;background:#58a6ff"></span></div><div class="ms">493</div></div><div class="tlrow"><div class="ix">4</div><div class="lb" title="Tap 上午.">Tap 上午.</div><div class="bar"><span style="width:100.0%;background:#58a6ff"></span></div><div class="ms">762</div></div><div class="tlrow"><div class="ix">5</div><div class="lb" title="Tap 8.">Tap 8.</div><div class="bar"><span style="width:67.6%;background:#58a6ff"></span></div><div class="ms">515</div></div><div class="tlrow"><div class="ix">6</div><div class="lb" title="Tap 8.">Tap 8.</div><div class="bar"><span style="width:65.2%;background:#58a6ff"></span></div><div class="ms">497</div></div></div><p class="dim" style="font-size:11px">横条长度 = 该步耗时（最长 762 ms）</p>
+  <h3>现场</h3>
+  <div class="shots"><div class="shot"><img src="img/L2-alarm-jev/step-01-annotated.webp" alt="起点" loading="lazy"><div class="cap">起点<span>模型/脚本接手的这一屏</span></div></div><div class="shot"><img src="img/L2-alarm-jev/step-04-annotated.webp" alt="中途" loading="lazy"><div class="cap">中途<span>第 4 步</span></div></div><div class="shot"><img src="img/L2-alarm-jev/after-05.webp" alt="最后一次动作后" loading="lazy"><div class="cap">最后一次动作后<span></span></div></div><div class="shot"><img src="img/L2-alarm-jev/step-07-annotated.webp" alt="终态" loading="lazy"><div class="cap">终态<span>校验用的是这一屏</span></div></div></div>
+  <table><thead><tr><th>终态校验（读无障碍树）</th><th>结果</th></tr></thead><tbody><tr><td class="mono">7:30</td><td><b class="lose">未出现</b></td></tr></tbody></table>
+  
+  <details><summary>▸ Jev 实际收到的请求体（step-02 那一步）</summary><div class="body"><pre>{
+  &quot;goal&quot;: &quot;打开时钟应用，新建一个明天早上七点半的闹钟，并保存下来&quot;,
+  &quot;app&quot;: &quot;com.oneplus.deskclock&quot;,
+  &quot;visibleText&quot;: [
+    &quot;时钟&quot;,
+    &quot;设置&quot;,
+    &quot;8:30 上午&quot;,
+    &quot;8:30 上午&quot;,
+    &quot;关闭&quot;,
+    &quot;周一,  周二,  周三,  周四,  周五&quot;,
+    &quot;星期一,  星期二,  星期三,  星期四,  星期五&quot;,
+    &quot;9:00 上午&quot;,
+    &quot;9:00 上午&quot;,
+    &quot;关闭&quot;
+  ],
+  &quot;recentActions&quot;: [
+    {
+      &quot;operation&quot;: &quot;TAP&quot;,
+      &quot;label&quot;: &quot;Tap 始终允许.&quot;,
+      &quot;screenChanged&quot;: true
+    }
+  ],
+  &quot;elements&quot;: [
+    {
+      &quot;index&quot;: &quot;1&quot;,
+      &quot;label&quot;: &quot;设置&quot;,
+      &quot;editable&quot;: false,
+      &quot;scrollable&quot;: false,
+      &quot;operations&quot;: [
+        &quot;TAP&quot;
+      ]
+    },
+    {
+      &quot;index&quot;: &quot;2&quot;,
+      &quot;label&quot;: &quot;8:30 上午 / 关闭 / 周一,  周二,  周三,  周四,  周五 / 星期一,  星期二,  星期三,  星期四,  星期五&quot;,
+      &quot;editable&quot;: false,
+      &quot;scrollable&quot;: false,
+      &quot;operations&quot;: [
+        &quot;TAP&quot;
+      ]
+    },
+    {
+      &quot;index&quot;: &quot;3&quot;,
+      &quot;label&quot;: &quot;关闭&quot;,
+      &quot;editable&quot;: false,
+      &quot;scrollable&quot;: false,
+      &quot;operations&quot;: [
+        &quot;TAP&quot;
+      ],
+      &quot;checked&quot;: false
+    },
+    {
+      &quot;index&quot;: &quot;4&quot;,
+      &quot;label&quot;: &quot;9:00 上午 / 关闭 / 周六,  周日 / 星期六,  星期日&quot;,
+      &quot;editable&quot;: false,
+      &quot;scrollable&quot;: false,
+      &quot;operations&quot;: [
+        &quot;TAP&quot;
+      ]
+    },
+    {
+      &quot;…&quot;: &quot;共 7 个候选，此处截断&quot;
+    }
+  ]
+}</pre><p class="dim" style="font-size:12px">完整文件：<code class="mono">artifacts/cases/L2-alarm-jev/step-02/request.json</code></p></div></details>
+  <details><summary>▸ 模型这一刻的原始回答（完整概率分布，step-02）</summary><div class="body"><p class="dim" style="font-size:12px">返回的不是一段话，而是每个问题一张概率表。标红项就是被采纳的 choice——校验规则要求它必须是最大项、且概率和归一到 1。</p><p style="margin:12px 0 2px"><b>question <code class="mono">operation</code></b>　type=<code class="mono">choice</code>　答案=<b style="color:#d1242f">TAP</b>　置信度=<code class="mono">0.82</code></p><table style="margin:6px 0 12px"><tbody><tr><td class="mono" style="width:34%">TAP</td><td><div class="bar"><span style="width:84.0%;background:#d1242f"></span></div></td><td class="mono rt" style="width:56px">0.840</td></tr><tr><td class="mono" style="width:34%">OPEN_APP</td><td><div class="bar"><span style="width:6.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.060</td></tr><tr><td class="mono" style="width:34%">BACK</td><td><div class="bar"><span style="width:4.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.040</td></tr><tr><td class="mono" style="width:34%">BLOCKED</td><td><div class="bar"><span style="width:3.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.030</td></tr><tr><td class="mono" style="width:34%">WAIT</td><td><div class="bar"><span style="width:2.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.020</td></tr><tr><td class="mono" style="width:34%">HOME</td><td><div class="bar"><span style="width:1.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.010</td></tr><tr><td class="mono" style="width:34%">DONE</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr></tbody></table><p style="margin:12px 0 2px"><b>question <code class="mono">app_target</code></b>　type=<code class="mono">choice</code>　答案=<b style="color:#d1242f">2</b>　置信度=<code class="mono">0.47</code></p><table style="margin:6px 0 12px"><tbody><tr><td class="mono" style="width:34%">2</td><td><div class="bar"><span style="width:49.0%;background:#d1242f"></span></div></td><td class="mono rt" style="width:56px">0.490</td></tr><tr><td class="mono" style="width:34%">1</td><td><div class="bar"><span style="width:20.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.200</td></tr><tr><td class="mono" style="width:34%">24</td><td><div class="bar"><span style="width:14.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.140</td></tr><tr><td class="mono" style="width:34%">37</td><td><div class="bar"><span style="width:7.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.070</td></tr><tr><td class="mono" style="width:34%">4</td><td><div class="bar"><span style="width:3.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.030</td></tr><tr><td class="mono" style="width:34%">9</td><td><div class="bar"><span style="width:3.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.030</td></tr><tr><td class="mono" style="width:34%">8</td><td><div class="bar"><span style="width:2.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.020</td></tr><tr><td class="mono" style="width:34%">14</td><td><div class="bar"><span style="width:1.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.010</td></tr><tr><td class="mono" style="width:34%">27</td><td><div class="bar"><span style="width:1.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.010</td></tr><tr><td class="mono" style="width:34%">3</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr></tbody></table><p style="margin:12px 0 2px"><b>question <code class="mono">tap_target</code></b>　type=<code class="mono">choice</code>　答案=<b style="color:#d1242f">7</b>　置信度=<code class="mono">0.48</code></p><table style="margin:6px 0 12px"><tbody><tr><td class="mono" style="width:34%">7</td><td><div class="bar"><span style="width:55.0%;background:#d1242f"></span></div></td><td class="mono rt" style="width:56px">0.550</td></tr><tr><td class="mono" style="width:34%">1</td><td><div class="bar"><span style="width:29.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.290</td></tr><tr><td class="mono" style="width:34%">2</td><td><div class="bar"><span style="width:8.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.080</td></tr><tr><td class="mono" style="width:34%">6</td><td><div class="bar"><span style="width:6.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.060</td></tr><tr><td class="mono" style="width:34%">3</td><td><div class="bar"><span style="width:1.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.010</td></tr><tr><td class="mono" style="width:34%">4</td><td><div class="bar"><span style="width:1.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.010</td></tr><tr><td class="mono" style="width:34%">5</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr></tbody></table><p class="dim" style="font-size:12px">实际服务模型 <code class="mono">typesafe/jev-1.13-20260917</code>，响应 id <code class="mono">gen-dec-1789734764-KW6DQjaPLkPez3RbhzfZ</code></p></div></details>
+  
+  <p class="dim" style="font-size:11.5px">产物目录 <code class="mono">artifacts/cases/L2-alarm-jev</code></p>
+</div>
+<div class="arm script">
+  <h4><span class="chip" style="border-color:#f0883e;color:#f0883e">写死脚本</span>
+      <span class="chip" style="border-color:#3fb950;color:#3fb950">已完成</span>
+      <span class="dim" style="font-size:12px">12 步 · 31.6s</span></h4>
+  <div class="desc">不用模型，步骤与坐标由人工写死</div>
+  <div class="kpis" style="margin:8px 0">
+    <div class="kpi"><div class="n">31.6s</div><div class="l">端到端</div></div><div class="kpi"><div class="n">0.0s</div><div class="l">模型推理</div></div><div class="kpi"><div class="n">7.0s</div><div class="l">固定等待</div></div><div class="kpi"><div class="n">$0.00000</div><div class="l">模型花费</div></div>
+  </div>
+  <h3 style="margin-top:6px">逐步耗时</h3>
+  <div class="tl"><div class="tlrow"><div class="ix">1</div><div class="lb" title="一次性权限弹窗（若出现则点，否则跳过）（未出现，跳过）">一次性权限弹窗（若出现则点，否则跳过）（未出现，跳过）</div><div class="bar"><span style="width:27.7%;background:#8b949e"></span></div><div class="ms">554</div></div><div class="tlrow"><div class="ix">2</div><div class="lb" title="一次性引导卡（若出现则点，否则跳过）（未出现，跳过）">一次性引导卡（若出现则点，否则跳过）（未出现，跳过）</div><div class="bar"><span style="width:25.8%;background:#8b949e"></span></div><div class="ms">516</div></div><div class="tlrow"><div class="ix">3</div><div class="lb" title="固定等 1.5s">固定等 1.5s</div><div class="bar"><span style="width:75.1%;background:#8b949e"></span></div><div class="ms">1503</div></div><div class="tlrow"><div class="ix">4</div><div class="lb" title="点新建闹钟（该按钮只暴露 contentDescription=开始，脚本只能写死坐标）">点新建闹钟（该按钮只暴露 contentDescription=开始，脚本只能写</div><div class="bar"><span style="width:49.1%;background:#58a6ff"></span></div><div class="ms">983</div></div><div class="tlrow"><div class="ix">5</div><div class="lb" title="固定等闹钟编辑页">固定等闹钟编辑页</div><div class="bar"><span style="width:100.0%;background:#8b949e"></span></div><div class="ms">2002</div></div><div class="tlrow"><div class="ix">6</div><div class="lb" title="在小时表盘上点 7">在小时表盘上点 7</div><div class="bar"><span style="width:81.9%;background:#58a6ff"></span></div><div class="ms">1639</div></div><div class="tlrow"><div class="ix">7</div><div class="lb" title="固定等表盘切到分钟">固定等表盘切到分钟</div><div class="bar"><span style="width:60.2%;background:#8b949e"></span></div><div class="ms">1205</div></div><div class="tlrow"><div class="ix">8</div><div class="lb" title="在分钟表盘上点 30">在分钟表盘上点 30</div><div class="bar"><span style="width:79.1%;background:#58a6ff"></span></div><div class="ms">1583</div></div><div class="tlrow"><div class="ix">9</div><div class="lb" title="固定等一下">固定等一下</div><div class="bar"><span style="width:40.7%;background:#8b949e"></span></div><div class="ms">814</div></div><div class="tlrow"><div class="ix">10</div><div class="lb" title="点右上角 ✓ 保存">点右上角 ✓ 保存</div><div class="bar"><span style="width:53.5%;background:#58a6ff"></span></div><div class="ms">1071</div></div><div class="tlrow"><div class="ix">11</div><div class="lb" title="固定等返回列表">固定等返回列表</div><div class="bar"><span style="width:75.5%;background:#8b949e"></span></div><div class="ms">1511</div></div><div class="tlrow"><div class="ix">12</div><div class="lb" title="断言闹钟列表里出现 7:30">断言闹钟列表里出现 7:30</div><div class="bar"><span style="width:29.8%;background:#3fb950"></span></div><div class="ms">596</div></div></div><p class="dim" style="font-size:11px">横条长度 = 该步耗时（最长 2002 ms）</p>
+  <h3>现场</h3>
+  <div class="shots"><div class="shot"><img src="img/L2-alarm-script/step-03-annotated.webp" alt="起点" loading="lazy"><div class="cap">起点<span>模型/脚本接手的这一屏</span></div></div><div class="shot"><img src="img/L2-alarm-script/step-08-annotated.webp" alt="中途" loading="lazy"><div class="cap">中途<span>第 6 步</span></div></div><div class="shot"><img src="img/L2-alarm-script/after-10.webp" alt="最后一次动作后" loading="lazy"><div class="cap">最后一次动作后<span></span></div></div><div class="shot"><img src="img/L2-alarm-script/step-13-annotated.webp" alt="终态" loading="lazy"><div class="cap">终态<span>校验用的是这一屏</span></div></div></div>
+  <table><thead><tr><th>终态校验（读无障碍树）</th><th>结果</th></tr></thead><tbody><tr><td class="mono">7:30</td><td><b class="win">出现</b></td></tr></tbody></table>
+  
+  
+  
+  <details open><summary>▸ 这就是「写死」的部分：12 条硬编码步骤</summary><div class="body"><table><thead><tr><th class="ctr">#</th><th>类型</th><th>参数</th><th>说明</th></tr></thead><tbody><tr><td class="mono ctr">1</td><td class="mono">tapText</td><td class="mono dim">始终允许</td><td>一次性权限弹窗（若出现则点，否则跳过）</td></tr><tr><td class="mono ctr">2</td><td class="mono">tapText</td><td class="mono dim">知道了</td><td>一次性引导卡（若出现则点，否则跳过）</td></tr><tr><td class="mono ctr">3</td><td class="mono">sleep</td><td class="mono dim">1500</td><td>固定等 1.5s</td></tr><tr><td class="mono ctr">4</td><td class="mono">tap</td><td class="mono dim">540, 1939</td><td>点新建闹钟（该按钮只暴露 contentDescription=开始，脚本只能写死坐标）</td></tr><tr><td class="mono ctr">5</td><td class="mono">sleep</td><td class="mono dim">2000</td><td>固定等闹钟编辑页</td></tr><tr><td class="mono ctr">6</td><td class="mono">tapText</td><td class="mono dim">7</td><td>在小时表盘上点 7</td></tr><tr><td class="mono ctr">7</td><td class="mono">sleep</td><td class="mono dim">1200</td><td>固定等表盘切到分钟</td></tr><tr><td class="mono ctr">8</td><td class="mono">tapText</td><td class="mono dim">30</td><td>在分钟表盘上点 30</td></tr><tr><td class="mono ctr">9</td><td class="mono">sleep</td><td class="mono dim">800</td><td>固定等一下</td></tr><tr><td class="mono ctr">10</td><td class="mono">tap</td><td class="mono dim">1010, 210</td><td>点右上角 ✓ 保存</td></tr><tr><td class="mono ctr">11</td><td class="mono">sleep</td><td class="mono dim">1500</td><td>固定等返回列表</td></tr><tr><td class="mono ctr">12</td><td class="mono">expect</td><td class="mono dim">7:30</td><td>断言闹钟列表里出现 7:30</td></tr></tbody></table><p class="dim" style="font-size:12px">脚本引擎与 Jev 引擎共用同一份 PortalDevice，差的只是「下一步做什么」由谁决定：这里由上面这张表决定。</p></div></details>
+  <p class="dim" style="font-size:11.5px">产物目录 <code class="mono">artifacts/cases/L2-alarm-script</code></p>
+</div></div>
+</section>
+<section class="pair" id="L3-note">
+  <div class="pair-head">
+    <span class="no">04</span><span class="t">新建一条「明天带伞」</span>
+    <span class="chip" style="border-color:#db61a2;color:#db61a2">长程 · 输入</span>
+  </div>
+  <div class="note"><b>场景</b>　打开便签，新建一条内容为「明天带伞」的便签并保存</div>
+  <p class="dim" style="font-size:12.5px">唯一需要中文打字的场景。输入走 Portal 的键盘接口（无障碍 ACTION_SET_TEXT），不走 adb input；保存后还要自己回到列表页。</p>
+  <table><thead><tr><th style="width:22%">维度</th><th>Jev 决策</th><th>写死脚本</th></tr></thead><tbody><tr><td>决策方式</td><td>每步一次 Jev 调用</td><td>零模型调用，流程写死在代码里</td></tr><tr><td>端到端耗时</td><td><b class="win">22.6</b></td><td>30.0</td></tr><tr><td>模型推理耗时</td><td>2.5 秒</td><td>0 秒（无模型）</td></tr><tr><td>固定等待</td><td>0.0 秒</td><td>6.8 秒</td></tr><tr><td>步骤数</td><td>4</td><td>9</td></tr><tr><td>终态校验</td><td>通过</td><td>通过</td></tr><tr><td>模型花费</td><td>$0.00082</td><td>$0</td></tr><tr><td>校验命中</td><td>1/1</td><td>1/1</td></tr><tr><td>换任务要改什么</td><td>改一行 goal 字符串</td><td>重写整张步骤表 / 重新量坐标</td></tr></tbody></table>
+  <div class="arms">
+<div class="arm jev">
+  <h4><span class="chip" style="border-color:#a371f7;color:#a371f7">Jev 决策</span>
+      <span class="chip" style="border-color:#3fb950;color:#3fb950">已完成</span>
+      <span class="dim" style="font-size:12px">4 步 · 22.6s</span></h4>
+  <div class="desc">每步一次模型调用，模型在候选集里做选择题</div>
+  <div class="kpis" style="margin:8px 0">
+    <div class="kpi"><div class="n">22.6s</div><div class="l">端到端</div></div><div class="kpi"><div class="n">2.5s</div><div class="l">模型推理</div></div><div class="kpi"><div class="n">0.0s</div><div class="l">固定等待</div></div><div class="kpi"><div class="n">$0.00082</div><div class="l">模型花费</div></div>
+  </div>
+  <h3 style="margin-top:6px">逐步耗时</h3>
+  <div class="tl"><div class="tlrow"><div class="ix">1</div><div class="lb" title="Tap 始终允许.">Tap 始终允许.</div><div class="bar"><span style="width:85.8%;background:#58a6ff"></span></div><div class="ms">491</div></div><div class="tlrow"><div class="ix">2</div><div class="lb" title="Tap ui.3.">Tap ui.3.</div><div class="bar"><span style="width:100.0%;background:#58a6ff"></span></div><div class="ms">572</div></div><div class="tlrow"><div class="ix">3</div><div class="lb" title="{&quot;type&quot;:&quot;type&quot;,&quot;text&quot;:&quot;明天带伞&quot;,&quot;clear&quot;:true}">{&quot;type&quot;:&quot;type&quot;,&quot;text&quot;:&quot;明天带伞&quot;,&quot;clear&quot;:tru</div><div class="bar"><span style="width:84.8%;background:#3fb950"></span></div><div class="ms">485</div></div><div class="tlrow"><div class="ix">4</div><div class="lb" title="Tap 保存.">Tap 保存.</div><div class="bar"><span style="width:79.9%;background:#58a6ff"></span></div><div class="ms">457</div></div><div class="tlrow"><div class="ix">5</div><div class="lb" title=""></div><div class="bar"><span style="width:80.8%;background:#e3b341"></span></div><div class="ms">462</div></div></div><p class="dim" style="font-size:11px">横条长度 = 该步耗时（最长 572 ms）</p>
+  <h3>现场</h3>
+  <div class="shots"><div class="shot"><img src="img/L3-note-jev/step-01-annotated.webp" alt="起点" loading="lazy"><div class="cap">起点<span>模型/脚本接手的这一屏</span></div></div><div class="shot"><img src="img/L3-note-jev/step-03-annotated.webp" alt="中途" loading="lazy"><div class="cap">中途<span>第 3 步</span></div></div><div class="shot"><img src="img/L3-note-jev/after-04.webp" alt="最后一次动作后" loading="lazy"><div class="cap">最后一次动作后<span></span></div></div><div class="shot"><img src="img/L3-note-jev/step-06-annotated.webp" alt="终态" loading="lazy"><div class="cap">终态<span>校验用的是这一屏</span></div></div></div>
+  <table><thead><tr><th>终态校验（读无障碍树）</th><th>结果</th></tr></thead><tbody><tr><td class="mono">明天带伞</td><td><b class="win">出现</b></td></tr></tbody></table>
+  
+  <details><summary>▸ Jev 实际收到的请求体（step-02 那一步）</summary><div class="body"><pre>{
+  &quot;goal&quot;: &quot;打开便签，新建一条内容为「明天带伞」的便签并保存&quot;,
+  &quot;app&quot;: &quot;com.oneplus.note&quot;,
+  &quot;visibleText&quot;: [
+    &quot;便签&quot;,
+    &quot;搜索便签&quot;,
+    &quot;欢迎使用便签&quot;,
+    &quot;你可以在便签里快速记录灵感，并支持添加图片、项目列表、待办事件。&quot;,
+    &quot;星期五 下午8:33&quot;,
+    &quot;在氢视窗中查看&quot;,
+    &quot;你可以将便签显示在氢视窗中，方便你随时查看。&quot;,
+    &quot;星期五 下午8:33&quot;,
+    &quot;通过图片分享&quot;,
+    &quot;你可以将你的便签内容生成为长图片，方便你分享到社交平台。&quot;
+  ],
+  &quot;recentActions&quot;: [
+    {
+      &quot;operation&quot;: &quot;TAP&quot;,
+      &quot;label&quot;: &quot;Tap 始终允许.&quot;,
+      &quot;screenChanged&quot;: true
+    }
+  ],
+  &quot;elements&quot;: [
+    {
+      &quot;index&quot;: &quot;1&quot;,
+      &quot;label&quot;: &quot;搜索便签&quot;,
+      &quot;editable&quot;: false,
+      &quot;scrollable&quot;: false,
+      &quot;operations&quot;: [
+        &quot;TAP&quot;
+      ]
+    },
+    {
+      &quot;index&quot;: &quot;2&quot;,
+      &quot;label&quot;: &quot;欢迎使用便签 / 你可以在便签里快速记录灵感，并支持添加图片、项目列表、待办事件。 / 星期五 下午8:33&quot;,
+      &quot;editable&quot;: false,
+      &quot;scrollable&quot;: false,
+      &quot;operations&quot;: [
+        &quot;TAP&quot;
+      ]
+    },
+    {
+      &quot;index&quot;: &quot;3&quot;,
+      &quot;label&quot;: &quot;在氢视窗中查看 / 你可以将便签显示在氢视窗中，方便你随时查看。 / 星期五 下午8:33&quot;,
+      &quot;editable&quot;: false,
+      &quot;scrollable&quot;: false,
+      &quot;operations&quot;: [
+        &quot;TAP&quot;
+      ]
+    },
+    {
+      &quot;index&quot;: &quot;4&quot;,
+      &quot;label&quot;: &quot;通过图片分享 / 你可以将你的便签内容生成为长图片，方便你分享到社交平台。 / 星期五 下午8:33&quot;,
+      &quot;editable&quot;: false,
+      &quot;scrollable&quot;: false,
+      &quot;operations&quot;: [
+        &quot;TAP&quot;
+      ]
+    },
+    {
+      &quot;…&quot;: &quot;共 5 个候选，此处截断&quot;
+    }
+  ]
+}</pre><p class="dim" style="font-size:12px">完整文件：<code class="mono">artifacts/cases/L3-note-jev/step-02/request.json</code></p></div></details>
+  <details><summary>▸ 模型这一刻的原始回答（完整概率分布，step-02）</summary><div class="body"><p class="dim" style="font-size:12px">返回的不是一段话，而是每个问题一张概率表。标红项就是被采纳的 choice——校验规则要求它必须是最大项、且概率和归一到 1。</p><p style="margin:12px 0 2px"><b>question <code class="mono">operation</code></b>　type=<code class="mono">choice</code>　答案=<b style="color:#d1242f">TAP</b>　置信度=<code class="mono">0.92</code></p><table style="margin:6px 0 12px"><tbody><tr><td class="mono" style="width:34%">TAP</td><td><div class="bar"><span style="width:93.0%;background:#d1242f"></span></div></td><td class="mono rt" style="width:56px">0.930</td></tr><tr><td class="mono" style="width:34%">BLOCKED</td><td><div class="bar"><span style="width:4.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.040</td></tr><tr><td class="mono" style="width:34%">WAIT</td><td><div class="bar"><span style="width:2.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.020</td></tr><tr><td class="mono" style="width:34%">OPEN_APP</td><td><div class="bar"><span style="width:1.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.010</td></tr><tr><td class="mono" style="width:34%">DONE</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">BACK</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">HOME</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr></tbody></table><p style="margin:12px 0 2px"><b>question <code class="mono">app_target</code></b>　type=<code class="mono">choice</code>　答案=<b style="color:#d1242f">10</b>　置信度=<code class="mono">0.21</code></p><table style="margin:6px 0 12px"><tbody><tr><td class="mono" style="width:34%">10</td><td><div class="bar"><span style="width:23.0%;background:#d1242f"></span></div></td><td class="mono rt" style="width:56px">0.230</td></tr><tr><td class="mono" style="width:34%">25</td><td><div class="bar"><span style="width:17.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.170</td></tr><tr><td class="mono" style="width:34%">4</td><td><div class="bar"><span style="width:9.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.090</td></tr><tr><td class="mono" style="width:34%">5</td><td><div class="bar"><span style="width:9.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.090</td></tr><tr><td class="mono" style="width:34%">1</td><td><div class="bar"><span style="width:8.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.080</td></tr><tr><td class="mono" style="width:34%">37</td><td><div class="bar"><span style="width:5.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.050</td></tr><tr><td class="mono" style="width:34%">2</td><td><div class="bar"><span style="width:4.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.040</td></tr><tr><td class="mono" style="width:34%">9</td><td><div class="bar"><span style="width:2.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.020</td></tr><tr><td class="mono" style="width:34%">11</td><td><div class="bar"><span style="width:2.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.020</td></tr><tr><td class="mono" style="width:34%">14</td><td><div class="bar"><span style="width:2.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.020</td></tr></tbody></table><p style="margin:12px 0 2px"><b>question <code class="mono">tap_target</code></b>　type=<code class="mono">choice</code>　答案=<b style="color:#d1242f">5</b>　置信度=<code class="mono">0.87</code></p><table style="margin:6px 0 12px"><tbody><tr><td class="mono" style="width:34%">5</td><td><div class="bar"><span style="width:89.0%;background:#d1242f"></span></div></td><td class="mono rt" style="width:56px">0.890</td></tr><tr><td class="mono" style="width:34%">2</td><td><div class="bar"><span style="width:9.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.090</td></tr><tr><td class="mono" style="width:34%">1</td><td><div class="bar"><span style="width:2.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.020</td></tr><tr><td class="mono" style="width:34%">3</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr><tr><td class="mono" style="width:34%">4</td><td><div class="bar"><span style="width:0.0%;background:#58a6ff"></span></div></td><td class="mono rt" style="width:56px">0.000</td></tr></tbody></table><p class="dim" style="font-size:12px">实际服务模型 <code class="mono">typesafe/jev-1.13-20260917</code>，响应 id <code class="mono">gen-dec-1789734798-PZ79qDp879iAj2odIFcC</code></p></div></details>
+  
+  <p class="dim" style="font-size:11.5px">产物目录 <code class="mono">artifacts/cases/L3-note-jev</code></p>
+</div>
+<div class="arm script">
+  <h4><span class="chip" style="border-color:#f0883e;color:#f0883e">写死脚本</span>
+      <span class="chip" style="border-color:#3fb950;color:#3fb950">已完成</span>
+      <span class="dim" style="font-size:12px">9 步 · 30.0s</span></h4>
+  <div class="desc">不用模型，步骤与坐标由人工写死</div>
+  <div class="kpis" style="margin:8px 0">
+    <div class="kpi"><div class="n">30.0s</div><div class="l">端到端</div></div><div class="kpi"><div class="n">0.0s</div><div class="l">模型推理</div></div><div class="kpi"><div class="n">6.8s</div><div class="l">固定等待</div></div><div class="kpi"><div class="n">$0.00000</div><div class="l">模型花费</div></div>
+  </div>
+  <h3 style="margin-top:6px">逐步耗时</h3>
+  <div class="tl"><div class="tlrow"><div class="ix">1</div><div class="lb" title="一次性权限弹窗（未出现，跳过）">一次性权限弹窗（未出现，跳过）</div><div class="bar"><span style="width:26.4%;background:#8b949e"></span></div><div class="ms">532</div></div><div class="tlrow"><div class="ix">2</div><div class="lb" title="固定等列表页">固定等列表页</div><div class="bar"><span style="width:89.8%;background:#8b949e"></span></div><div class="ms">1811</div></div><div class="tlrow"><div class="ix">3</div><div class="lb" title="点新建便签（FAB 无文本，只能写死坐标）">点新建便签（FAB 无文本，只能写死坐标）</div><div class="bar"><span style="width:54.1%;background:#58a6ff"></span></div><div class="ms">1091</div></div><div class="tlrow"><div class="ix">4</div><div class="lb" title="固定等编辑器打开">固定等编辑器打开</div><div class="bar"><span style="width:100.0%;background:#8b949e"></span></div><div class="ms">2016</div></div><div class="tlrow"><div class="ix">5</div><div class="lb" title="走 Portal 键盘灌入中文">走 Portal 键盘灌入中文</div><div class="bar"><span style="width:53.8%;background:#3fb950"></span></div><div class="ms">1084</div></div><div class="tlrow"><div class="ix">6</div><div class="lb" title="固定等输入落盘">固定等输入落盘</div><div class="bar"><span style="width:45.4%;background:#8b949e"></span></div><div class="ms">916</div></div><div class="tlrow"><div class="ix">7</div><div class="lb" title="点右上角「保存」">点右上角「保存」</div><div class="bar"><span style="width:79.3%;background:#58a6ff"></span></div><div class="ms">1598</div></div><div class="tlrow"><div class="ix">8</div><div class="lb" title="固定等返回列表">固定等返回列表</div><div class="bar"><span style="width:99.9%;background:#8b949e"></span></div><div class="ms">2014</div></div><div class="tlrow"><div class="ix">9</div><div class="lb" title="断言列表里出现这条便签">断言列表里出现这条便签</div><div class="bar"><span style="width:26.4%;background:#3fb950"></span></div><div class="ms">533</div></div></div><p class="dim" style="font-size:11px">横条长度 = 该步耗时（最长 2016 ms）</p>
+  <h3>现场</h3>
+  <div class="shots"><div class="shot"><img src="img/L3-note-script/step-02-annotated.webp" alt="起点" loading="lazy"><div class="cap">起点<span>模型/脚本接手的这一屏</span></div></div><div class="shot"><img src="img/L3-note-script/step-06-annotated.webp" alt="中途" loading="lazy"><div class="cap">中途<span>第 5 步</span></div></div><div class="shot"><img src="img/L3-note-script/after-08.webp" alt="最后一次动作后" loading="lazy"><div class="cap">最后一次动作后<span></span></div></div><div class="shot"><img src="img/L3-note-script/step-10-annotated.webp" alt="终态" loading="lazy"><div class="cap">终态<span>校验用的是这一屏</span></div></div></div>
+  <table><thead><tr><th>终态校验（读无障碍树）</th><th>结果</th></tr></thead><tbody><tr><td class="mono">明天带伞</td><td><b class="win">出现</b></td></tr></tbody></table>
+  
+  
+  
+  <details open><summary>▸ 这就是「写死」的部分：9 条硬编码步骤</summary><div class="body"><table><thead><tr><th class="ctr">#</th><th>类型</th><th>参数</th><th>说明</th></tr></thead><tbody><tr><td class="mono ctr">1</td><td class="mono">tapText</td><td class="mono dim">始终允许</td><td>一次性权限弹窗</td></tr><tr><td class="mono ctr">2</td><td class="mono">sleep</td><td class="mono dim">1800</td><td>固定等列表页</td></tr><tr><td class="mono ctr">3</td><td class="mono">tap</td><td class="mono dim">949, 2149</td><td>点新建便签（FAB 无文本，只能写死坐标）</td></tr><tr><td class="mono ctr">4</td><td class="mono">sleep</td><td class="mono dim">2000</td><td>固定等编辑器打开</td></tr><tr><td class="mono ctr">5</td><td class="mono">type</td><td class="mono dim">明天带伞</td><td>走 Portal 键盘灌入中文</td></tr><tr><td class="mono ctr">6</td><td class="mono">sleep</td><td class="mono dim">900</td><td>固定等输入落盘</td></tr><tr><td class="mono ctr">7</td><td class="mono">tapText</td><td class="mono dim">保存</td><td>点右上角「保存」</td></tr><tr><td class="mono ctr">8</td><td class="mono">sleep</td><td class="mono dim">2000</td><td>固定等返回列表</td></tr><tr><td class="mono ctr">9</td><td class="mono">expect</td><td class="mono dim">明天带伞</td><td>断言列表里出现这条便签</td></tr></tbody></table><p class="dim" style="font-size:12px">脚本引擎与 Jev 引擎共用同一份 PortalDevice，差的只是「下一步做什么」由谁决定：这里由上面这张表决定。</p></div></details>
+  <p class="dim" style="font-size:11.5px">产物目录 <code class="mono">artifacts/cases/L3-note-script</code></p>
+</div></div>
+</section>
+
+<h2>附录一 · 这台手机装了什么</h2>
+<p>清单不是手工整理的，而是直接问 Portal：<code class="mono">content://com.mobilerun.portal/packages</code>
+一次性返回全部「可被 LAUNCHER Intent 启动」的应用，共 <b>38</b> 个（系统 15 / 第三方 23）。
+Agent 只有拿着这份白名单，才有资格选择 <code class="mono">OPEN_APP</code> 这个动作——
+「能打开哪些 App」对模型来说是<b>已知输入</b>，不是它自己猜的。</p>
+<div class="kpis"><div class="kpi"><div class="n">38</div><div class="l">可启动应用</div></div><div class="kpi"><div class="n">15</div><div class="l">系统应用</div></div><div class="kpi"><div class="n">23</div><div class="l">第三方应用</div></div></div>
+<h3>系统应用（15）</h3>
+<table><thead><tr><th>名称</th><th>包名</th><th class="rt">版本</th><th>本项目用途</th></tr></thead><tbody><tr><td>Breeno 语音</td><td class='mono dim'>com.heytap.speechassist</td><td class='mono dim rt'>6.0.5</td><td></td></tr><tr><td>信息</td><td class='mono dim'>com.oneplus.mms</td><td class='mono dim rt'>5.0.0.201211184018.f</td><td></td></tr><tr><td>商店</td><td class='mono dim'>com.heytap.market</td><td class='mono dim rt'>26.8.1_CN</td><td></td></tr><tr><td>图库</td><td class='mono dim'>com.oneplus.gallery</td><td class='mono dim rt'>3.7.28</td><td></td></tr><tr><td>录音机</td><td class='mono dim'>com.oneplus.soundrecorder</td><td class='mono dim rt'>2.0.0.191031181032.7</td><td></td></tr><tr><td>文件管理</td><td class='mono dim'>com.oneplus.filemanager</td><td class='mono dim rt'>2.4.0.191101165428.b</td><td></td></tr><tr><td>日历</td><td class='mono dim'>com.oneplus.calendar</td><td class='mono dim rt'>1.9.0.200907161341.4</td><td></td></tr><tr><td>时钟</td><td class='mono dim'>com.oneplus.deskclock</td><td class='mono dim rt'>5.2.0</td><td><span class="chip" style="border-color:#e3b341;color:#e3b341">长程场景 L2</span></td></tr><tr><td>浏览器</td><td class='mono dim'>com.android.browser</td><td class='mono dim rt'>5.0.405</td><td></td></tr><tr><td>游戏空间</td><td class='mono dim'>com.oneplus.gamespace</td><td class='mono dim rt'>2.4.2.0.200928213111</td><td></td></tr><tr><td>电话</td><td class='mono dim'>com.android.dialer</td><td class='mono dim rt'>4.4.2</td><td></td></tr><tr><td>相机</td><td class='mono dim'>com.oneplus.camera</td><td class='mono dim rt'>3.8.114</td><td></td></tr><tr><td>设置</td><td class='mono dim'>com.android.settings</td><td class='mono dim rt'>10</td><td></td></tr><tr><td>通讯录</td><td class='mono dim'>com.oneplus.contacts</td><td class='mono dim rt'>3.1.4</td><td></td></tr><tr><td>钱包</td><td class='mono dim'>com.finshell.wallet</td><td class='mono dim rt'>3.5.0</td><td></td></tr></tbody></table>
+<h3>第三方应用（23）</h3>
+<table><thead><tr><th>名称</th><th>包名</th><th class="rt">版本</th><th>本项目用途</th></tr></thead><tbody><tr><td>APK安装工具</td><td class='mono dim'>com.uptodown.installer</td><td class='mono dim rt'>0.2.55</td><td></td></tr><tr><td>Chrome</td><td class='mono dim'>com.android.chrome</td><td class='mono dim rt'>150.0.7871.186</td><td><span class="chip" style="border-color:#e3b341;color:#e3b341">早期示例</span></td></tr><tr><td>ES文件浏览器</td><td class='mono dim'>com.estrongs.android.pop</td><td class='mono dim rt'>4.4.3.7</td><td></td></tr><tr><td>FlClash</td><td class='mono dim'>com.follow.clash</td><td class='mono dim rt'>0.8.98</td><td></td></tr><tr><td>Gemini</td><td class='mono dim'>com.google.android.apps.bard</td><td class='mono dim rt'>1.0.946899233</td><td></td></tr><tr><td>Google</td><td class='mono dim'>com.google.android.googlequicksearchbox</td><td class='mono dim rt'>17.6.59.ve.arm64</td><td></td></tr><tr><td>Mobilerun Portal</td><td class='mono dim'>com.mobilerun.portal</td><td class='mono dim rt'>0.7.25</td><td><span class="chip" style="border-color:#e3b341;color:#e3b341">感知层本体</span></td></tr><tr><td>Play 商店</td><td class='mono dim'>com.android.vending</td><td class='mono dim rt'>53.0.27-29 [0] [PR] </td><td></td></tr><tr><td>便签</td><td class='mono dim'>com.oneplus.note</td><td class='mono dim rt'>3.4.0.200226141241.9</td><td><span class="chip" style="border-color:#e3b341;color:#e3b341">长程场景 L3</span></td></tr><tr><td>卡券</td><td class='mono dim'>com.oneplus.card</td><td class='mono dim rt'>3.4.9.210312102403.9</td><td></td></tr><tr><td>天气</td><td class='mono dim'>net.oneplus.weather</td><td class='mono dim rt'>2.5.1.191102143751.f</td><td></td></tr><tr><td>夸克</td><td class='mono dim'>com.quark.browser</td><td class='mono dim rt'>10.15.0.1125</td><td></td></tr><tr><td>小红书</td><td class='mono dim'>com.xingin.xhs</td><td class='mono dim rt'>9.41.2</td><td></td></tr><tr><td>微信</td><td class='mono dim'>com.tencent.mm</td><td class='mono dim rt'>8.0.76</td><td></td></tr><tr><td>拼多多</td><td class='mono dim'>com.xunmeng.pinduoduo</td><td class='mono dim rt'>8.19.0</td><td><span class="chip" style="border-color:#e3b341;color:#e3b341">长程场景 L1</span></td></tr><tr><td>智能家居</td><td class='mono dim'>com.heytap.smarthome</td><td class='mono dim rt'>1.0.9_c55e477_200319</td><td></td></tr><tr><td>汽水音乐</td><td class='mono dim'>com.luna.music</td><td class='mono dim rt'>21.0.0</td><td></td></tr><tr><td>淘宝</td><td class='mono dim'>com.taobao.taobao</td><td class='mono dim rt'>10.65.0</td><td></td></tr><tr><td>番茄免费小说</td><td class='mono dim'>com.dragon.read</td><td class='mono dim rt'>7.3.7.33</td><td></td></tr><tr><td>美团</td><td class='mono dim'>com.sankuai.meituan</td><td class='mono dim rt'>12.63.202</td><td></td></tr><tr><td>计算器</td><td class='mono dim'>com.oneplus.calculator</td><td class='mono dim rt'>2.0.0</td><td></td></tr><tr><td>豆包输入法</td><td class='mono dim'>com.bytedance.android.doubaoime</td><td class='mono dim rt'>1.3.17</td><td></td></tr><tr><td>阅读</td><td class='mono dim'>com.heytap.reader</td><td class='mono dim rt'>9.15.0</td><td></td></tr></tbody></table>
+
+<div class="foot">
+设备 OnePlus6（d5652109）· Mobilerun Portal v0.7.25 · 决策端点 <code class="mono">openrouter.ai/api/alpha/decisions</code> ·
+模型 <code class="mono">~typesafe/jev-latest</code> · 全部截图按项目约定压成 WebP · 生成于 2026-09-18 12:31:01
+</div>
+</div></body></html>

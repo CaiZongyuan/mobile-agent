@@ -1,0 +1,271 @@
+{
+  "total": 38,
+  "packages": [
+    {
+      "packageName": "com.android.dialer",
+      "label": "电话",
+      "versionName": "4.4.2",
+      "versionCode": 250008,
+      "isSystemApp": true
+    },
+    {
+      "packageName": "com.android.settings",
+      "label": "设置",
+      "versionName": "10",
+      "versionCode": 1062,
+      "isSystemApp": true
+    },
+    {
+      "packageName": "com.finshell.wallet",
+      "label": "钱包",
+      "versionName": "3.5.0",
+      "versionCode": 3504,
+      "isSystemApp": true
+    },
+    {
+      "packageName": "com.oneplus.calendar",
+      "label": "日历",
+      "versionName": "1.9.0.200907161341.4ff1299",
+      "versionCode": 601,
+      "isSystemApp": true
+    },
+    {
+      "packageName": "com.oneplus.contacts",
+      "label": "通讯录",
+      "versionName": "3.1.4",
+      "versionCode": 20008,
+      "isSystemApp": true
+    },
+    {
+      "packageName": "com.oneplus.deskclock",
+      "label": "时钟",
+      "versionName": "5.2.0",
+      "versionCode": 521,
+      "isSystemApp": true
+    },
+    {
+      "packageName": "com.oneplus.mms",
+      "label": "信息",
+      "versionName": "5.0.0.201211184018.f360a72",
+      "versionCode": 46,
+      "isSystemApp": true
+    },
+    {
+      "packageName": "com.android.chrome",
+      "label": "Chrome",
+      "versionName": "150.0.7871.186",
+      "versionCode": 787118633,
+      "isSystemApp": false
+    },
+    {
+      "packageName": "com.android.vending",
+      "label": "Play 商店",
+      "versionName": "53.0.27-29 [0] [PR] 973951861",
+      "versionCode": 85302720,
+      "isSystemApp": false
+    },
+    {
+      "packageName": "com.bytedance.android.doubaoime",
+      "label": "豆包输入法",
+      "versionName": "1.3.17",
+      "versionCode": 100317008,
+      "isSystemApp": false
+    },
+    {
+      "packageName": "com.heytap.reader",
+      "label": "阅读",
+      "versionName": "9.15.0",
+      "versionCode": 91500,
+      "isSystemApp": false
+    },
+    {
+      "packageName": "com.luna.music",
+      "label": "汽水音乐",
+      "versionName": "21.0.0",
+      "versionCode": 100210030,
+      "isSystemApp": false
+    },
+    {
+      "packageName": "com.android.browser",
+      "label": "浏览器",
+      "versionName": "5.0.405",
+      "versionCode": 418070001,
+      "isSystemApp": true
+    },
+    {
+      "packageName": "com.heytap.market",
+      "label": "商店",
+      "versionName": "26.8.1_CN",
+      "versionCode": 260801,
+      "isSystemApp": true
+    },
+    {
+      "packageName": "com.heytap.speechassist",
+      "label": "Breeno 语音",
+      "versionName": "6.0.5",
+      "versionCode": 605,
+      "isSystemApp": true
+    },
+    {
+      "packageName": "com.oneplus.camera",
+      "label": "相机",
+      "versionName": "3.8.114",
+      "versionCode": 23270449,
+      "isSystemApp": true
+    },
+    {
+      "packageName": "com.oneplus.filemanager",
+      "label": "文件管理",
+      "versionName": "2.4.0.191101165428.b058638",
+      "versionCode": 30001110,
+      "isSystemApp": true
+    },
+    {
+      "packageName": "com.oneplus.gallery",
+      "label": "图库",
+      "versionName": "3.7.28",
+      "versionCode": 23240766,
+      "isSystemApp": true
+    },
+    {
+      "packageName": "com.oneplus.gamespace",
+      "label": "游戏空间",
+      "versionName": "2.4.2.0.200928213111.9e934b8",
+      "versionCode": 360,
+      "isSystemApp": true
+    },
+    {
+      "packageName": "com.oneplus.soundrecorder",
+      "label": "录音机",
+      "versionName": "2.0.0.191031181032.75c0d9c",
+      "versionCode": 30000301,
+      "isSystemApp": true
+    },
+    {
+      "packageName": "com.dragon.read",
+      "label": "番茄免费小说",
+      "versionName": "7.3.7.33",
+      "versionCode": 73733,
+      "isSystemApp": false
+    },
+    {
+      "packageName": "com.estrongs.android.pop",
+      "label": "ES文件浏览器",
+      "versionName": "4.4.3.7",
+      "versionCode": 10353,
+      "isSystemApp": false
+    },
+    {
+      "packageName": "com.follow.clash",
+      "label": "FlClash",
+      "versionName": "0.8.98",
+      "versionCode": 2026093401,
+      "isSystemApp": false
+    },
+    {
+      "packageName": "com.google.android.apps.bard",
+      "label": "Gemini",
+      "versionName": "1.0.946899233",
+      "versionCode": 317,
+      "isSystemApp": false
+    },
+    {
+      "packageName": "com.google.android.googlequicksearchbox",
+      "label": "Google",
+      "versionName": "17.6.59.ve.arm64",
+      "versionCode": 301698282,
+      "isSystemApp": false
+    },
+    {
+      "packageName": "com.heytap.smarthome",
+      "label": "智能家居",
+      "versionName": "1.0.9_c55e477_200319",
+      "versionCode": 1096,
+      "isSystemApp": false
+    },
+    {
+      "packageName": "com.mobilerun.portal",
+      "label": "Mobilerun Portal",
+      "versionName": "0.7.25",
+      "versionCode": 539,
+      "isSystemApp": false
+    },
+    {
+      "packageName": "com.oneplus.calculator",
+      "label": "计算器",
+      "versionName": "2.0.0",
+      "versionCode": 200,
+      "isSystemApp": false
+    },
+    {
+      "packageName": "com.oneplus.card",
+      "label": "卡券",
+      "versionName": "3.4.9.210312102403.9d762b9",
+      "versionCode": 1250,
+      "isSystemApp": false
+    },
+    {
+      "packageName": "com.oneplus.note",
+      "label": "便签",
+      "versionName": "3.4.0.200226141241.9def404",
+      "versionCode": 1400,
+      "isSystemApp": false
+    },
+    {
+      "packageName": "com.quark.browser",
+      "label": "夸克",
+      "versionName": "10.15.0.1125",
+      "versionCode": 1125,
+      "isSystemApp": false
+    },
+    {
+      "packageName": "com.sankuai.meituan",
+      "label": "美团",
+      "versionName": "12.63.202",
+      "versionCode": 1200630202,
+      "isSystemApp": false
+    },
+    {
+      "packageName": "com.taobao.taobao",
+      "label": "淘宝",
+      "versionName": "10.65.0",
+      "versionCode": 854,
+      "isSystemApp": false
+    },
+    {
+      "packageName": "com.tencent.mm",
+      "label": "微信",
+      "versionName": "8.0.76",
+      "versionCode": 3141,
+      "isSystemApp": false
+    },
+    {
+      "packageName": "com.uptodown.installer",
+      "label": "APK安装工具",
+      "versionName": "0.2.55",
+      "versionCode": 255,
+      "isSystemApp": false
+    },
+    {
+      "packageName": "com.xingin.xhs",
+      "label": "小红书",
+      "versionName": "9.41.2",
+      "versionCode": 9412801,
+      "isSystemApp": false
+    },
+    {
+      "packageName": "com.xunmeng.pinduoduo",
+      "label": "拼多多",
+      "versionName": "8.19.0",
+      "versionCode": 81900,
+      "isSystemApp": false
+    },
+    {
+      "packageName": "net.oneplus.weather",
+      "label": "天气",
+      "versionName": "2.5.1.191102143751.f72fbd4",
+      "versionCode": 20513,
+      "isSystemApp": false
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "step": 3,
+  "attempt": 3,
+  "status": "action",
+  "operation": "TAP",
+  "target": "3",
+  "choice": "tap_ui.3.1.0.0",
+  "confidence": 0.88,
+  "targetConfidence": 0.73,
+  "operationProbabilities": {
+    "SCROLL_UP": 0.02,
+    "HOME": 0,
+    "TAP": 0.9,
+    "DONE": 0,
+    "WAIT": 0,
+    "OPEN_APP": 0.04,
+    "BACK": 0.01,
+    "SCROLL_DOWN": 0.01,
+    "BLOCKED": 0,
+    "SCROLL_LEFT": 0.01,
+    "SCROLL_RIGHT": 0.01
+  },
+  "targetProbabilities": {
+    "1": 0.01,
+    "2": 0.15,
+    "3": 0.76,
+    "4": 0,
+    "5": 0.04,
+    "6": 0.01,
+    "7": 0.01,
+    "8": 0.01,
+    "9": 0,
+    "10": 0,
+    "11": 0,
+    "12": 0,
+    "13": 0,
+    "14": 0,
+    "15": 0,
+    "16": 0,
+    "17": 0.01,
+    "18": 0
+  },
+  "usage": {
+    "input_tokens": 5339,
+    "output_tokens": 583,
+    "cost": 0.000224238
+  },
+  "requestedModel": "~typesafe/jev-latest",
+  "responseModel": "typesafe/jev-1.13-20260917",
+  "latencyMs": 762.4,
+  "action": {
+    "type": "tap-element",
+    "elementId": "ui.3.1.0.0"
+  },
+  "label": "Tap 上午."
+}

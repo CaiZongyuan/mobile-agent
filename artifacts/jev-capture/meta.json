@@ -1,0 +1,16 @@
+{
+  "goal": "打开拼多多，进入多多买菜，找到鸡蛋商品",
+  "url": "https://api.typesafe.ai/v1/systemone",
+  "timing": {
+    "wallMs": 694.6,
+    "dnsMs": 20.7,
+    "tcpMs": 1.4,
+    "tlsMs": 143.6,
+    "responseWaitMs": 520.9,
+    "downloadMs": 8,
+    "totalMs": 694.6,
+    "reusedConnection": false,
+    "httpVersion": "1.1",
+    "status": 200
+  }
+}

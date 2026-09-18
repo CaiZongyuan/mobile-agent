@@ -1,0 +1,56 @@
+{
+  "step": 4,
+  "attempt": 4,
+  "status": "action",
+  "operation": "TAP",
+  "target": "5",
+  "choice": "tap_ui.3.1.1",
+  "confidence": 0.87,
+  "targetConfidence": 0.31,
+  "operationProbabilities": {
+    "SCROLL_LEFT": 0.03,
+    "OPEN_APP": 0.01,
+    "SCROLL_RIGHT": 0.03,
+    "SCROLL_UP": 0.01,
+    "BACK": 0,
+    "BLOCKED": 0,
+    "HOME": 0,
+    "SCROLL_DOWN": 0.03,
+    "TAP": 0.89,
+    "DONE": 0,
+    "WAIT": 0
+  },
+  "targetProbabilities": {
+    "1": 0.01,
+    "2": 0.12,
+    "3": 0.01,
+    "4": 0,
+    "5": 0.35,
+    "6": 0.04,
+    "7": 0.2,
+    "8": 0.19,
+    "9": 0.01,
+    "10": 0,
+    "11": 0.01,
+    "12": 0.01,
+    "13": 0,
+    "14": 0.01,
+    "15": 0.02,
+    "16": 0,
+    "17": 0.02,
+    "18": 0
+  },
+  "usage": {
+    "input_tokens": 5372,
+    "output_tokens": 583,
+    "cost": 0.000225624
+  },
+  "requestedModel": "~typesafe/jev-latest",
+  "responseModel": "typesafe/jev-1.13-20260917",
+  "latencyMs": 515.4,
+  "action": {
+    "type": "tap-element",
+    "elementId": "ui.3.1.1"
+  },
+  "label": "Tap 8."
+}

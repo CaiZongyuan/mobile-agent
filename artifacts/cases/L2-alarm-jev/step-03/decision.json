@@ -1,0 +1,44 @@
+{
+  "step": 2,
+  "attempt": 2,
+  "status": "action",
+  "operation": "TAP",
+  "target": "6",
+  "choice": "tap_ui.3",
+  "confidence": 0.93,
+  "targetConfidence": 0.37,
+  "operationProbabilities": {
+    "OPEN_APP": 0.03,
+    "TAP": 0.95,
+    "DONE": 0,
+    "HOME": 0,
+    "BACK": 0,
+    "WAIT": 0.01,
+    "BLOCKED": 0.01
+  },
+  "targetProbabilities": {
+    "1": 0.11,
+    "2": 0.18,
+    "3": 0.01,
+    "4": 0.01,
+    "5": 0.01,
+    "6": 0.44,
+    "7": 0.24,
+    "8": 0,
+    "9": 0,
+    "10": 0
+  },
+  "usage": {
+    "input_tokens": 4208,
+    "output_tokens": 459,
+    "cost": 0.000176736
+  },
+  "requestedModel": "~typesafe/jev-latest",
+  "responseModel": "typesafe/jev-1.13-20260917",
+  "latencyMs": 493.4,
+  "action": {
+    "type": "tap-element",
+    "elementId": "ui.3"
+  },
+  "label": "Tap 开始."
+}

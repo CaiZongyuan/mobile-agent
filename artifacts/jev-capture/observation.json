@@ -1,0 +1,132 @@
+{
+  "deviceId": "d5652109",
+  "phone": {
+    "packageName": "com.android.systemui",
+    "currentApp": "系统界面",
+    "isEditable": false,
+    "focusEvidence": "none",
+    "keyboardVisible": false,
+    "focusedElement": {
+      "resourceId": "",
+      "className": ""
+    }
+  },
+  "screen": {
+    "width": 1080,
+    "height": 2280
+  },
+  "elements": [
+    {
+      "id": "ui.0",
+      "text": "",
+      "label": "07 28",
+      "resourceId": "com.android.systemui:id/clock_view",
+      "hint": "",
+      "bounds": {
+        "left": 95,
+        "top": 472,
+        "right": 985,
+        "bottom": 805
+      },
+      "clickable": false,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.1",
+      "text": "",
+      "label": "9月18日星期五",
+      "resourceId": "com.android.systemui:id/date_view",
+      "hint": "",
+      "bounds": {
+        "left": 401,
+        "top": 823,
+        "right": 678,
+        "bottom": 883
+      },
+      "clickable": false,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.2",
+      "text": "9%",
+      "label": "",
+      "resourceId": "com.android.systemui:id/percentage",
+      "hint": "",
+      "bounds": {
+        "left": 490,
+        "top": 971,
+        "right": 560,
+        "bottom": 1026
+      },
+      "clickable": false,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.3",
+      "text": "",
+      "label": "正在充电，已完成 9%。",
+      "resourceId": "com.android.systemui:id/battery",
+      "hint": "",
+      "bounds": {
+        "left": 571,
+        "top": 981,
+        "right": 590,
+        "bottom": 1018
+      },
+      "clickable": false,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.4",
+      "text": "",
+      "label": "FlClash通知：ZCSSR",
+      "resourceId": "",
+      "hint": "",
+      "bounds": {
+        "left": 512,
+        "top": 1117,
+        "right": 567,
+        "bottom": 1172
+      },
+      "clickable": false,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    }
+  ],
+  "fingerprint": "7cef57c7d1a0e7efd08ca3e7b5f32fc931a1cf3727325e0fa6623d2a406cd754",
+  "observedAt": 1789731747991
+}

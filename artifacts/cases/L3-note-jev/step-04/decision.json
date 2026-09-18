@@ -1,0 +1,46 @@
+{
+  "step": 3,
+  "attempt": 3,
+  "status": "action",
+  "operation": "TAP",
+  "target": "4",
+  "choice": "tap_ui.3",
+  "confidence": 0.88,
+  "targetConfidence": 0.98,
+  "operationProbabilities": {
+    "WAIT": 0,
+    "TAP": 0.9,
+    "DONE": 0.1,
+    "TYPE_TEXT": 0,
+    "BACK": 0,
+    "OPEN_APP": 0,
+    "ENTER": 0,
+    "BLOCKED": 0,
+    "HOME": 0
+  },
+  "targetProbabilities": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0.98,
+    "5": 0.01,
+    "6": 0.01,
+    "7": 0,
+    "8": 0,
+    "9": 0,
+    "10": 0
+  },
+  "usage": {
+    "input_tokens": 4194,
+    "output_tokens": 504,
+    "cost": 0.000176148
+  },
+  "requestedModel": "~typesafe/jev-latest",
+  "responseModel": "typesafe/jev-1.13-20260917",
+  "latencyMs": 457.3,
+  "action": {
+    "type": "tap-element",
+    "elementId": "ui.3"
+  },
+  "label": "Tap 保存."
+}

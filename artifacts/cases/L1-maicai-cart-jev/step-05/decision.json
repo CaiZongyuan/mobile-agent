@@ -1,0 +1,29 @@
+{
+  "step": 3,
+  "attempt": 4,
+  "status": "done",
+  "operation": "DONE",
+  "choice": "DONE",
+  "confidence": 0.57,
+  "operationProbabilities": {
+    "SCROLL_LEFT": 0,
+    "HOME": 0,
+    "DONE": 0.62,
+    "BLOCKED": 0,
+    "SCROLL_DOWN": 0,
+    "WAIT": 0,
+    "OPEN_APP": 0,
+    "TAP": 0.38,
+    "BACK": 0,
+    "SCROLL_UP": 0,
+    "SCROLL_RIGHT": 0
+  },
+  "usage": {
+    "input_tokens": 10361,
+    "output_tokens": 784,
+    "cost": 0.000435162
+  },
+  "requestedModel": "~typesafe/jev-latest",
+  "responseModel": "typesafe/jev-1.13-20260917",
+  "latencyMs": 528
+}

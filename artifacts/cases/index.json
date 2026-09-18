@@ -1,0 +1,1548 @@
+{
+  "at": "2026-09-18T12:40:43.527Z",
+  "cases": [
+    {
+      "id": "L1-cart-jev",
+      "title": "拼多多：搜洗衣液 → 加入购物车 → 打开购物车确认",
+      "tone": "长程 · 购物",
+      "engine": "jev",
+      "pair": "L1-cart",
+      "goal": "打开拼多多，搜索「洗衣液」，把搜索结果里的第一款商品加入购物车，最后打开购物车页面确认它已经在里面",
+      "why": "生活场景里最典型的长程任务：跨 5 个页面（首页→搜索→结果→SKU 弹层→购物车），中途还会遇到推荐弹窗和加载态。它同时考验「找入口」「打字」「在列表里做选择」「处理弹层」四件事。",
+      "expect": "购物车页里能看到刚加进去的洗衣液商品",
+      "script": null,
+      "status": "stuck",
+      "steps": 15,
+      "wallMs": 104138,
+      "modelMs": 9899.2,
+      "actionMs": 21409.9,
+      "observationMs": 11334.7,
+      "waitMs": 71.8,
+      "modelCalls": 18,
+      "cost": 0.005768742,
+      "finalApp": "com.xunmeng.pinduoduo",
+      "passed": true,
+      "checks": [
+        {
+          "keyword": "洗衣液",
+          "pass": true
+        }
+      ],
+      "failed": null,
+      "finalScreenshot": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\final-state.webp",
+      "dir": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev"
+    },
+    {
+      "id": "F1-pdd-add-cart",
+      "pair": "F1-pdd-add-cart",
+      "title": "拼多多：搜洗衣液 → 加购物车（失败样本，已冻结）",
+      "tone": "失败案例",
+      "engine": "jev",
+      "app": "com.xunmeng.pinduoduo",
+      "goal": "打开拼多多，搜索「洗衣液」，把搜索结果里的第一款商品加入购物车，最后打开购物车页面确认它已经在里面",
+      "steps": 15,
+      "texts": [
+        "洗衣液"
+      ],
+      "verify": [
+        "洗衣液"
+      ],
+      "expect": "购物车页里能看到刚加进去的洗衣液商品",
+      "why": "生活里最顺口的长程需求，也是本次跑批里唯一失败的样本。前 5 步一切正常（拉起 App → 点搜索框 → 打字 → 提交 → 进第一款商品详情页），但拼多多的商品详情页**没有『加入购物车』入口**（只有『免拼购买』『发起拼单』）。模型随后开始来回滚动、返回、重复点击，第 15 步触发 stuck 保护退出。教训：长程任务的成败往往取决于**目标在界面上是否真的可达**，而不是模型的推理能力。",
+      "at": "2026-09-18T12:31:01.757Z",
+      "device": {
+        "id": "d5652109",
+        "name": "OnePlus6 (USB Portal)",
+        "state": "ready"
+      },
+      "result": {
+        "status": "stuck",
+        "steps": 15,
+        "timings": {
+          "modelMs": 9899.2,
+          "actionMs": 21409.9,
+          "observationMs": 11334.7,
+          "waitMs": 71.8,
+          "staleRetries": 2,
+          "modelCalls": 18,
+          "wallMs": 104138
+        },
+        "reason": null,
+        "failed": null
+      },
+      "decisions": [
+        {
+          "n": 1,
+          "status": "action",
+          "operation": "TAP",
+          "target": "2",
+          "label": "Focus text input: 大蒜种子蒜种.",
+          "confidence": 0.61,
+          "targetConfidence": 0.58,
+          "latencyMs": 950.9,
+          "probabilities": {
+            "BACK": 0,
+            "TAP": 0.64,
+            "ENTER": 0,
+            "SCROLL_LEFT": 0,
+            "TYPE_TEXT": 0.35,
+            "SCROLL_RIGHT": 0,
+            "OPEN_APP": 0.01,
+            "BLOCKED": 0,
+            "HOME": 0,
+            "WAIT": 0,
+            "SCROLL_DOWN": 0,
+            "SCROLL_UP": 0,
+            "DONE": 0
+          },
+          "usage": {
+            "input_tokens": 7101,
+            "output_tokens": 700,
+            "cost": 0.000298242
+          }
+        },
+        {
+          "n": 2,
+          "status": "action",
+          "operation": "TYPE_TEXT",
+          "target": "1",
+          "label": "{\"type\":\"type\",\"text\":\"洗衣液\",\"clear\":true}",
+          "confidence": 0.46,
+          "targetConfidence": 0.97,
+          "latencyMs": 577.9,
+          "probabilities": {
+            "TYPE_TEXT": 0.51,
+            "TAP": 0.48,
+            "OPEN_APP": 0.01,
+            "SCROLL_UP": 0,
+            "SCROLL_DOWN": 0,
+            "HOME": 0,
+            "ENTER": 0,
+            "SCROLL_RIGHT": 0,
+            "DONE": 0,
+            "BACK": 0,
+            "WAIT": 0,
+            "SCROLL_LEFT": 0,
+            "BLOCKED": 0
+          },
+          "usage": {
+            "input_tokens": 7142,
+            "output_tokens": 701,
+            "cost": 0.000299964
+          }
+        },
+        {
+          "n": 3,
+          "status": "action",
+          "operation": "TAP",
+          "target": "5",
+          "label": "Tap 搜索.",
+          "confidence": 0.76,
+          "targetConfidence": 0.5,
+          "latencyMs": 488,
+          "probabilities": {
+            "TAP": 0.78,
+            "HOME": 0,
+            "ENTER": 0.19,
+            "TYPE_TEXT": 0,
+            "WAIT": 0.02,
+            "DONE": 0,
+            "SCROLL_LEFT": 0,
+            "SCROLL_DOWN": 0.01,
+            "BLOCKED": 0,
+            "BACK": 0,
+            "SCROLL_RIGHT": 0,
+            "OPEN_APP": 0,
+            "SCROLL_UP": 0
+          },
+          "usage": {
+            "input_tokens": 9315,
+            "output_tokens": 836,
+            "cost": 0.00039123
+          }
+        },
+        {
+          "n": 4,
+          "status": "action",
+          "operation": "SCROLL_DOWN",
+          "target": "10",
+          "label": "Scroll down to reveal content further down in this scrollable region. Gesture: {\"type\":\"swipe\",\"startX\":540,\"startY\":1790,\"endX\":540,\"endY\":447,\"duration\":300,\"regionId\":\"ui.0.0\"}",
+          "confidence": 0.29,
+          "targetConfidence": 1,
+          "latencyMs": 871.5,
+          "probabilities": {
+            "BLOCKED": 0,
+            "SCROLL_DOWN": 0.36,
+            "OPEN_APP": 0.01,
+            "SCROLL_UP": 0,
+            "SCROLL_RIGHT": 0,
+            "BACK": 0,
+            "TAP": 0.34,
+            "DONE": 0,
+            "SCROLL_LEFT": 0,
+            "WAIT": 0.29,
+            "HOME": 0
+          },
+          "usage": {
+            "input_tokens": 4314,
+            "output_tokens": 513,
+            "cost": 0.000181188
+          }
+        },
+        {
+          "n": 5,
+          "status": "action",
+          "operation": "TAP",
+          "target": "1",
+          "label": "Tap 【山姆特选】玫瑰花 / 【山姆特选】玫瑰花香洗衣液抑菌除螨强力去渍家庭大容量母婴学生\n / 好评超91%同款 / 退货包运费 / 限时¥17.86本店已拼500万+件.",
+          "confidence": 0.98,
+          "targetConfidence": 0.99,
+          "latencyMs": 435.6,
+          "probabilities": {
+            "BLOCKED": 0,
+            "DONE": 0,
+            "SCROLL_LEFT": 0,
+            "TAP": 0.98,
+            "SCROLL_DOWN": 0,
+            "BACK": 0,
+            "HOME": 0,
+            "OPEN_APP": 0,
+            "WAIT": 0.01,
+            "SCROLL_UP": 0.01,
+            "SCROLL_RIGHT": 0
+          },
+          "usage": {
+            "input_tokens": 7387,
+            "output_tokens": 568,
+            "cost": 0.000310254
+          }
+        },
+        {
+          "n": 6,
+          "status": "action",
+          "operation": "SCROLL_DOWN",
+          "target": "24",
+          "label": "Scroll down to reveal content further down in this scrollable region. Gesture: {\"type\":\"swipe\",\"startX\":540,\"startY\":1666,\"endX\":540,\"endY\":416,\"duration\":300,\"regionId\":\"ui.0\"}",
+          "confidence": 0.44,
+          "targetConfidence": 0.96,
+          "latencyMs": 500.3,
+          "probabilities": {
+            "SCROLL_RIGHT": 0,
+            "WAIT": 0.02,
+            "SCROLL_DOWN": 0.5,
+            "TAP": 0.33,
+            "OPEN_APP": 0,
+            "BLOCKED": 0.02,
+            "BACK": 0.09,
+            "SCROLL_UP": 0.04,
+            "DONE": 0,
+            "HOME": 0,
+            "SCROLL_LEFT": 0
+          },
+          "usage": {
+            "input_tokens": 8263,
+            "output_tokens": 642,
+            "cost": 0.000347046
+          }
+        },
+        {
+          "n": 7,
+          "status": "action",
+          "operation": "SCROLL_DOWN",
+          "target": "32",
+          "label": "Scroll down to reveal content further down in this scrollable region. Gesture: {\"type\":\"swipe\",\"startX\":540,\"startY\":1666,\"endX\":540,\"endY\":416,\"duration\":300,\"regionId\":\"ui.0\"}",
+          "confidence": 0.41,
+          "targetConfidence": 1,
+          "latencyMs": 789.5,
+          "probabilities": {
+            "SCROLL_LEFT": 0,
+            "OPEN_APP": 0,
+            "SCROLL_UP": 0.11,
+            "TAP": 0.24000000000000002,
+            "HOME": 0,
+            "WAIT": 0.03,
+            "DONE": 0,
+            "SCROLL_DOWN": 0.47000000000000003,
+            "SCROLL_RIGHT": 0,
+            "BACK": 0.13,
+            "BLOCKED": 0.02
+          },
+          "usage": {
+            "input_tokens": 11625,
+            "output_tokens": 690,
+            "cost": 0.00048825
+          }
+        },
+        {
+          "n": 8,
+          "status": "action",
+          "operation": "SCROLL_DOWN",
+          "target": "17",
+          "label": "Scroll down to reveal content further down in this scrollable region. Gesture: {\"type\":\"swipe\",\"startX\":540,\"startY\":1666,\"endX\":540,\"endY\":416,\"duration\":300,\"regionId\":\"ui.0\"}",
+          "confidence": 0.45,
+          "targetConfidence": 1,
+          "latencyMs": 425.7,
+          "probabilities": {
+            "SCROLL_LEFT": 0,
+            "SCROLL_DOWN": 0.51,
+            "HOME": 0,
+            "OPEN_APP": 0,
+            "DONE": 0,
+            "TAP": 0.22,
+            "SCROLL_UP": 0.05,
+            "BLOCKED": 0.02,
+            "SCROLL_RIGHT": 0,
+            "WAIT": 0.04,
+            "BACK": 0.16
+          },
+          "usage": {
+            "input_tokens": 5885,
+            "output_tokens": 570,
+            "cost": 0.00024717
+          }
+        },
+        {
+          "n": 9,
+          "status": "action",
+          "operation": "SCROLL_DOWN",
+          "target": "16",
+          "label": "Scroll down to reveal content further down in this scrollable region. Gesture: {\"type\":\"swipe\",\"startX\":540,\"startY\":1666,\"endX\":540,\"endY\":416,\"duration\":300,\"regionId\":\"ui.0\"}",
+          "confidence": 0.46,
+          "targetConfidence": 1,
+          "latencyMs": 482.9,
+          "probabilities": {
+            "SCROLL_LEFT": 0,
+            "OPEN_APP": 0,
+            "BLOCKED": 0.02,
+            "HOME": 0,
+            "DONE": 0,
+            "WAIT": 0.03,
+            "SCROLL_DOWN": 0.52,
+            "SCROLL_UP": 0.06,
+            "SCROLL_RIGHT": 0,
+            "TAP": 0.24,
+            "BACK": 0.13
+          },
+          "usage": {
+            "input_tokens": 5806,
+            "output_tokens": 562,
+            "cost": 0.000243852
+          }
+        },
+        {
+          "n": 10,
+          "status": "action",
+          "operation": "SCROLL_DOWN",
+          "target": "16",
+          "label": "Scroll down to reveal content further down in this scrollable region. Gesture: {\"type\":\"swipe\",\"startX\":540,\"startY\":1666,\"endX\":540,\"endY\":416,\"duration\":300,\"regionId\":\"ui.0\"}",
+          "confidence": 0.39,
+          "targetConfidence": 1,
+          "latencyMs": 450.2,
+          "probabilities": {
+            "OPEN_APP": 0,
+            "BLOCKED": 0.02,
+            "SCROLL_DOWN": 0.46,
+            "SCROLL_RIGHT": 0,
+            "BACK": 0.25,
+            "SCROLL_UP": 0.06,
+            "TAP": 0.19,
+            "DONE": 0,
+            "HOME": 0,
+            "WAIT": 0.02,
+            "SCROLL_LEFT": 0
+          },
+          "usage": {
+            "input_tokens": 5858,
+            "output_tokens": 562,
+            "cost": 0.000246036
+          }
+        },
+        {
+          "n": 11,
+          "status": "action",
+          "operation": "SCROLL_DOWN",
+          "target": "17",
+          "label": "Scroll down to reveal content further down in this scrollable region. Gesture: {\"type\":\"swipe\",\"startX\":540,\"startY\":1666,\"endX\":540,\"endY\":416,\"duration\":300,\"regionId\":\"ui.0\"}",
+          "confidence": 0.29,
+          "targetConfidence": 1,
+          "latencyMs": 477.6,
+          "probabilities": {
+            "HOME": 0,
+            "SCROLL_LEFT": 0,
+            "DONE": 0,
+            "SCROLL_UP": 0.08,
+            "TAP": 0.15,
+            "BLOCKED": 0.03,
+            "BACK": 0.35,
+            "OPEN_APP": 0.01,
+            "WAIT": 0.02,
+            "SCROLL_RIGHT": 0,
+            "SCROLL_DOWN": 0.36
+          },
+          "usage": {
+            "input_tokens": 6078,
+            "output_tokens": 570,
+            "cost": 0.000255276
+          }
+        },
+        {
+          "n": 12,
+          "status": "action",
+          "operation": "BACK",
+          "label": "{\"type\":\"global\",\"name\":\"back\"}",
+          "confidence": 0.38,
+          "latencyMs": 511.3,
+          "probabilities": {
+            "OPEN_APP": 0.01,
+            "BLOCKED": 0.02,
+            "SCROLL_DOWN": 0.29,
+            "SCROLL_RIGHT": 0,
+            "BACK": 0.45,
+            "TAP": 0.15,
+            "SCROLL_UP": 0.06,
+            "DONE": 0,
+            "HOME": 0.01,
+            "WAIT": 0.01,
+            "SCROLL_LEFT": 0
+          },
+          "usage": {
+            "input_tokens": 6126,
+            "output_tokens": 567,
+            "cost": 0.000257292
+          }
+        },
+        {
+          "n": 13,
+          "status": "action",
+          "operation": "TAP",
+          "target": "1",
+          "label": "Tap 更多相似商品 / 【山姆特选】玫瑰花 / 【山姆特选】玫瑰花香洗衣液抑菌除螨强力去渍家庭大容量母婴学生\n / 好评超91%同款 / 退货包运费 / 限时¥17.86本店已拼500万+件.",
+          "confidence": 0.62,
+          "targetConfidence": 0.91,
+          "latencyMs": 496.3,
+          "probabilities": {
+            "SCROLL_LEFT": 0,
+            "OPEN_APP": 0.13,
+            "BLOCKED": 0.02,
+            "HOME": 0.03,
+            "DONE": 0.01,
+            "WAIT": 0.02,
+            "SCROLL_DOWN": 0.01,
+            "SCROLL_UP": 0.01,
+            "TAP": 0.65,
+            "SCROLL_RIGHT": 0,
+            "BACK": 0.12
+          },
+          "usage": {
+            "input_tokens": 7995,
+            "output_tokens": 576,
+            "cost": 0.00033579
+          }
+        },
+        {
+          "n": 14,
+          "status": "action",
+          "operation": "TAP",
+          "target": "1",
+          "label": "Tap 【山姆特选】玫瑰花 / 【山姆特选】玫瑰花香洗衣液抑菌除螨强力去渍家庭大容量母婴学生\n / 好评超91%同款 / 退货包运费 / 限时¥17.86本店已拼500万+件.",
+          "confidence": 0.6,
+          "targetConfidence": 0.92,
+          "latencyMs": 458.8,
+          "probabilities": {
+            "SCROLL_DOWN": 0,
+            "BLOCKED": 0.02,
+            "SCROLL_LEFT": 0,
+            "SCROLL_RIGHT": 0,
+            "SCROLL_UP": 0.01,
+            "DONE": 0.01,
+            "HOME": 0.02,
+            "BACK": 0.12,
+            "WAIT": 0.02,
+            "TAP": 0.64,
+            "OPEN_APP": 0.16
+          },
+          "usage": {
+            "input_tokens": 7881,
+            "output_tokens": 568,
+            "cost": 0.000331002
+          }
+        },
+        {
+          "n": 15,
+          "status": "action",
+          "operation": "SCROLL_DOWN",
+          "target": "26",
+          "label": "Scroll down to reveal content further down in this scrollable region. Gesture: {\"type\":\"swipe\",\"startX\":540,\"startY\":1666,\"endX\":540,\"endY\":416,\"duration\":300,\"regionId\":\"ui.0\"}",
+          "confidence": 0.37,
+          "targetConfidence": 0.95,
+          "latencyMs": 494.9,
+          "probabilities": {
+            "SCROLL_LEFT": 0,
+            "OPEN_APP": 0.01,
+            "BLOCKED": 0.04,
+            "HOME": 0.01,
+            "DONE": 0.01,
+            "WAIT": 0.01,
+            "SCROLL_DOWN": 0.42,
+            "SCROLL_UP": 0.07,
+            "TAP": 0.23,
+            "SCROLL_RIGHT": 0,
+            "BACK": 0.2
+          },
+          "usage": {
+            "input_tokens": 8909,
+            "output_tokens": 658,
+            "cost": 0.000374178
+          }
+        },
+        {
+          "n": 16,
+          "status": "action",
+          "operation": "BACK",
+          "label": "{\"type\":\"global\",\"name\":\"back\"}",
+          "confidence": 0.48,
+          "latencyMs": 512.6,
+          "probabilities": {
+            "SCROLL_DOWN": 0.17,
+            "SCROLL_UP": 0.08,
+            "WAIT": 0.01,
+            "DONE": 0,
+            "HOME": 0.02,
+            "SCROLL_LEFT": 0,
+            "BLOCKED": 0.03,
+            "SCROLL_RIGHT": 0,
+            "OPEN_APP": 0.03,
+            "BACK": 0.53,
+            "TAP": 0.13
+          },
+          "usage": {
+            "input_tokens": 11906,
+            "output_tokens": 688,
+            "cost": 0.000500052
+          }
+        },
+        {
+          "n": 17,
+          "status": "action",
+          "operation": "TAP",
+          "target": "1",
+          "label": "Tap 更多相似商品 / 【山姆特选】玫瑰花 / 【山姆特选】玫瑰花香洗衣液抑菌除螨强力去渍家庭大容量母婴学生\n / 好评超91%同款 / 退货包运费 / 限时¥17.86本店已拼500万+件.",
+          "confidence": 0.55,
+          "targetConfidence": 0.92,
+          "latencyMs": 451.1,
+          "probabilities": {
+            "SCROLL_UP": 0.01,
+            "DONE": 0.01,
+            "BACK": 0.21,
+            "SCROLL_RIGHT": 0,
+            "HOME": 0.01,
+            "BLOCKED": 0.02,
+            "TAP": 0.59,
+            "WAIT": 0.01,
+            "SCROLL_DOWN": 0.01,
+            "OPEN_APP": 0.13,
+            "SCROLL_LEFT": 0
+          },
+          "usage": {
+            "input_tokens": 7937,
+            "output_tokens": 576,
+            "cost": 0.000333354
+          }
+        },
+        {
+          "n": 18,
+          "status": "action",
+          "operation": "TAP",
+          "target": "1",
+          "label": "Tap 【山姆特选】玫瑰花 / 【山姆特选】玫瑰花香洗衣液抑菌除螨强力去渍家庭大容量母婴学生\n / 好评超91%同款 / 退货包运费 / 限时¥17.86本店已拼500万+件.",
+          "confidence": 0.61,
+          "targetConfidence": 0.92,
+          "latencyMs": 441.9,
+          "probabilities": {
+            "SCROLL_UP": 0.01,
+            "SCROLL_LEFT": 0,
+            "TAP": 0.65,
+            "SCROLL_DOWN": 0.01,
+            "WAIT": 0.01,
+            "BACK": 0.19,
+            "SCROLL_RIGHT": 0,
+            "HOME": 0.01,
+            "OPEN_APP": 0.09,
+            "DONE": 0.01,
+            "BLOCKED": 0.02
+          },
+          "usage": {
+            "input_tokens": 7823,
+            "output_tokens": 568,
+            "cost": 0.000328566
+          }
+        }
+      ],
+      "annotated": [
+        {
+          "n": 1,
+          "operation": "TAP",
+          "target": "2",
+          "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-01\\step-01-annotated.webp",
+          "thumbs": [],
+          "screen": "1080x2280",
+          "parsed_elements": 64,
+          "parsed_drawn": 35,
+          "candidates": 28,
+          "fullscreen_skipped": 0,
+          "candidate_ops": [
+            "OPEN_APP",
+            "TAP",
+            "TYPE_TEXT",
+            "SCROLL_DOWN",
+            "SCROLL_UP",
+            "SCROLL_LEFT",
+            "SCROLL_RIGHT",
+            "BACK",
+            "HOME",
+            "ENTER",
+            "WAIT",
+            "DONE",
+            "BLOCKED"
+          ],
+          "color_counts": {
+            "TAP": 27,
+            "SCROLL": 1,
+            "TYPE": 0
+          },
+          "unmatched_indices": [],
+          "chosen": "TAP [2]",
+          "size_kb": 363.8,
+          "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-01\\step-01-annotated.webp"
+        },
+        {
+          "n": 2,
+          "operation": "TYPE_TEXT",
+          "target": "1",
+          "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-02\\step-02-annotated.webp",
+          "thumbs": [],
+          "screen": "1080x2280",
+          "parsed_elements": 64,
+          "parsed_drawn": 35,
+          "candidates": 28,
+          "fullscreen_skipped": 0,
+          "candidate_ops": [
+            "OPEN_APP",
+            "TAP",
+            "TYPE_TEXT",
+            "SCROLL_DOWN",
+            "SCROLL_UP",
+            "SCROLL_LEFT",
+            "SCROLL_RIGHT",
+            "BACK",
+            "HOME",
+            "ENTER",
+            "WAIT",
+            "DONE",
+            "BLOCKED"
+          ],
+          "color_counts": {
+            "TAP": 27,
+            "SCROLL": 1,
+            "TYPE": 0
+          },
+          "unmatched_indices": [],
+          "chosen": "TYPE_TEXT [1]",
+          "size_kb": 364.5,
+          "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-02\\step-02-annotated.webp"
+        },
+        {
+          "n": 3,
+          "operation": "TAP",
+          "target": "5",
+          "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-03\\step-03-annotated.webp",
+          "thumbs": [],
+          "screen": "1080x2280",
+          "parsed_elements": 96,
+          "parsed_drawn": 50,
+          "candidates": 45,
+          "fullscreen_skipped": 0,
+          "candidate_ops": [
+            "OPEN_APP",
+            "TAP",
+            "TYPE_TEXT",
+            "SCROLL_DOWN",
+            "SCROLL_UP",
+            "SCROLL_LEFT",
+            "SCROLL_RIGHT",
+            "BACK",
+            "HOME",
+            "ENTER",
+            "WAIT",
+            "DONE",
+            "BLOCKED"
+          ],
+          "color_counts": {
+            "TAP": 43,
+            "SCROLL": 2,
+            "TYPE": 0
+          },
+          "unmatched_indices": [],
+          "chosen": "TAP [5]",
+          "size_kb": 215.4,
+          "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-03\\step-03-annotated.webp"
+        },
+        {
+          "n": 4,
+          "operation": "SCROLL_DOWN",
+          "target": "10",
+          "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-04\\step-04-annotated.webp",
+          "thumbs": [],
+          "screen": "1080x2280",
+          "parsed_elements": 13,
+          "parsed_drawn": 2,
+          "candidates": 10,
+          "fullscreen_skipped": 0,
+          "candidate_ops": [
+            "OPEN_APP",
+            "TAP",
+            "SCROLL_DOWN",
+            "SCROLL_UP",
+            "SCROLL_LEFT",
+            "SCROLL_RIGHT",
+            "BACK",
+            "HOME",
+            "WAIT",
+            "DONE",
+            "BLOCKED"
+          ],
+          "color_counts": {
+            "TAP": 9,
+            "SCROLL": 1,
+            "TYPE": 0
+          },
+          "unmatched_indices": [],
+          "chosen": "SCROLL_DOWN [10]",
+          "size_kb": 416.4,
+          "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-04\\step-04-annotated.webp"
+        },
+        {
+          "n": 5,
+          "operation": "TAP",
+          "target": "1",
+          "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-05\\step-05-annotated.webp",
+          "thumbs": [],
+          "screen": "1080x2280",
+          "parsed_elements": 57,
+          "parsed_drawn": 38,
+          "candidates": 17,
+          "fullscreen_skipped": 1,
+          "candidate_ops": [
+            "OPEN_APP",
+            "TAP",
+            "SCROLL_DOWN",
+            "SCROLL_UP",
+            "SCROLL_LEFT",
+            "SCROLL_RIGHT",
+            "BACK",
+            "HOME",
+            "WAIT",
+            "DONE",
+            "BLOCKED"
+          ],
+          "color_counts": {
+            "TAP": 15,
+            "SCROLL": 2,
+            "TYPE": 0
+          },
+          "unmatched_indices": [],
+          "chosen": "TAP [1]",
+          "size_kb": 424.9,
+          "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-05\\step-05-annotated.webp"
+        },
+        {
+          "n": 6,
+          "operation": "SCROLL_DOWN",
+          "target": "24",
+          "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-06\\step-06-annotated.webp",
+          "thumbs": [],
+          "screen": "1080x2280",
+          "parsed_elements": 87,
+          "parsed_drawn": 62,
+          "candidates": 26,
+          "fullscreen_skipped": 0,
+          "candidate_ops": [
+            "OPEN_APP",
+            "TAP",
+            "SCROLL_DOWN",
+            "SCROLL_UP",
+            "SCROLL_LEFT",
+            "SCROLL_RIGHT",
+            "BACK",
+            "HOME",
+            "WAIT",
+            "DONE",
+            "BLOCKED"
+          ],
+          "color_counts": {
+            "TAP": 23,
+            "SCROLL": 3,
+            "TYPE": 0
+          },
+          "unmatched_indices": [],
+          "chosen": "SCROLL_DOWN [24]",
+          "size_kb": 300.8,
+          "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-06\\step-06-annotated.webp"
+        },
+        {
+          "n": 7,
+          "operation": "SCROLL_DOWN",
+          "target": "32",
+          "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-07\\step-07-annotated.webp",
+          "thumbs": [],
+          "screen": "1080x2280",
+          "parsed_elements": 93,
+          "parsed_drawn": 60,
+          "candidates": 32,
+          "fullscreen_skipped": 0,
+          "candidate_ops": [
+            "OPEN_APP",
+            "TAP",
+            "SCROLL_DOWN",
+            "SCROLL_UP",
+            "SCROLL_LEFT",
+            "SCROLL_RIGHT",
+            "BACK",
+            "HOME",
+            "WAIT",
+            "DONE",
+            "BLOCKED"
+          ],
+          "color_counts": {
+            "TAP": 31,
+            "SCROLL": 1,
+            "TYPE": 0
+          },
+          "unmatched_indices": [],
+          "chosen": "SCROLL_DOWN [32]",
+          "size_kb": 268.8,
+          "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-07\\step-07-annotated.webp"
+        },
+        {
+          "n": 8,
+          "operation": "SCROLL_DOWN",
+          "target": "17",
+          "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-08\\step-08-annotated.webp",
+          "thumbs": [],
+          "screen": "1080x2280",
+          "parsed_elements": 41,
+          "parsed_drawn": 25,
+          "candidates": 17,
+          "fullscreen_skipped": 0,
+          "candidate_ops": [
+            "OPEN_APP",
+            "TAP",
+            "SCROLL_DOWN",
+            "SCROLL_UP",
+            "SCROLL_LEFT",
+            "SCROLL_RIGHT",
+            "BACK",
+            "HOME",
+            "WAIT",
+            "DONE",
+            "BLOCKED"
+          ],
+          "color_counts": {
+            "TAP": 16,
+            "SCROLL": 1,
+            "TYPE": 0
+          },
+          "unmatched_indices": [],
+          "chosen": "SCROLL_DOWN [17]",
+          "size_kb": 257.5,
+          "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-08\\step-08-annotated.webp"
+        },
+        {
+          "n": 9,
+          "operation": "SCROLL_DOWN",
+          "target": "16",
+          "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-09\\step-09-annotated.webp",
+          "thumbs": [],
+          "screen": "1080x2280",
+          "parsed_elements": 40,
+          "parsed_drawn": 24,
+          "candidates": 16,
+          "fullscreen_skipped": 0,
+          "candidate_ops": [
+            "OPEN_APP",
+            "TAP",
+            "SCROLL_DOWN",
+            "SCROLL_UP",
+            "SCROLL_LEFT",
+            "SCROLL_RIGHT",
+            "BACK",
+            "HOME",
+            "WAIT",
+            "DONE",
+            "BLOCKED"
+          ],
+          "color_counts": {
+            "TAP": 15,
+            "SCROLL": 1,
+            "TYPE": 0
+          },
+          "unmatched_indices": [],
+          "chosen": "SCROLL_DOWN [16]",
+          "size_kb": 255.3,
+          "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-09\\step-09-annotated.webp"
+        },
+        {
+          "n": 10,
+          "operation": "SCROLL_DOWN",
+          "target": "16",
+          "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-10\\step-10-annotated.webp",
+          "thumbs": [],
+          "screen": "1080x2280",
+          "parsed_elements": 40,
+          "parsed_drawn": 24,
+          "candidates": 16,
+          "fullscreen_skipped": 0,
+          "candidate_ops": [
+            "OPEN_APP",
+            "TAP",
+            "SCROLL_DOWN",
+            "SCROLL_UP",
+            "SCROLL_LEFT",
+            "SCROLL_RIGHT",
+            "BACK",
+            "HOME",
+            "WAIT",
+            "DONE",
+            "BLOCKED"
+          ],
+          "color_counts": {
+            "TAP": 15,
+            "SCROLL": 1,
+            "TYPE": 0
+          },
+          "unmatched_indices": [],
+          "chosen": "SCROLL_DOWN [16]",
+          "size_kb": 212.7,
+          "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-10\\step-10-annotated.webp"
+        },
+        {
+          "n": 11,
+          "operation": "SCROLL_DOWN",
+          "target": "17",
+          "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-11\\step-11-annotated.webp",
+          "thumbs": [],
+          "screen": "1080x2280",
+          "parsed_elements": 41,
+          "parsed_drawn": 25,
+          "candidates": 17,
+          "fullscreen_skipped": 0,
+          "candidate_ops": [
+            "OPEN_APP",
+            "TAP",
+            "SCROLL_DOWN",
+            "SCROLL_UP",
+            "SCROLL_LEFT",
+            "SCROLL_RIGHT",
+            "BACK",
+            "HOME",
+            "WAIT",
+            "DONE",
+            "BLOCKED"
+          ],
+          "color_counts": {
+            "TAP": 16,
+            "SCROLL": 1,
+            "TYPE": 0
+          },
+          "unmatched_indices": [],
+          "chosen": "SCROLL_DOWN [17]",
+          "size_kb": 236.9,
+          "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-11\\step-11-annotated.webp"
+        },
+        {
+          "n": 12,
+          "operation": "BACK",
+          "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-12\\step-12-annotated.webp",
+          "thumbs": [],
+          "screen": "1080x2280",
+          "parsed_elements": 41,
+          "parsed_drawn": 25,
+          "candidates": 17,
+          "fullscreen_skipped": 0,
+          "candidate_ops": [
+            "OPEN_APP",
+            "TAP",
+            "SCROLL_DOWN",
+            "SCROLL_UP",
+            "SCROLL_LEFT",
+            "SCROLL_RIGHT",
+            "BACK",
+            "HOME",
+            "WAIT",
+            "DONE",
+            "BLOCKED"
+          ],
+          "color_counts": {
+            "TAP": 16,
+            "SCROLL": 1,
+            "TYPE": 0
+          },
+          "unmatched_indices": [],
+          "chosen": "BACK",
+          "size_kb": 218.7,
+          "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-12\\step-12-annotated.webp"
+        },
+        {
+          "n": 13,
+          "operation": "TAP",
+          "target": "1",
+          "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-13\\step-13-annotated.webp",
+          "thumbs": [],
+          "screen": "1080x2280",
+          "parsed_elements": 59,
+          "parsed_drawn": 39,
+          "candidates": 18,
+          "fullscreen_skipped": 1,
+          "candidate_ops": [
+            "OPEN_APP",
+            "TAP",
+            "SCROLL_DOWN",
+            "SCROLL_UP",
+            "SCROLL_LEFT",
+            "SCROLL_RIGHT",
+            "BACK",
+            "HOME",
+            "WAIT",
+            "DONE",
+            "BLOCKED"
+          ],
+          "color_counts": {
+            "TAP": 16,
+            "SCROLL": 2,
+            "TYPE": 0
+          },
+          "unmatched_indices": [],
+          "chosen": "TAP [1]",
+          "size_kb": 424.2,
+          "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-13\\step-13-annotated.webp"
+        },
+        {
+          "n": 14,
+          "operation": "TAP",
+          "target": "1",
+          "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-14\\step-14-annotated.webp",
+          "thumbs": [],
+          "screen": "1080x2280",
+          "parsed_elements": 57,
+          "parsed_drawn": 38,
+          "candidates": 17,
+          "fullscreen_skipped": 1,
+          "candidate_ops": [
+            "OPEN_APP",
+            "TAP",
+            "SCROLL_DOWN",
+            "SCROLL_UP",
+            "SCROLL_LEFT",
+            "SCROLL_RIGHT",
+            "BACK",
+            "HOME",
+            "WAIT",
+            "DONE",
+            "BLOCKED"
+          ],
+          "color_counts": {
+            "TAP": 15,
+            "SCROLL": 2,
+            "TYPE": 0
+          },
+          "unmatched_indices": [],
+          "chosen": "TAP [1]",
+          "size_kb": 422.2,
+          "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-14\\step-14-annotated.webp"
+        },
+        {
+          "n": 15,
+          "operation": "SCROLL_DOWN",
+          "target": "26",
+          "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-15\\step-15-annotated.webp",
+          "thumbs": [],
+          "screen": "1080x2280",
+          "parsed_elements": 102,
+          "parsed_drawn": 76,
+          "candidates": 28,
+          "fullscreen_skipped": 0,
+          "candidate_ops": [
+            "OPEN_APP",
+            "TAP",
+            "SCROLL_DOWN",
+            "SCROLL_UP",
+            "SCROLL_LEFT",
+            "SCROLL_RIGHT",
+            "BACK",
+            "HOME",
+            "WAIT",
+            "DONE",
+            "BLOCKED"
+          ],
+          "color_counts": {
+            "TAP": 25,
+            "SCROLL": 3,
+            "TYPE": 0
+          },
+          "unmatched_indices": [],
+          "chosen": "SCROLL_DOWN [26]",
+          "size_kb": 300.8,
+          "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-15\\step-15-annotated.webp"
+        },
+        {
+          "n": 16,
+          "operation": "BACK",
+          "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-16\\step-16-annotated.webp",
+          "thumbs": [],
+          "screen": "1080x2280",
+          "parsed_elements": 93,
+          "parsed_drawn": 60,
+          "candidates": 32,
+          "fullscreen_skipped": 1,
+          "candidate_ops": [
+            "OPEN_APP",
+            "TAP",
+            "SCROLL_DOWN",
+            "SCROLL_UP",
+            "SCROLL_LEFT",
+            "SCROLL_RIGHT",
+            "BACK",
+            "HOME",
+            "WAIT",
+            "DONE",
+            "BLOCKED"
+          ],
+          "color_counts": {
+            "TAP": 31,
+            "SCROLL": 1,
+            "TYPE": 0
+          },
+          "unmatched_indices": [],
+          "chosen": "BACK",
+          "size_kb": 258.6,
+          "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-16\\step-16-annotated.webp"
+        },
+        {
+          "n": 17,
+          "operation": "TAP",
+          "target": "1",
+          "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-17\\step-17-annotated.webp",
+          "thumbs": [],
+          "screen": "1080x2280",
+          "parsed_elements": 59,
+          "parsed_drawn": 39,
+          "candidates": 18,
+          "fullscreen_skipped": 1,
+          "candidate_ops": [
+            "OPEN_APP",
+            "TAP",
+            "SCROLL_DOWN",
+            "SCROLL_UP",
+            "SCROLL_LEFT",
+            "SCROLL_RIGHT",
+            "BACK",
+            "HOME",
+            "WAIT",
+            "DONE",
+            "BLOCKED"
+          ],
+          "color_counts": {
+            "TAP": 16,
+            "SCROLL": 2,
+            "TYPE": 0
+          },
+          "unmatched_indices": [],
+          "chosen": "TAP [1]",
+          "size_kb": 424.1,
+          "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-17\\step-17-annotated.webp"
+        },
+        {
+          "n": 18,
+          "operation": "TAP",
+          "target": "1",
+          "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-18\\step-18-annotated.webp",
+          "thumbs": [],
+          "screen": "1080x2280",
+          "parsed_elements": 57,
+          "parsed_drawn": 38,
+          "candidates": 17,
+          "fullscreen_skipped": 1,
+          "candidate_ops": [
+            "OPEN_APP",
+            "TAP",
+            "SCROLL_DOWN",
+            "SCROLL_UP",
+            "SCROLL_LEFT",
+            "SCROLL_RIGHT",
+            "BACK",
+            "HOME",
+            "WAIT",
+            "DONE",
+            "BLOCKED"
+          ],
+          "color_counts": {
+            "TAP": 15,
+            "SCROLL": 2,
+            "TYPE": 0
+          },
+          "unmatched_indices": [],
+          "chosen": "TAP [1]",
+          "size_kb": 421.9,
+          "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\step-18\\step-18-annotated.webp"
+        }
+      ],
+      "final": {
+        "app": "com.xunmeng.pinduoduo",
+        "elements": 57,
+        "checks": [
+          {
+            "keyword": "洗衣液",
+            "pass": true
+          }
+        ],
+        "passed": true,
+        "screenshot": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\final-state.webp",
+        "annotated": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev\\final\\step-19-annotated.webp"
+      },
+      "dir": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-cart-jev",
+      "frozen": true,
+      "finalApp": "com.xunmeng.pinduoduo",
+      "passed": true,
+      "checks": [
+        {
+          "keyword": "洗衣液",
+          "pass": true
+        }
+      ],
+      "cost": 0.005768742,
+      "wallMs": 104138,
+      "modelMs": 9899.2,
+      "waitMs": 71.8,
+      "status": "stuck"
+    },
+    {
+      "id": "L1-maicai-cart-jev",
+      "title": "多多买菜：把鸡蛋加入购物车并确认",
+      "tone": "长程 · 购物",
+      "engine": "jev",
+      "pair": "L1-maicai-cart",
+      "goal": "打开拼多多，进入多多买菜，找到鸡蛋，把鸡蛋加入购物车，然后打开购物车确认鸡蛋已经在里面",
+      "why": "换一条**界面上确实存在**的购物路径：多多买菜每个商品都有『+』加购按钮，底部有一条购物车栏。跨 4 层（首页 → 多多买菜 → 商品列表 → 购物车），既不短也不依赖详情页里不存在的按钮。",
+      "expect": "购物车（已选商品）里出现鸡蛋条目",
+      "script": null,
+      "status": "done",
+      "steps": 3,
+      "wallMs": 27134.2,
+      "modelMs": 3406.5,
+      "actionMs": 5032.5,
+      "observationMs": 4393.5,
+      "waitMs": 0,
+      "modelCalls": 5,
+      "cost": 0.001560258,
+      "finalApp": "com.xunmeng.pinduoduo",
+      "passed": true,
+      "checks": [
+        {
+          "keyword": "鸡蛋",
+          "pass": true
+        }
+      ],
+      "failed": null,
+      "finalScreenshot": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-maicai-cart-jev\\final-state.webp",
+      "dir": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-maicai-cart-jev"
+    },
+    {
+      "id": "L1-maicai-cart-script",
+      "title": "多多买菜：同一任务，改为写死步骤（不用 Jev）",
+      "tone": "长程 · 购物",
+      "engine": "script",
+      "pair": "L1-maicai-cart",
+      "goal": "（写死的脚本，无目标句）",
+      "why": "对照组：把 Jev 那条跑出来的轨迹人工固化成脚本——按文本定位控件 + 固定 sleep，零模型调用。",
+      "expect": "购物车（已选商品）里出现鸡蛋条目",
+      "script": [
+        {
+          "sleep": 3000,
+          "label": "等拼多多冷启动"
+        },
+        {
+          "waitFor": "多多买菜",
+          "timeout": 15000,
+          "label": "轮询等到首页出现「多多买菜」"
+        },
+        {
+          "tapText": "多多买菜",
+          "label": "点「多多买菜」入口"
+        },
+        {
+          "waitFor": "点击加入购物车",
+          "timeout": 15000,
+          "label": "轮询等到商品列表渲染完"
+        },
+        {
+          "tapText": "点击加入购物车",
+          "label": "点鸡蛋这一行的加购按钮"
+        },
+        {
+          "sleep": 2500,
+          "label": "固定等 2.5s 让加购动画和购物车栏更新"
+        },
+        {
+          "expect": "鸡蛋",
+          "label": "断言鸡蛋已进购物车"
+        }
+      ],
+      "status": "script_failed",
+      "steps": 2,
+      "wallMs": 23308,
+      "modelMs": 0,
+      "actionMs": 0,
+      "observationMs": 9054,
+      "waitMs": 3009,
+      "modelCalls": 0,
+      "cost": 0,
+      "finalApp": "com.xunmeng.pinduoduo",
+      "passed": false,
+      "checks": [
+        {
+          "keyword": "鸡蛋",
+          "pass": false
+        }
+      ],
+      "failed": {
+        "step": 2,
+        "label": "轮询等到首页出现「多多买菜」",
+        "error": "等待超时：15000ms 内没有出现「多多买菜」"
+      },
+      "finalScreenshot": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-maicai-cart-script\\final-state.webp",
+      "dir": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L1-maicai-cart-script"
+    },
+    {
+      "id": "L2-alarm-jev",
+      "title": "时钟：设一个明早 7:30 的闹钟",
+      "tone": "长程 · 系统",
+      "engine": "jev",
+      "pair": "L2-alarm",
+      "goal": "打开时钟应用，新建一个明天早上七点半的闹钟，并保存下来",
+      "why": "典型的『状态型』长程任务：要切到闹钟标签页、点新建、在滚轮选择器上把时间拨到 7:30、再确认保存。滚轮是非标准控件，最能看出两套方案的差别。",
+      "expect": "闹钟列表里出现 7:30 的闹钟条目",
+      "script": null,
+      "status": "stuck",
+      "steps": 5,
+      "wallMs": 25011.8,
+      "modelMs": 3242.2,
+      "actionMs": 4801.2,
+      "observationMs": 3451,
+      "waitMs": 70.7,
+      "modelCalls": 6,
+      "cost": 0.0011654999999999999,
+      "finalApp": "com.oneplus.deskclock",
+      "passed": false,
+      "checks": [
+        {
+          "keyword": "7:30",
+          "pass": false
+        }
+      ],
+      "failed": null,
+      "finalScreenshot": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-jev\\final-state.webp",
+      "dir": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-jev"
+    },
+    {
+      "id": "L2-alarm-script",
+      "title": "时钟：同一任务，改为写死步骤（不用 Jev）",
+      "tone": "长程 · 系统",
+      "engine": "script",
+      "pair": "L2-alarm",
+      "goal": "（写死的脚本，无目标句）",
+      "why": "对照组。脚本在表盘上只能写死坐标——但也正因为脚本不依赖「元素必须可点」这件事，它能定位到无障碍树里 clickable=false 的表盘数字，反而绕开了 Jev 卡住的那个坎。",
+      "expect": "闹钟列表里出现 7:30 的闹钟条目",
+      "script": [
+        {
+          "tapText": "始终允许",
+          "optional": true,
+          "label": "一次性权限弹窗（若出现则点，否则跳过）"
+        },
+        {
+          "tapText": "知道了",
+          "optional": true,
+          "label": "一次性引导卡（若出现则点，否则跳过）"
+        },
+        {
+          "sleep": 1500,
+          "label": "固定等 1.5s"
+        },
+        {
+          "tap": [
+            540,
+            1939
+          ],
+          "label": "点新建闹钟（该按钮只暴露 contentDescription=开始，脚本只能写死坐标）"
+        },
+        {
+          "sleep": 2000,
+          "label": "固定等闹钟编辑页"
+        },
+        {
+          "tapText": "7",
+          "label": "在小时表盘上点 7"
+        },
+        {
+          "sleep": 1200,
+          "label": "固定等表盘切到分钟"
+        },
+        {
+          "tapText": "30",
+          "label": "在分钟表盘上点 30"
+        },
+        {
+          "sleep": 800,
+          "label": "固定等一下"
+        },
+        {
+          "tap": [
+            1010,
+            210
+          ],
+          "label": "点右上角 ✓ 保存"
+        },
+        {
+          "sleep": 1500,
+          "label": "固定等返回列表"
+        },
+        {
+          "expect": "7:30",
+          "label": "断言闹钟列表里出现 7:30"
+        }
+      ],
+      "status": "done",
+      "steps": 12,
+      "wallMs": 31636,
+      "modelMs": 0,
+      "actionMs": 4109,
+      "observationMs": 2833,
+      "waitMs": 7035,
+      "modelCalls": 0,
+      "cost": 0,
+      "finalApp": "com.oneplus.deskclock",
+      "passed": true,
+      "checks": [
+        {
+          "keyword": "7:30",
+          "pass": true
+        }
+      ],
+      "failed": null,
+      "finalScreenshot": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-script\\final-state.webp",
+      "dir": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L2-alarm-script"
+    },
+    {
+      "id": "L3-note-jev",
+      "title": "便签：新建一条「明天带伞」",
+      "tone": "长程 · 输入",
+      "engine": "jev",
+      "pair": "L3-note",
+      "goal": "打开便签，新建一条内容为「明天带伞」的便签并保存",
+      "why": "唯一需要中文打字的场景。输入走 Portal 的键盘接口（无障碍 ACTION_SET_TEXT），不走 adb input；保存后还要自己回到列表页。",
+      "expect": "便签列表里出现内容为「明天带伞」的新便签",
+      "script": null,
+      "status": "done",
+      "steps": 4,
+      "wallMs": 22649.1,
+      "modelMs": 2470.6,
+      "actionMs": 4092.2,
+      "observationMs": 2298.6,
+      "waitMs": 0,
+      "modelCalls": 5,
+      "cost": 0.0008163959999999999,
+      "finalApp": "com.oneplus.note",
+      "passed": true,
+      "checks": [
+        {
+          "keyword": "明天带伞",
+          "pass": true
+        }
+      ],
+      "failed": null,
+      "finalScreenshot": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-jev\\final-state.webp",
+      "dir": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-jev"
+    },
+    {
+      "id": "L3-note-script",
+      "title": "便签：同一任务，改为写死步骤（不用 Jev）",
+      "tone": "长程 · 输入",
+      "engine": "script",
+      "pair": "L3-note",
+      "goal": "（写死的脚本，无目标句）",
+      "why": "对照组。注意第 3 步：便签的「新建」悬浮按钮**没有任何文本**，脚本除了写死坐标别无选择；而 Jev 那一臂是靠模型从候选里认出它的。",
+      "expect": "便签列表里出现内容为「明天带伞」的新便签",
+      "script": [
+        {
+          "tapText": "始终允许",
+          "optional": true,
+          "label": "一次性权限弹窗"
+        },
+        {
+          "sleep": 1800,
+          "label": "固定等列表页"
+        },
+        {
+          "tap": [
+            949,
+            2149
+          ],
+          "label": "点新建便签（FAB 无文本，只能写死坐标）"
+        },
+        {
+          "sleep": 2000,
+          "label": "固定等编辑器打开"
+        },
+        {
+          "type": "明天带伞",
+          "label": "走 Portal 键盘灌入中文"
+        },
+        {
+          "sleep": 900,
+          "label": "固定等输入落盘"
+        },
+        {
+          "tapText": "保存",
+          "label": "点右上角「保存」"
+        },
+        {
+          "sleep": 2000,
+          "label": "固定等返回列表"
+        },
+        {
+          "expect": "明天带伞",
+          "label": "断言列表里出现这条便签"
+        }
+      ],
+      "status": "done",
+      "steps": 9,
+      "wallMs": 30026,
+      "modelMs": 0,
+      "actionMs": 3202,
+      "observationMs": 1636,
+      "waitMs": 6757,
+      "modelCalls": 0,
+      "cost": 0,
+      "finalApp": "com.oneplus.note",
+      "passed": true,
+      "checks": [
+        {
+          "keyword": "明天带伞",
+          "pass": true
+        }
+      ],
+      "failed": null,
+      "finalScreenshot": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-script\\final-state.webp",
+      "dir": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-script"
+    }
+  ]
+}

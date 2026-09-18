@@ -1,0 +1,176 @@
+{
+  "deviceId": "d5652109",
+  "phone": {
+    "packageName": "com.oneplus.note",
+    "currentApp": "便签",
+    "isEditable": false,
+    "focusEvidence": "none",
+    "keyboardVisible": false,
+    "focusedElement": {
+      "resourceId": "",
+      "className": ""
+    }
+  },
+  "screen": {
+    "width": 1080,
+    "height": 2280
+  },
+  "elements": [
+    {
+      "id": "ui.0",
+      "text": "",
+      "label": "向上导航",
+      "resourceId": "",
+      "hint": "",
+      "bounds": {
+        "left": 16,
+        "top": 140,
+        "right": 142,
+        "bottom": 266
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.1",
+      "text": "",
+      "label": "提醒",
+      "resourceId": "com.oneplus.note:id/menu_remind",
+      "hint": "",
+      "bounds": {
+        "left": 560,
+        "top": 140,
+        "right": 686,
+        "bottom": 266
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.2",
+      "text": "",
+      "label": "置顶",
+      "resourceId": "com.oneplus.note:id/menu_top",
+      "hint": "",
+      "bounds": {
+        "left": 686,
+        "top": 140,
+        "right": 812,
+        "bottom": 266
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.3",
+      "text": "",
+      "label": "删除",
+      "resourceId": "com.oneplus.note:id/menu_delete",
+      "hint": "",
+      "bounds": {
+        "left": 812,
+        "top": 140,
+        "right": 938,
+        "bottom": 266
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.4",
+      "text": "",
+      "label": "分享",
+      "resourceId": "com.oneplus.note:id/menu_share",
+      "hint": "",
+      "bounds": {
+        "left": 938,
+        "top": 140,
+        "right": 1064,
+        "bottom": 266
+      },
+      "clickable": true,
+      "editable": false,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.5.0",
+      "text": "标题",
+      "label": "",
+      "resourceId": "com.oneplus.note:id/title_edit",
+      "hint": "标题",
+      "bounds": {
+        "left": 63,
+        "top": 295,
+        "right": 1017,
+        "bottom": 519
+      },
+      "clickable": true,
+      "editable": true,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    },
+    {
+      "id": "ui.5.1.0",
+      "text": "明天带伞",
+      "label": "",
+      "resourceId": "com.oneplus.note:id/note_content",
+      "hint": "内容",
+      "bounds": {
+        "left": 63,
+        "top": 521,
+        "right": 1017,
+        "bottom": 2238
+      },
+      "clickable": true,
+      "editable": true,
+      "scrollable": false,
+      "enabled": true,
+      "focused": false,
+      "password": false,
+      "checkable": false,
+      "checked": false,
+      "selected": false
+    }
+  ],
+  "fingerprint": "d6e8168f5ce53d0f1f42a95aa0e4eb9a92eded0d7619cda695037f7dee43eea8",
+  "observedAt": 1789734817084
+}

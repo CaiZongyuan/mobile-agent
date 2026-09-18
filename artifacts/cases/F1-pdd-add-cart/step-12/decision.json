@@ -1,0 +1,34 @@
+{
+  "step": 11,
+  "attempt": 11,
+  "status": "action",
+  "operation": "BACK",
+  "choice": "back",
+  "confidence": 0.38,
+  "operationProbabilities": {
+    "OPEN_APP": 0.01,
+    "BLOCKED": 0.02,
+    "SCROLL_DOWN": 0.29,
+    "SCROLL_RIGHT": 0,
+    "BACK": 0.45,
+    "TAP": 0.15,
+    "SCROLL_UP": 0.06,
+    "DONE": 0,
+    "HOME": 0.01,
+    "WAIT": 0.01,
+    "SCROLL_LEFT": 0
+  },
+  "usage": {
+    "input_tokens": 6126,
+    "output_tokens": 567,
+    "cost": 0.000257292
+  },
+  "requestedModel": "~typesafe/jev-latest",
+  "responseModel": "typesafe/jev-1.13-20260917",
+  "latencyMs": 511.3,
+  "action": {
+    "type": "global",
+    "name": "back"
+  },
+  "label": "{\"type\":\"global\",\"name\":\"back\"}"
+}

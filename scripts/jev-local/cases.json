@@ -1,0 +1,133 @@
+{
+  "$comment": "长程生活场景案例集。同一个场景跑两种引擎：engine=jev（模型逐步决策）与 engine=script（人工写死步骤，不用模型）。pair 把两条归成一组对照。frozen=true 表示该案例的产物已归档、不再重跑（失败样本也留着）。verify 是终态校验关键词，跑完自动读一遍无障碍树核对。texts 是要注入的输入文本——模型只决定『该打字』，字符串必须由调用方给。",
+  "cases": [
+    {
+      "id": "F1-pdd-add-cart",
+      "pair": "F1-pdd-add-cart",
+      "title": "拼多多：搜洗衣液 → 加购物车（失败样本，已冻结）",
+      "tone": "失败案例",
+      "engine": "jev",
+      "frozen": true,
+      "app": "com.xunmeng.pinduoduo",
+      "goal": "打开拼多多，搜索「洗衣液」，把搜索结果里的第一款商品加入购物车，最后打开购物车页面确认它已经在里面",
+      "steps": 26,
+      "texts": ["洗衣液"],
+      "verify": ["洗衣液"],
+      "expect": "购物车页里能看到刚加进去的洗衣液商品",
+      "why": "生活里最顺口的长程需求，也是本次跑批里唯一失败的样本。前 5 步一切正常（拉起 App → 点搜索框 → 打字 → 提交 → 进第一款商品详情页），但拼多多的商品详情页**没有『加入购物车』入口**（只有『免拼购买』『发起拼单』）。模型随后开始来回滚动、返回、重复点击，第 15 步触发 stuck 保护退出。教训：长程任务的成败往往取决于**目标在界面上是否真的可达**，而不是模型的推理能力。"
+    },
+    {
+      "id": "L1-maicai-cart-jev",
+      "pair": "L1-maicai-cart",
+      "title": "多多买菜：把鸡蛋加入购物车并确认",
+      "tone": "长程 · 购物",
+      "engine": "jev",
+      "app": "com.xunmeng.pinduoduo",
+      "goal": "打开拼多多，进入多多买菜，找到鸡蛋，把鸡蛋加入购物车，然后打开购物车确认鸡蛋已经在里面",
+      "steps": 24,
+      "verify": ["鸡蛋"],
+      "expect": "购物车（已选商品）里出现鸡蛋条目",
+      "why": "换一条**界面上确实存在**的购物路径：多多买菜每个商品都有『+』加购按钮，底部有一条购物车栏。跨 4 层（首页 → 多多买菜 → 商品列表 → 购物车），既不短也不依赖详情页里不存在的按钮。"
+    },
+    {
+      "id": "L1-maicai-cart-script",
+      "pair": "L1-maicai-cart",
+      "title": "多多买菜：同一任务，改为写死步骤（不用 Jev）",
+      "tone": "长程 · 购物",
+      "engine": "script",
+      "app": "com.xunmeng.pinduoduo",
+      "goal": "（写死的脚本，无目标句）",
+      "steps": 0,
+      "verify": ["鸡蛋"],
+      "expect": "购物车（已选商品）里出现鸡蛋条目",
+      "why": "对照组：把 Jev 那条跑出来的轨迹人工固化成脚本——按文本定位控件 + 固定 sleep，零模型调用。",
+      "script": [
+        { "sleep": 3000, "label": "等拼多多冷启动" },
+        { "waitFor": "多多买菜", "timeout": 15000, "label": "轮询等到首页出现「多多买菜」" },
+        { "tapText": "多多买菜", "label": "点「多多买菜」入口" },
+        { "waitFor": "点击加入购物车", "timeout": 15000, "label": "轮询等到商品列表渲染完" },
+        { "tapText": "点击加入购物车", "label": "点鸡蛋这一行的加购按钮" },
+        { "sleep": 2500, "label": "固定等 2.5s 让加购动画和购物车栏更新" },
+        { "expect": "鸡蛋", "label": "断言鸡蛋已进购物车" }
+      ]
+    },
+    {
+      "id": "L2-alarm-jev",
+      "pair": "L2-alarm",
+      "title": "时钟：设一个明早 7:30 的闹钟",
+      "tone": "长程 · 系统",
+      "engine": "jev",
+      "app": "com.oneplus.deskclock",
+      "goal": "打开时钟应用，新建一个明天早上七点半的闹钟，并保存下来",
+      "steps": 20,
+      "verify": ["7:30"],
+      "expect": "闹钟列表里出现 7:30 的闹钟条目",
+      "why": "典型的『状态型』长程任务：要切到闹钟标签页、点新建、在滚轮选择器上把时间拨到 7:30、再确认保存。滚轮是非标准控件，最能看出两套方案的差别。"
+    },
+    {
+      "id": "L2-alarm-script",
+      "pair": "L2-alarm",
+      "title": "时钟：同一任务，改为写死步骤（不用 Jev）",
+      "tone": "长程 · 系统",
+      "engine": "script",
+      "app": "com.oneplus.deskclock",
+      "goal": "（写死的脚本，无目标句）",
+      "steps": 0,
+      "verify": ["7:30"],
+      "expect": "闹钟列表里出现 7:30 的闹钟条目",
+      "why": "对照组。脚本在表盘上只能写死坐标——但也正因为脚本不依赖「元素必须可点」这件事，它能定位到无障碍树里 clickable=false 的表盘数字，反而绕开了 Jev 卡住的那个坎。",
+      "script": [
+        { "tapText": "始终允许", "optional": true, "label": "一次性权限弹窗（若出现则点，否则跳过）" },
+        { "tapText": "知道了", "optional": true, "label": "一次性引导卡（若出现则点，否则跳过）" },
+        { "sleep": 1500, "label": "固定等 1.5s" },
+        { "tap": [540, 1939], "label": "点新建闹钟（该按钮只暴露 contentDescription=开始，脚本只能写死坐标）" },
+        { "sleep": 2000, "label": "固定等闹钟编辑页" },
+        { "tapText": "7", "label": "在小时表盘上点 7" },
+        { "sleep": 1200, "label": "固定等表盘切到分钟" },
+        { "tapText": "30", "label": "在分钟表盘上点 30" },
+        { "sleep": 800, "label": "固定等一下" },
+        { "tap": [1010, 210], "label": "点右上角 ✓ 保存" },
+        { "sleep": 1500, "label": "固定等返回列表" },
+        { "expect": "7:30", "label": "断言闹钟列表里出现 7:30" }
+      ]
+    },
+    {
+      "id": "L3-note-jev",
+      "pair": "L3-note",
+      "title": "便签：新建一条「明天带伞」",
+      "tone": "长程 · 输入",
+      "engine": "jev",
+      "app": "com.oneplus.note",
+      "goal": "打开便签，新建一条内容为「明天带伞」的便签并保存",
+      "steps": 18,
+      "texts": ["明天带伞"],
+      "verify": ["明天带伞"],
+      "expect": "便签列表里出现内容为「明天带伞」的新便签",
+      "why": "唯一需要中文打字的场景。输入走 Portal 的键盘接口（无障碍 ACTION_SET_TEXT），不走 adb input；保存后还要自己回到列表页。"
+    },
+    {
+      "id": "L3-note-script",
+      "pair": "L3-note",
+      "title": "便签：同一任务，改为写死步骤（不用 Jev）",
+      "tone": "长程 · 输入",
+      "engine": "script",
+      "app": "com.oneplus.note",
+      "goal": "（写死的脚本，无目标句）",
+      "steps": 0,
+      "verify": ["明天带伞"],
+      "expect": "便签列表里出现内容为「明天带伞」的新便签",
+      "why": "对照组。注意第 3 步：便签的「新建」悬浮按钮**没有任何文本**，脚本除了写死坐标别无选择；而 Jev 那一臂是靠模型从候选里认出它的。",
+      "script": [
+        { "tapText": "始终允许", "optional": true, "label": "一次性权限弹窗" },
+        { "sleep": 1800, "label": "固定等列表页" },
+        { "tap": [949, 2149], "label": "点新建便签（FAB 无文本，只能写死坐标）" },
+        { "sleep": 2000, "label": "固定等编辑器打开" },
+        { "type": "明天带伞", "label": "走 Portal 键盘灌入中文" },
+        { "sleep": 900, "label": "固定等输入落盘" },
+        { "tapText": "保存", "label": "点右上角「保存」" },
+        { "sleep": 2000, "label": "固定等返回列表" },
+        { "expect": "明天带伞", "label": "断言列表里出现这条便签" }
+      ]
+    }
+  ]
+}

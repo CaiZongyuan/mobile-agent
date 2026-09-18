@@ -1,0 +1,25 @@
+{
+  "step": 4,
+  "attempt": 4,
+  "status": "done",
+  "operation": "DONE",
+  "choice": "DONE",
+  "confidence": 0.85,
+  "operationProbabilities": {
+    "WAIT": 0.01,
+    "HOME": 0,
+    "OPEN_APP": 0.01,
+    "BLOCKED": 0,
+    "BACK": 0.01,
+    "DONE": 0.88,
+    "TAP": 0.09
+  },
+  "usage": {
+    "input_tokens": 3761,
+    "output_tokens": 437,
+    "cost": 0.000157962
+  },
+  "requestedModel": "~typesafe/jev-latest",
+  "responseModel": "typesafe/jev-1.13-20260917",
+  "latencyMs": 462.4
+}

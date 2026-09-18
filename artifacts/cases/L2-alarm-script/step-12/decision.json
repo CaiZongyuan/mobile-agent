@@ -1,0 +1,6 @@
+{
+  "operation": "ASSERT",
+  "target": null,
+  "label": "断言闹钟列表里出现 7:30",
+  "confidence": null
+}

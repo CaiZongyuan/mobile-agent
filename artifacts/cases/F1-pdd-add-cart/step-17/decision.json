@@ -1,0 +1,54 @@
+{
+  "step": 15,
+  "attempt": 16,
+  "status": "action",
+  "operation": "TAP",
+  "target": "1",
+  "choice": "tap_ui.0.0.0",
+  "confidence": 0.55,
+  "targetConfidence": 0.92,
+  "operationProbabilities": {
+    "SCROLL_UP": 0.01,
+    "DONE": 0.01,
+    "BACK": 0.21,
+    "SCROLL_RIGHT": 0,
+    "HOME": 0.01,
+    "BLOCKED": 0.02,
+    "TAP": 0.59,
+    "WAIT": 0.01,
+    "SCROLL_DOWN": 0.01,
+    "OPEN_APP": 0.13,
+    "SCROLL_LEFT": 0
+  },
+  "targetProbabilities": {
+    "1": 0.93,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0,
+    "8": 0.03,
+    "9": 0.01,
+    "10": 0.02,
+    "11": 0,
+    "12": 0,
+    "13": 0,
+    "14": 0,
+    "15": 0,
+    "16": 0
+  },
+  "usage": {
+    "input_tokens": 7937,
+    "output_tokens": 576,
+    "cost": 0.000333354
+  },
+  "requestedModel": "~typesafe/jev-latest",
+  "responseModel": "typesafe/jev-1.13-20260917",
+  "latencyMs": 451.1,
+  "action": {
+    "type": "tap-element",
+    "elementId": "ui.0.0.0"
+  },
+  "label": "Tap 更多相似商品 / 【山姆特选】玫瑰花 / 【山姆特选】玫瑰花香洗衣液抑菌除螨强力去渍家庭大容量母婴学生\n / 好评超91%同款 / 退货包运费 / 限时¥17.86本店已拼500万+件."
+}

@@ -1,0 +1,39 @@
+{
+  "step": 2,
+  "attempt": 2,
+  "status": "action",
+  "operation": "TYPE_TEXT",
+  "target": "1",
+  "choice": "text_0",
+  "confidence": 0.83,
+  "targetConfidence": 0.95,
+  "operationProbabilities": {
+    "BACK": 0,
+    "ENTER": 0,
+    "TAP": 0.13,
+    "DONE": 0,
+    "TYPE_TEXT": 0.86,
+    "BLOCKED": 0,
+    "HOME": 0,
+    "WAIT": 0,
+    "OPEN_APP": 0.01
+  },
+  "targetProbabilities": {
+    "1": 0.97,
+    "NONE": 0.03
+  },
+  "usage": {
+    "input_tokens": 4133,
+    "output_tokens": 504,
+    "cost": 0.000173586
+  },
+  "requestedModel": "~typesafe/jev-latest",
+  "responseModel": "typesafe/jev-1.13-20260917",
+  "latencyMs": 485.5,
+  "action": {
+    "type": "type",
+    "text": "明天带伞",
+    "clear": true
+  },
+  "label": "{\"type\":\"type\",\"text\":\"明天带伞\",\"clear\":true}"
+}

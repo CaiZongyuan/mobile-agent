@@ -1,0 +1,44 @@
+{
+  "step": 6,
+  "attempt": 6,
+  "status": "action",
+  "operation": "SCROLL_DOWN",
+  "target": "32",
+  "choice": "scroll_down_ui.0",
+  "confidence": 0.41,
+  "targetConfidence": 1,
+  "operationProbabilities": {
+    "SCROLL_LEFT": 0,
+    "OPEN_APP": 0,
+    "SCROLL_UP": 0.11,
+    "TAP": 0.24000000000000002,
+    "HOME": 0,
+    "WAIT": 0.03,
+    "DONE": 0,
+    "SCROLL_DOWN": 0.47000000000000003,
+    "SCROLL_RIGHT": 0,
+    "BACK": 0.13,
+    "BLOCKED": 0.02
+  },
+  "targetProbabilities": {
+    "32": 1
+  },
+  "usage": {
+    "input_tokens": 11625,
+    "output_tokens": 690,
+    "cost": 0.00048825
+  },
+  "requestedModel": "~typesafe/jev-latest",
+  "responseModel": "typesafe/jev-1.13-20260917",
+  "latencyMs": 789.5,
+  "action": {
+    "type": "swipe",
+    "startX": 540,
+    "startY": 1666,
+    "endX": 540,
+    "endY": 416,
+    "duration": 300,
+    "regionId": "ui.0"
+  },
+  "label": "Scroll down to reveal content further down in this scrollable region. Gesture: {\"type\":\"swipe\",\"startX\":540,\"startY\":1666,\"endX\":540,\"endY\":416,\"duration\":300,\"regionId\":\"ui.0\"}"
+}

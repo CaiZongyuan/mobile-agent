@@ -1,0 +1,391 @@
+{
+  "id": "L3-note-script",
+  "pair": "L3-note",
+  "title": "便签：同一任务，改为写死步骤（不用 Jev）",
+  "tone": "长程 · 输入",
+  "engine": "script",
+  "app": "com.oneplus.note",
+  "goal": "（写死的脚本，无目标句）",
+  "steps": 0,
+  "verify": [
+    "明天带伞"
+  ],
+  "expect": "便签列表里出现内容为「明天带伞」的新便签",
+  "why": "对照组。注意第 3 步：便签的「新建」悬浮按钮**没有任何文本**，脚本除了写死坐标别无选择；而 Jev 那一臂是靠模型从候选里认出它的。",
+  "script": [
+    {
+      "tapText": "始终允许",
+      "optional": true,
+      "label": "一次性权限弹窗"
+    },
+    {
+      "sleep": 1800,
+      "label": "固定等列表页"
+    },
+    {
+      "tap": [
+        949,
+        2149
+      ],
+      "label": "点新建便签（FAB 无文本，只能写死坐标）"
+    },
+    {
+      "sleep": 2000,
+      "label": "固定等编辑器打开"
+    },
+    {
+      "type": "明天带伞",
+      "label": "走 Portal 键盘灌入中文"
+    },
+    {
+      "sleep": 900,
+      "label": "固定等输入落盘"
+    },
+    {
+      "tapText": "保存",
+      "label": "点右上角「保存」"
+    },
+    {
+      "sleep": 2000,
+      "label": "固定等返回列表"
+    },
+    {
+      "expect": "明天带伞",
+      "label": "断言列表里出现这条便签"
+    }
+  ],
+  "at": "2026-09-18T12:38:29.830Z",
+  "device": {
+    "id": "d5652109",
+    "name": "OnePlus6 (USB Portal)",
+    "state": "ready"
+  },
+  "result": {
+    "status": "done",
+    "steps": 9,
+    "timings": {
+      "modelMs": 0,
+      "actionMs": 3202,
+      "observationMs": 1636,
+      "waitMs": 6757,
+      "wallMs": 30026
+    },
+    "reason": "脚本按预期跑完",
+    "failed": null
+  },
+  "decisions": [
+    {
+      "n": 1,
+      "status": "skipped",
+      "operation": "SKIP",
+      "target": null,
+      "label": "一次性权限弹窗（未出现，跳过）",
+      "confidence": null,
+      "latencyMs": 532,
+      "scriptStep": {
+        "tapText": "始终允许",
+        "optional": true,
+        "label": "一次性权限弹窗"
+      }
+    },
+    {
+      "n": 2,
+      "status": "action",
+      "operation": "WAIT",
+      "target": null,
+      "label": "固定等列表页",
+      "confidence": null,
+      "latencyMs": 1811,
+      "scriptStep": {
+        "sleep": 1800,
+        "label": "固定等列表页"
+      }
+    },
+    {
+      "n": 3,
+      "status": "action",
+      "operation": "TAP",
+      "target": null,
+      "label": "点新建便签（FAB 无文本，只能写死坐标）",
+      "confidence": null,
+      "latencyMs": 1091,
+      "scriptStep": {
+        "tap": [
+          949,
+          2149
+        ],
+        "label": "点新建便签（FAB 无文本，只能写死坐标）"
+      }
+    },
+    {
+      "n": 4,
+      "status": "action",
+      "operation": "WAIT",
+      "target": null,
+      "label": "固定等编辑器打开",
+      "confidence": null,
+      "latencyMs": 2016,
+      "scriptStep": {
+        "sleep": 2000,
+        "label": "固定等编辑器打开"
+      }
+    },
+    {
+      "n": 5,
+      "status": "action",
+      "operation": "TYPE_TEXT",
+      "target": null,
+      "label": "走 Portal 键盘灌入中文",
+      "confidence": null,
+      "latencyMs": 1084,
+      "scriptStep": {
+        "type": "明天带伞",
+        "label": "走 Portal 键盘灌入中文"
+      }
+    },
+    {
+      "n": 6,
+      "status": "action",
+      "operation": "WAIT",
+      "target": null,
+      "label": "固定等输入落盘",
+      "confidence": null,
+      "latencyMs": 916,
+      "scriptStep": {
+        "sleep": 900,
+        "label": "固定等输入落盘"
+      }
+    },
+    {
+      "n": 7,
+      "status": "action",
+      "operation": "TAP_TEXT",
+      "target": null,
+      "label": "点右上角「保存」",
+      "confidence": null,
+      "latencyMs": 1598,
+      "scriptStep": {
+        "tapText": "保存",
+        "label": "点右上角「保存」"
+      }
+    },
+    {
+      "n": 8,
+      "status": "action",
+      "operation": "WAIT",
+      "target": null,
+      "label": "固定等返回列表",
+      "confidence": null,
+      "latencyMs": 2014,
+      "scriptStep": {
+        "sleep": 2000,
+        "label": "固定等返回列表"
+      }
+    },
+    {
+      "n": 9,
+      "status": "action",
+      "operation": "ASSERT",
+      "target": null,
+      "label": "断言列表里出现这条便签",
+      "confidence": null,
+      "latencyMs": 533,
+      "scriptStep": {
+        "expect": "明天带伞",
+        "label": "断言列表里出现这条便签"
+      }
+    }
+  ],
+  "annotated": [
+    {
+      "n": 2,
+      "operation": "WAIT",
+      "target": null,
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-script\\step-02\\step-02-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 7,
+      "parsed_drawn": 7,
+      "candidates": 0,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [],
+      "color_counts": {
+        "TAP": 5,
+        "SCROLL": 0,
+        "TYPE": 2
+      },
+      "unmatched_indices": [],
+      "chosen": "",
+      "size_kb": 274.7,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-script\\step-02\\step-02-annotated.webp"
+    },
+    {
+      "n": 3,
+      "operation": "TAP",
+      "target": null,
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-script\\step-03\\step-03-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 7,
+      "parsed_drawn": 7,
+      "candidates": 0,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [],
+      "color_counts": {
+        "TAP": 5,
+        "SCROLL": 0,
+        "TYPE": 2
+      },
+      "unmatched_indices": [],
+      "chosen": "",
+      "size_kb": 233.9,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-script\\step-03\\step-03-annotated.webp"
+    },
+    {
+      "n": 4,
+      "operation": "WAIT",
+      "target": null,
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-script\\step-04\\step-04-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 7,
+      "parsed_drawn": 7,
+      "candidates": 0,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [],
+      "color_counts": {
+        "TAP": 5,
+        "SCROLL": 0,
+        "TYPE": 2
+      },
+      "unmatched_indices": [],
+      "chosen": "",
+      "size_kb": 232.5,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-script\\step-04\\step-04-annotated.webp"
+    },
+    {
+      "n": 5,
+      "operation": "TYPE_TEXT",
+      "target": null,
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-script\\step-05\\step-05-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 10,
+      "parsed_drawn": 10,
+      "candidates": 0,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [],
+      "color_counts": {
+        "TAP": 8,
+        "SCROLL": 0,
+        "TYPE": 2
+      },
+      "unmatched_indices": [],
+      "chosen": "",
+      "size_kb": 234.6,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-script\\step-05\\step-05-annotated.webp"
+    },
+    {
+      "n": 6,
+      "operation": "WAIT",
+      "target": null,
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-script\\step-06\\step-06-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 10,
+      "parsed_drawn": 10,
+      "candidates": 0,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [],
+      "color_counts": {
+        "TAP": 8,
+        "SCROLL": 0,
+        "TYPE": 2
+      },
+      "unmatched_indices": [],
+      "chosen": "",
+      "size_kb": 234.6,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-script\\step-06\\step-06-annotated.webp"
+    },
+    {
+      "n": 7,
+      "operation": "TAP_TEXT",
+      "target": null,
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-script\\step-07\\step-07-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 10,
+      "parsed_drawn": 10,
+      "candidates": 0,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [],
+      "color_counts": {
+        "TAP": 8,
+        "SCROLL": 0,
+        "TYPE": 2
+      },
+      "unmatched_indices": [],
+      "chosen": "",
+      "size_kb": 275,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-script\\step-07\\step-07-annotated.webp"
+    },
+    {
+      "n": 8,
+      "operation": "WAIT",
+      "target": null,
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-script\\step-08\\step-08-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 10,
+      "parsed_drawn": 10,
+      "candidates": 0,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [],
+      "color_counts": {
+        "TAP": 8,
+        "SCROLL": 0,
+        "TYPE": 2
+      },
+      "unmatched_indices": [],
+      "chosen": "",
+      "size_kb": 275.3,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-script\\step-08\\step-08-annotated.webp"
+    },
+    {
+      "n": 9,
+      "operation": "ASSERT",
+      "target": null,
+      "out": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-script\\step-09\\step-09-annotated.webp",
+      "thumbs": [],
+      "screen": "1080x2280",
+      "parsed_elements": 7,
+      "parsed_drawn": 7,
+      "candidates": 0,
+      "fullscreen_skipped": 0,
+      "candidate_ops": [],
+      "color_counts": {
+        "TAP": 5,
+        "SCROLL": 0,
+        "TYPE": 2
+      },
+      "unmatched_indices": [],
+      "chosen": "",
+      "size_kb": 274.7,
+      "file": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-script\\step-09\\step-09-annotated.webp"
+    }
+  ],
+  "final": {
+    "app": "com.oneplus.note",
+    "elements": 7,
+    "checks": [
+      {
+        "keyword": "明天带伞",
+        "pass": true
+      }
+    ],
+    "passed": true,
+    "screenshot": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-script\\final-state.webp",
+    "annotated": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-script\\final\\step-10-annotated.webp"
+  },
+  "dir": "D:\\Projects\\Agents\\mobile-agent\\artifacts\\cases\\L3-note-script"
+}
